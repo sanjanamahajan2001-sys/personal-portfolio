@@ -46,7 +46,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4 text-white">Flagship Project</h2>
             <p className="text-gray-400 font-medium">The AI Voice Agent Infrastructure Platform</p>
           </div>
-          <a href="https://github.com/sanjana/AI-Voice-Infrastructure-Platform" target="_blank" className="text-sm font-bold text-indigo-400 hover:text-indigo-300 transition-colors border-b border-indigo-500/50 pb-1">
+          <a href="https://github.com/sanjanamahajan2001-sys/AI-Voice-Infrastructure-Platform" target="_blank" className="text-sm font-bold text-indigo-400 hover:text-indigo-300 transition-colors border-b border-indigo-500/50 pb-1">
             View on GitHub &rarr;
           </a>
         </div>
