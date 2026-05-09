@@ -201,8 +201,8 @@ export default function Home() {
                 {[
                   { label: "AWS EKS", value: "Cluster Management" },
                   { label: "Terraform", value: "Modular IaC" },
-                  { label: "FastAPI", value: "WebSocket Engine" },
-                  { label: "Redis/RDS", value: "State Persistence" }
+                  { label: "Security", value: "IAM & Secrets" },
+                  { label: "FinOps", value: "Spot Optimization" }
                 ].map((card, i) => (
                   <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/10">
                     <p className="text-indigo-400 text-[10px] font-black uppercase mb-1">{card.label}</p>
@@ -301,10 +301,10 @@ export default function Home() {
               
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { label: "IaC", value: "Modular Terraform" },
+                  { label: "Azure / AWS", value: "Multi-cloud IaC" },
                   { label: "Packaging", value: "Universal Helm" },
                   { label: "Security", value: "Trivy & OPA" },
-                  { label: "Environment", value: "AWS EKS" }
+                  { label: "Language", value: "Go Operators" }
                 ].map((card, i) => (
                   <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/10">
                     <p className="text-purple-400 text-[10px] font-black uppercase mb-1">{card.label}</p>
@@ -353,10 +353,10 @@ export default function Home() {
               
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { label: "Metrics", value: "Prometheus" },
+                  { label: "Enterprise", value: "Dynatrace / OTel" },
                   { label: "Logging", value: "Grafana Loki" },
                   { label: "Alerting", value: "AlertManager" },
-                  { label: "Dashboards", value: "Grafana" }
+                  { label: "FinOps", value: "Cost Dashboards" }
                 ].map((card, i) => (
                   <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/10">
                     <p className="text-blue-400 text-[10px] font-black uppercase mb-1">{card.label}</p>
@@ -407,12 +407,12 @@ export default function Home() {
       {/* Skills Section */}
       <section id="skills" className="max-w-6xl mx-auto px-6 py-32 border-t border-white/10">
         <h2 className="text-4xl font-black tracking-tighter mb-16 text-white text-center">Tech Ecosystem</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
           {[
-                { cat: "Infrastructure", items: ["Terraform", "Modular IaC", "AWS VPC", "IAM"] },
-                { cat: "Compute", items: ["Kubernetes (EKS)", "Docker", "Auto-scaling", "Spot Instances"] },
-                { cat: "CI/CD", items: ["GitHub Actions", "Helm Charts", "Trivy Scanning", "GitOps Patterns"] },
-                { cat: "Observability", items: ["Prometheus", "Grafana", "Loki", "AlertManager"] }
+                { cat: "Cloud & Infra", items: ["AWS (EKS/RDS)", "Azure (AKS)", "Terraform", "Multi-cloud Networking"] },
+                { cat: "Compute & Language", items: ["Kubernetes", "Docker", "Go (Operators)", "Python (FastAPI)"] },
+                { cat: "Observability", items: ["Prometheus", "Grafana", "Dynatrace", "Loki Stack"] },
+                { cat: "Security & FinOps", items: ["Trivy / OPA", "IAM & Secrets", "Cost Optimization", "Infracost / FinOps"] }
           ].map((skill, i) => (
             <div key={i} className="space-y-4">
               <h4 className="text-indigo-400 text-xs font-black uppercase tracking-widest">{skill.cat}</h4>
