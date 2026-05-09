@@ -39,36 +39,25 @@ export default function Home() {
         </p>
       </header>
 
-      {/* Flagship Project - The Case Study */}
+      {/* Flagship Project 1 - AI Voice */}
       <section id="projects" className="max-w-6xl mx-auto px-6 py-32 border-t border-white/10">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div>
-            <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4 text-white">Flagship Project</h2>
-            <p className="text-gray-400 font-medium">The AI Voice Agent Infrastructure Platform</p>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4 text-white">Featured Project</h2>
+            <p className="text-gray-400 font-medium">AI Voice Agent Infrastructure Platform</p>
           </div>
           <a href="https://github.com/sanjanamahajan2001-sys/AI-Voice-Infrastructure-Platform" target="_blank" className="text-sm font-bold text-indigo-400 hover:text-indigo-300 transition-colors border-b border-indigo-500/50 pb-1">
             View on GitHub &rarr;
           </a>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-32">
           <div className="lg:col-span-7 space-y-10">
             <div className="relative group overflow-hidden rounded-3xl border border-white/10 bg-white/5 aspect-video flex items-center justify-center">
               <div className="text-center p-12">
-                <div className="text-6xl mb-4">🏗️</div>
-                <h4 className="text-xl font-bold mb-2">Cloud-Native Architecture</h4>
-                <p className="text-sm text-gray-500 font-mono">EKS | Terraform | VPC | RDS</p>
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-8">
-              <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-indigo-500/30 transition-all">
-                <div className="text-indigo-400 font-black text-2xl mb-2">99.9%</div>
-                <div className="text-xs font-bold text-gray-500 uppercase tracking-widest">Uptime Design</div>
-              </div>
-              <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-indigo-500/30 transition-all">
-                <div className="text-purple-400 font-black text-2xl mb-2">&lt;100ms</div>
-                <div className="text-xs font-bold text-gray-500 uppercase tracking-widest">Target Latency</div>
+                <div className="text-6xl mb-4">🎙️</div>
+                <h4 className="text-xl font-bold mb-2">Cloud-Native Voice Engine</h4>
+                <p className="text-sm text-gray-500 font-mono">EKS | Terraform | WebSockets</p>
               </div>
             </div>
           </div>
@@ -85,9 +74,9 @@ export default function Home() {
               <ul className="space-y-3">
                 {[
                   "Multi-AZ EKS deployment for high availability",
-                  "Terraform modularization for instant env replication",
-                  "Custom HPA metrics for WebSocket connection density",
-                  "Unified observability with Grafana Loki and Prometheus"
+                  "Custom HPA metrics for WebSocket density",
+                  "Automated scaling with AWS Spot Instances",
+                  "Centralized Production Monitoring (P99 tracking)"
                 ].map((item, i) => (
                   <li key={i} className="flex gap-3 text-sm text-gray-300">
                     <span className="text-indigo-500 font-bold">0{i+1}.</span>
@@ -96,13 +85,52 @@ export default function Home() {
                 ))}
               </ul>
             </div>
-            <div className="pt-6">
-              <div className="flex flex-wrap gap-2">
-                {["Terraform", "Kubernetes", "AWS EKS", "FastAPI", "GitHub Actions"].map(tag => (
-                  <span key={tag} className="px-3 py-1 bg-white/5 border border-white/10 rounded-md text-[10px] font-bold text-gray-400 uppercase tracking-wider">
-                    {tag}
-                  </span>
+          </div>
+        </div>
+
+        {/* Project 2 - K8s Accelerator */}
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+          <div>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4 text-white text-right md:text-left">New Release</h2>
+            <p className="text-gray-400 font-medium text-right md:text-left">Kubernetes Deployment Accelerator</p>
+          </div>
+          <a href="https://github.com/sanjanamahajan2001-sys/k8s-deployment-accelerator" target="_blank" className="text-sm font-bold text-purple-400 hover:text-purple-300 transition-colors border-b border-purple-500/50 pb-1">
+            View on GitHub &rarr;
+          </a>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div className="lg:col-span-5 order-2 lg:order-1 space-y-8">
+            <div className="space-y-4">
+              <h4 className="text-lg font-bold text-white">The Innovation</h4>
+              <p className="text-gray-400 text-sm leading-relaxed font-medium">
+                Designed a "Platform-in-a-Box" that reduces application deployment setup time by 70% using reusable Terraform modules and Helm templates.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <h4 className="text-lg font-bold text-white">Highlights</h4>
+              <ul className="space-y-3">
+                {[
+                  "Reusable, versioned Terraform infrastructure modules",
+                  "Universal Helm Charts for rapid service onboarding",
+                  "Security-first CI/CD with Trivy & OPA policies",
+                  "GitOps delivery pipelines for AWS & Bitbucket"
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-gray-300">
+                    <span className="text-purple-500 font-bold">0{i+1}.</span>
+                    {item}
+                  </li>
                 ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="lg:col-span-7 order-1 lg:order-2 space-y-10">
+            <div className="relative group overflow-hidden rounded-3xl border border-white/10 bg-white/5 aspect-video flex items-center justify-center">
+              <div className="text-center p-12">
+                <div className="text-6xl mb-4">⚡</div>
+                <h4 className="text-xl font-bold mb-2">Platform Accelerator</h4>
+                <p className="text-sm text-gray-500 font-mono">Modular Terraform | Helm | GitOps</p>
               </div>
             </div>
           </div>
@@ -142,7 +170,7 @@ export default function Home() {
       {/* Simple Footer */}
       <footer className="py-12 border-t border-white/5 text-center">
         <p className="text-gray-600 text-xs font-bold tracking-widest uppercase">
-          &copy; 2026 Sanjana / Cloud & DevOps Engineer
+          &copy; 2026 Sanjana / Cloud & DevOps Engineer | <a href="https://www.linkedin.com/in/sanjana-mahajan-467982233/" className="hover:text-white">LinkedIn</a>
         </p>
       </footer>
     </div>
