@@ -19,7 +19,7 @@ export default function Home() {
           <a href="#projects" className="hover:text-white transition-colors">Projects</a>
           <a href="#skills" className="hover:text-white transition-colors">Skills</a>
         </div>
-        <a href="mailto:sanjana@example.com" className="px-5 py-2.5 bg-white text-black text-sm font-bold rounded-full hover:scale-105 transition-all active:scale-95">
+        <a href="mailto:sanjanamaahi2001@gmail.com" className="px-5 py-2.5 bg-white text-black text-sm font-bold rounded-full hover:scale-105 transition-all active:scale-95">
           Work with me
         </a>
       </nav>
@@ -35,7 +35,7 @@ export default function Home() {
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">Infrastructure</span>
         </h1>
         <p className="text-lg md:text-xl text-gray-400 max-w-2xl leading-relaxed font-medium">
-          Cloud & DevOps Engineer focused on building resilient, automated, and observable systems. I bridge the gap between code and production-ready infrastructure.
+          Cloud & DevOps Engineer focused on building resilient, automated, and observable systems. I bridge the gap between code and production-grade infrastructure with focus on cost optimization and reliability.
         </p>
       </header>
 
@@ -114,10 +114,10 @@ export default function Home() {
         <h2 className="text-4xl font-black tracking-tighter mb-16 text-white text-center">Tech Ecosystem</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
-            { cat: "Infrastructure", items: ["Terraform", "CloudFormation", "AWS VPC", "IAM"] },
-            { cat: "Compute", items: ["Kubernetes", "Docker", "AWS EKS", "EC2"] },
-            { cat: "Automation", items: ["GitHub Actions", "Jenkins", "Bash", "Python"] },
-            { cat: "Observability", items: ["Prometheus", "Grafana", "Loki", "CloudWatch"] }
+                { cat: "Infrastructure", items: ["Terraform", "CloudFormation", "AWS VPC", "IAM"] },
+                { cat: "Compute", items: ["Kubernetes", "Docker", "AWS EKS", "EC2"] },
+                { cat: "CI/CD", items: ["GitHub Actions", "Bitbucket Pipelines", "Jenkins"] },
+                { cat: "Observability", items: ["Prometheus", "Grafana", "Loki", "CloudWatch"] }
           ].map((skill, i) => (
             <div key={i} className="space-y-4">
               <h4 className="text-indigo-400 text-xs font-black uppercase tracking-widest">{skill.cat}</h4>
@@ -134,7 +134,7 @@ export default function Home() {
       {/* Final CTA */}
       <section className="max-w-4xl mx-auto px-6 py-40 text-center">
         <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 leading-tight">Ready to scale <br/> your infrastructure?</h2>
-        <a href="mailto:sanjana@example.com" className="inline-block px-10 py-5 bg-white text-black font-black rounded-2xl hover:scale-105 transition-all active:scale-95 text-lg">
+        <a href="mailto:sanjanamaahi2001@gmail.com" className="inline-block px-10 py-5 bg-white text-black font-black rounded-2xl hover:scale-105 transition-all active:scale-95 text-lg">
           Get in touch
         </a>
       </section>
