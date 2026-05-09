@@ -15,7 +15,7 @@ export default function Home() {
       <nav className="max-w-6xl mx-auto px-6 py-8 flex justify-between items-center backdrop-blur-sm sticky top-0 z-50">
         <div className="text-xl font-black tracking-tighter text-white">SANJANA.</div>
         <div className="hidden md:flex gap-10 text-sm font-medium text-gray-400">
-          <a href="#projects" className="hover:text-white transition-colors">Experience</a>
+          <a href="#focus" className="hover:text-white transition-colors">Focus</a>
           <a href="#projects" className="hover:text-white transition-colors">Projects</a>
           <a href="#skills" className="hover:text-white transition-colors">Skills</a>
         </div>
@@ -27,16 +27,30 @@ export default function Home() {
       {/* Hero Section */}
       <header className="max-w-6xl mx-auto px-6 pt-32 pb-40">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold mb-8 uppercase tracking-widest">
-          <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
-          Available for Cloud/DevOps roles
+          <span className="w-2 h-2 rounded-full bg-indigo-500"></span>
+          Engineering Portfolio
         </div>
         <h1 className="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.9] text-white">
-          Architecting <br/> 
+          Cloud & DevOps <br/> 
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">Infrastructure</span>
         </h1>
-        <p className="text-lg md:text-xl text-gray-400 max-w-2xl leading-relaxed font-medium">
-          Cloud & DevOps Engineer focused on building resilient, automated, and observable systems. I bridge the gap between code and production-grade infrastructure with focus on cost optimization and reliability.
+        <p className="text-lg md:text-xl text-gray-400 max-w-2xl leading-relaxed font-medium mb-12">
+          Building resilient, scalable, and observable cloud systems. I specialize in Kubernetes orchestration, infrastructure automation, and production-ready deployment workflows.
         </p>
+
+        {/* Engineering Focus Section */}
+        <section id="focus" className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-10 border-t border-white/10">
+          {[
+            { title: "Scalability", desc: "Designing multi-AZ infrastructure using Terraform and EKS for high-availability applications." },
+            { title: "Automation", desc: "Building modular CI/CD pipelines that automate infrastructure provisioning and app delivery." },
+            { title: "Observability", desc: "Implementing full-stack monitoring with Prometheus, Grafana, and Loki for real-time insights." }
+          ].map((item, i) => (
+            <div key={i} className="p-6 rounded-2xl bg-white/5 border border-white/10">
+              <h4 className="text-indigo-400 font-bold mb-2 uppercase tracking-tighter text-sm">{item.title}</h4>
+              <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </section>
       </header>
 
       {/* Flagship Project 1 - AI Voice */}
@@ -44,42 +58,66 @@ export default function Home() {
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div>
             <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4 text-white">Featured Project</h2>
-            <p className="text-gray-400 font-medium">AI Voice Agent Infrastructure Platform</p>
+            <p className="text-gray-400 font-medium italic">AI Voice Infrastructure Platform</p>
           </div>
           <a href="https://github.com/sanjanamahajan2001-sys/AI-Voice-Infrastructure-Platform" target="_blank" className="text-sm font-bold text-indigo-400 hover:text-indigo-300 transition-colors border-b border-indigo-500/50 pb-1">
-            View on GitHub &rarr;
+            Explore Architecture &rarr;
           </a>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-32">
-          <div className="lg:col-span-7 space-y-10">
-            <div className="relative group overflow-hidden rounded-3xl border border-white/10 bg-white/5 aspect-video flex items-center justify-center">
-              <div className="text-center p-12">
-                <div className="text-6xl mb-4">🎙️</div>
-                <h4 className="text-xl font-bold mb-2">Cloud-Native Voice Engine</h4>
-                <p className="text-sm text-gray-500 font-mono">EKS | Terraform | WebSockets</p>
+          <div className="lg:col-span-7 space-y-6">
+            <div className="p-8 rounded-3xl border border-white/10 bg-white/5 space-y-8">
+              <div className="flex items-center gap-4">
+                <span className="text-4xl">🎙️</span>
+                <h4 className="text-2xl font-bold">Cloud-Native Voice Engine</h4>
+              </div>
+              
+              {/* Architecture Cards */}
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { label: "AWS EKS", value: "Cluster Management" },
+                  { label: "Terraform", value: "Modular IaC" },
+                  { label: "FastAPI", value: "WebSocket Engine" },
+                  { label: "Redis/RDS", value: "State Persistence" }
+                ].map((card, i) => (
+                  <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/10">
+                    <p className="text-indigo-400 text-[10px] font-black uppercase mb-1">{card.label}</p>
+                    <p className="text-white text-xs font-medium">{card.value}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="space-y-4 pt-4 border-t border-white/10">
+                <h5 className="text-sm font-bold text-gray-300">Deployment Workflow</h5>
+                <div className="flex gap-2 items-center text-[10px] font-mono text-gray-500">
+                  <span>Push</span> <span className="text-indigo-500">→</span> 
+                  <span>GitHub Actions</span> <span className="text-indigo-500">→</span> 
+                  <span>Docker Build</span> <span className="text-indigo-500">→</span> 
+                  <span>EKS Rollout</span>
+                </div>
               </div>
             </div>
           </div>
 
           <div className="lg:col-span-5 space-y-8">
             <div className="space-y-4">
-              <h4 className="text-lg font-bold text-white">The Challenge</h4>
+              <h4 className="text-lg font-bold text-white uppercase tracking-tighter">Project Goal</h4>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Deploying AI voice agents requires low-latency WebSockets and high compute variability. Standard scaling often fails for persistent audio streams.
+                Build a production-ready infrastructure for high-concurrency audio processing. This project focuses on solving WebSocket persistence and low-latency scaling in Kubernetes.
               </p>
             </div>
             <div className="space-y-4">
-              <h4 className="text-lg font-bold text-white">The Solution</h4>
+              <h4 className="text-lg font-bold text-white uppercase tracking-tighter">Engineering Focus</h4>
               <ul className="space-y-3">
                 {[
-                  "Multi-AZ EKS deployment for high availability",
-                  "Custom HPA metrics for WebSocket density",
-                  "Automated scaling with AWS Spot Instances",
-                  "Centralized Production Monitoring (P99 tracking)"
+                  "Multi-AZ networking for audio stream reliability",
+                  "HPA scaling based on custom stream-density metrics",
+                  "Cost optimization using AWS Spot Instances",
+                  "Integrated P99 latency tracking via Prometheus"
                 ].map((item, i) => (
                   <li key={i} className="flex gap-3 text-sm text-gray-300">
-                    <span className="text-indigo-500 font-bold">0{i+1}.</span>
+                    <span className="text-indigo-500 font-bold">✓</span>
                     {item}
                   </li>
                 ))}
@@ -91,33 +129,33 @@ export default function Home() {
         {/* Project 2 - K8s Accelerator */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div>
-            <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4 text-white text-right md:text-left">New Release</h2>
-            <p className="text-gray-400 font-medium text-right md:text-left">Kubernetes Deployment Accelerator</p>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4 text-white">Deployment Engine</h2>
+            <p className="text-gray-400 font-medium italic">Kubernetes Deployment Accelerator</p>
           </div>
           <a href="https://github.com/sanjanamahajan2001-sys/k8s-deployment-accelerator" target="_blank" className="text-sm font-bold text-purple-400 hover:text-purple-300 transition-colors border-b border-purple-500/50 pb-1">
-            View on GitHub &rarr;
+            View Framework &rarr;
           </a>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-32">
-          <div className="lg:col-span-5 order-2 lg:order-1 space-y-8 text-right lg:text-left">
+          <div className="lg:col-span-5 order-2 lg:order-1 space-y-8">
             <div className="space-y-4">
-              <h4 className="text-lg font-bold text-white">The Innovation</h4>
+              <h4 className="text-lg font-bold text-white uppercase tracking-tighter">The Innovation</h4>
               <p className="text-gray-400 text-sm leading-relaxed font-medium">
-                Designed a "Platform-in-a-Box" that reduces application deployment setup time by 70% using reusable Terraform modules and Helm templates.
+                Standardized the bridge between IaC and application delivery. This framework reduces service onboarding time by abstracting K8s complexity into reusable modules.
               </p>
             </div>
             <div className="space-y-4">
-              <h4 className="text-lg font-bold text-white">Highlights</h4>
+              <h4 className="text-lg font-bold text-white uppercase tracking-tighter">Framework Highlights</h4>
               <ul className="space-y-3">
                 {[
-                  "Reusable, versioned Terraform infrastructure modules",
-                  "Universal Helm Charts for rapid service onboarding",
-                  "Security-first CI/CD with Trivy & OPA policies",
-                  "GitOps delivery pipelines for AWS & Bitbucket"
+                  "Versioned Terraform infrastructure modules",
+                  "Universal Helm Charts for rapid onboarding",
+                  "Security-first CI/CD with Trivy & OPA",
+                  "GitOps-ready delivery pipelines"
                 ].map((item, i) => (
-                  <li key={i} className="flex gap-3 text-sm text-gray-300 justify-end lg:justify-start">
-                    <span className="text-purple-500 font-bold">0{i+1}.</span>
+                  <li key={i} className="flex gap-3 text-sm text-gray-300">
+                    <span className="text-purple-500 font-bold">✓</span>
                     {item}
                   </li>
                 ))}
@@ -125,12 +163,35 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="lg:col-span-7 order-1 lg:order-2 space-y-10">
-            <div className="relative group overflow-hidden rounded-3xl border border-white/10 bg-white/5 aspect-video flex items-center justify-center">
-              <div className="text-center p-12">
-                <div className="text-6xl mb-4">⚡</div>
-                <h4 className="text-xl font-bold mb-2">Platform Accelerator</h4>
-                <p className="text-sm text-gray-500 font-mono">Modular Terraform | Helm | GitOps</p>
+          <div className="lg:col-span-7 order-1 lg:order-2 space-y-6">
+            <div className="p-8 rounded-3xl border border-white/10 bg-white/5 space-y-8">
+              <div className="flex items-center gap-4">
+                <span className="text-4xl">⚡</span>
+                <h4 className="text-2xl font-bold">Reusable K8s Framework</h4>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { label: "IaC", value: "Modular Terraform" },
+                  { label: "Packaging", value: "Universal Helm" },
+                  { label: "Security", value: "Trivy & OPA" },
+                  { label: "Environment", value: "AWS EKS" }
+                ].map((card, i) => (
+                  <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/10">
+                    <p className="text-purple-400 text-[10px] font-black uppercase mb-1">{card.label}</p>
+                    <p className="text-white text-xs font-medium">{card.value}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="space-y-4 pt-4 border-t border-white/10">
+                <h5 className="text-sm font-bold text-gray-300">Accelerator Pipeline</h5>
+                <div className="flex gap-2 items-center text-[10px] font-mono text-gray-500">
+                  <span>Config</span> <span className="text-purple-500">→</span> 
+                  <span>Lint & Scan</span> <span className="text-purple-500">→</span> 
+                  <span>Validation</span> <span className="text-purple-500">→</span> 
+                  <span>EKS Deploy</span>
+                </div>
               </div>
             </div>
           </div>
@@ -140,42 +201,65 @@ export default function Home() {
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div>
             <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4 text-white">Observability Stack</h2>
-            <p className="text-gray-400 font-medium">Production Monitoring & Incident Platform</p>
+            <p className="text-gray-400 font-medium italic">Cloud-Native Monitoring Platform</p>
           </div>
           <a href="https://github.com/sanjanamahajan2001-sys/production-monitoring-platform" target="_blank" className="text-sm font-bold text-blue-400 hover:text-blue-300 transition-colors border-b border-blue-500/50 pb-1">
-            View on GitHub &rarr;
+            View Observability Logic &rarr;
           </a>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-7 space-y-10">
-            <div className="relative group overflow-hidden rounded-3xl border border-white/10 bg-white/5 aspect-video flex items-center justify-center">
-              <div className="text-center p-12">
-                <div className="text-6xl mb-4">🔍</div>
-                <h4 className="text-xl font-bold mb-2">Reliability Platform</h4>
-                <p className="text-sm text-gray-500 font-mono">Prometheus | Grafana | Loki | Slack</p>
+          <div className="lg:col-span-7 space-y-6">
+            <div className="p-8 rounded-3xl border border-white/10 bg-white/5 space-y-8">
+              <div className="flex items-center gap-4">
+                <span className="text-4xl">🔍</span>
+                <h4 className="text-2xl font-bold">Reliability & Incident Engine</h4>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { label: "Metrics", value: "Prometheus" },
+                  { label: "Logging", value: "Grafana Loki" },
+                  { label: "Alerting", value: "AlertManager" },
+                  { label: "Dashboards", value: "Grafana" }
+                ].map((card, i) => (
+                  <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/10">
+                    <p className="text-blue-400 text-[10px] font-black uppercase mb-1">{card.label}</p>
+                    <p className="text-white text-xs font-medium">{card.value}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="space-y-4 pt-4 border-t border-white/10">
+                <h5 className="text-sm font-bold text-gray-300">Incident Flow</h5>
+                <div className="flex gap-2 items-center text-[10px] font-mono text-gray-500">
+                  <span>Threshold</span> <span className="text-blue-500">→</span> 
+                  <span>Rule Eval</span> <span className="text-blue-500">→</span> 
+                  <span>Deduplication</span> <span className="text-blue-500">→</span> 
+                  <span>Slack Alert</span>
+                </div>
               </div>
             </div>
           </div>
 
           <div className="lg:col-span-5 space-y-8">
             <div className="space-y-4">
-              <h4 className="text-lg font-bold text-white">The Mission</h4>
+              <h4 className="text-lg font-bold text-white uppercase tracking-tighter">The Mission</h4>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Startups need to see their systems' health before customers do. This platform centralizes metrics and logs into a single reactive dashboard.
+                Centralized observability for multi-service environments. This project focuses on log correlation and proactive incident response using the LGTM stack.
               </p>
             </div>
             <div className="space-y-4">
-              <h4 className="text-lg font-bold text-white">Core Capabilities</h4>
+              <h4 className="text-lg font-bold text-white uppercase tracking-tighter">Core Capabilities</h4>
               <ul className="space-y-3">
                 {[
-                  "Proactive alerting for CPU, Memory, and Latency",
                   "Log aggregation and correlation with Loki",
                   "Automated incident notifications to Slack",
-                  "Uptime tracking and Service Level Objectives (SLOs)"
+                  "Uptime tracking and SLO monitoring",
+                  "Custom Grafana dashboards for health visualization"
                 ].map((item, i) => (
                   <li key={i} className="flex gap-3 text-sm text-gray-300">
-                    <span className="text-blue-500 font-bold">0{i+1}.</span>
+                    <span className="text-blue-500 font-bold">✓</span>
                     {item}
                   </li>
                 ))}
@@ -190,10 +274,10 @@ export default function Home() {
         <h2 className="text-4xl font-black tracking-tighter mb-16 text-white text-center">Tech Ecosystem</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
-                { cat: "Infrastructure", items: ["Terraform", "CloudFormation", "AWS VPC", "IAM"] },
-                { cat: "Compute", items: ["Kubernetes", "Docker", "AWS EKS", "EC2"] },
-                { cat: "CI/CD", items: ["GitHub Actions", "Bitbucket Pipelines", "Jenkins"] },
-                { cat: "Observability", items: ["Prometheus", "Grafana", "Loki", "OpenSearch"] }
+                { cat: "Infrastructure", items: ["Terraform", "Modular IaC", "AWS VPC", "IAM"] },
+                { cat: "Compute", items: ["Kubernetes (EKS)", "Docker", "Auto-scaling", "Spot Instances"] },
+                { cat: "CI/CD", items: ["GitHub Actions", "Helm Charts", "Trivy Scanning", "GitOps Patterns"] },
+                { cat: "Observability", items: ["Prometheus", "Grafana", "Loki", "AlertManager"] }
           ].map((skill, i) => (
             <div key={i} className="space-y-4">
               <h4 className="text-indigo-400 text-xs font-black uppercase tracking-widest">{skill.cat}</h4>
@@ -209,7 +293,7 @@ export default function Home() {
 
       {/* Final CTA */}
       <section className="max-w-4xl mx-auto px-6 py-40 text-center">
-        <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 leading-tight">Ready to scale <br/> your infrastructure?</h2>
+        <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-8 leading-tight">Scale your <br/> infrastructure.</h2>
         <a href="mailto:sanjanamaahi2001@gmail.com" className="inline-block px-10 py-5 bg-white text-black font-black rounded-2xl hover:scale-105 transition-all active:scale-95 text-lg">
           Get in touch
         </a>
@@ -218,7 +302,7 @@ export default function Home() {
       {/* Simple Footer */}
       <footer className="py-12 border-t border-white/5 text-center">
         <p className="text-gray-600 text-xs font-bold tracking-widest uppercase">
-          &copy; 2026 Sanjana / Cloud & DevOps Engineer | <a href="https://www.linkedin.com/in/sanjana-mahajan-467982233/" className="hover:text-white">LinkedIn</a>
+          &copy; 2026 Sanjana / Cloud & DevOps Engineer | <a href="https://www.linkedin.com/in/sanjana-mahajan-467982233/" className="hover:text-white transition-colors">LinkedIn</a>
         </p>
       </footer>
     </div>
