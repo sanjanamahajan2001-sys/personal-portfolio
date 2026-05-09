@@ -99,8 +99,8 @@ export default function Home() {
           </a>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-5 order-2 lg:order-1 space-y-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-32">
+          <div className="lg:col-span-5 order-2 lg:order-1 space-y-8 text-right lg:text-left">
             <div className="space-y-4">
               <h4 className="text-lg font-bold text-white">The Innovation</h4>
               <p className="text-gray-400 text-sm leading-relaxed font-medium">
@@ -116,7 +116,7 @@ export default function Home() {
                   "Security-first CI/CD with Trivy & OPA policies",
                   "GitOps delivery pipelines for AWS & Bitbucket"
                 ].map((item, i) => (
-                  <li key={i} className="flex gap-3 text-sm text-gray-300">
+                  <li key={i} className="flex gap-3 text-sm text-gray-300 justify-end lg:justify-start">
                     <span className="text-purple-500 font-bold">0{i+1}.</span>
                     {item}
                   </li>
@@ -135,6 +135,54 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Project 3 - Monitoring Platform */}
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+          <div>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4 text-white">Observability Stack</h2>
+            <p className="text-gray-400 font-medium">Production Monitoring & Incident Platform</p>
+          </div>
+          <a href="https://github.com/sanjanamahajan2001-sys/production-monitoring-platform" target="_blank" className="text-sm font-bold text-blue-400 hover:text-blue-300 transition-colors border-b border-blue-500/50 pb-1">
+            View on GitHub &rarr;
+          </a>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div className="lg:col-span-7 space-y-10">
+            <div className="relative group overflow-hidden rounded-3xl border border-white/10 bg-white/5 aspect-video flex items-center justify-center">
+              <div className="text-center p-12">
+                <div className="text-6xl mb-4">🔍</div>
+                <h4 className="text-xl font-bold mb-2">Reliability Platform</h4>
+                <p className="text-sm text-gray-500 font-mono">Prometheus | Grafana | Loki | Slack</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-5 space-y-8">
+            <div className="space-y-4">
+              <h4 className="text-lg font-bold text-white">The Mission</h4>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Startups need to see their systems' health before customers do. This platform centralizes metrics and logs into a single reactive dashboard.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <h4 className="text-lg font-bold text-white">Core Capabilities</h4>
+              <ul className="space-y-3">
+                {[
+                  "Proactive alerting for CPU, Memory, and Latency",
+                  "Log aggregation and correlation with Loki",
+                  "Automated incident notifications to Slack",
+                  "Uptime tracking and Service Level Objectives (SLOs)"
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-gray-300">
+                    <span className="text-blue-500 font-bold">0{i+1}.</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Skills Section */}
@@ -145,7 +193,7 @@ export default function Home() {
                 { cat: "Infrastructure", items: ["Terraform", "CloudFormation", "AWS VPC", "IAM"] },
                 { cat: "Compute", items: ["Kubernetes", "Docker", "AWS EKS", "EC2"] },
                 { cat: "CI/CD", items: ["GitHub Actions", "Bitbucket Pipelines", "Jenkins"] },
-                { cat: "Observability", items: ["Prometheus", "Grafana", "Loki", "CloudWatch"] }
+                { cat: "Observability", items: ["Prometheus", "Grafana", "Loki", "OpenSearch"] }
           ].map((skill, i) => (
             <div key={i} className="space-y-4">
               <h4 className="text-indigo-400 text-xs font-black uppercase tracking-widest">{skill.cat}</h4>
