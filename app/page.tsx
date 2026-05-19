@@ -93,6 +93,62 @@ const MonitoringDiagram = () => (
   </div>
 );
 
+const BhaoBhaoArchitecture = () => (
+  <div className="w-full py-8 px-4 bg-white/5 rounded-2xl border border-white/10 my-6">
+    <svg viewBox="0 0 800 240" className="w-full h-auto">
+      <defs>
+        <marker id="arrowhead-gold" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="#C4A77D" />
+        </marker>
+      </defs>
+      
+      {/* 4 Frontends (Monorepo Micro-Frontends) */}
+      <rect x="20" y="20" width="130" height="35" rx="6" fill="#0d1e36" stroke="#C4A77D" strokeWidth="1" />
+      <text x="85" y="41" textAnchor="middle" fill="white" fontSize="9" fontWeight="bold">Landing Page (Vercel)</text>
+      
+      <rect x="20" y="70" width="130" height="35" rx="6" fill="#0d1e36" stroke="#C4A77D" strokeWidth="1" />
+      <text x="85" y="91" textAnchor="middle" fill="white" fontSize="9" fontWeight="bold">Customer Portal (Vercel)</text>
+      
+      <rect x="20" y="120" width="130" height="35" rx="6" fill="#0d1e36" stroke="#C4A77D" strokeWidth="1" />
+      <text x="85" y="141" textAnchor="middle" fill="white" fontSize="9" fontWeight="bold">Groomer Portal (Vercel)</text>
+
+      <rect x="20" y="170" width="130" height="35" rx="6" fill="#0d1e36" stroke="#C4A77D" strokeWidth="1" />
+      <text x="85" y="191" textAnchor="middle" fill="white" fontSize="9" fontWeight="bold">Admin Portal (Vercel)</text>
+
+      {/* Gateway Hub */}
+      <rect x="230" y="95" width="110" height="45" rx="10" fill="#1e1b4b" stroke="#818cf8" strokeWidth="1.5" />
+      <text x="285" y="118" textAnchor="middle" fill="white" fontSize="9" fontWeight="bold">Recruiter Sandbox</text>
+      <text x="285" y="131" textAnchor="middle" fill="#818cf8" fontSize="8" fontStyle="italic">One-Click Router</text>
+
+      {/* Express Node.js API Gateway */}
+      <rect x="420" y="77" width="140" height="80" rx="12" fill="#312e81" stroke="#a855f7" strokeWidth="2" />
+      <text x="490" y="107" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Node.js Express API</text>
+      <text x="490" y="124" textAnchor="middle" fill="#d8b4fe" fontSize="9">Render Web Service</text>
+      <text x="490" y="140" textAnchor="middle" fill="#c084fc" fontSize="8" fontStyle="italic">verifyApiKey Middleware</text>
+
+      {/* Database / Third-Party */}
+      <rect x="640" y="47" width="130" height="50" rx="8" fill="#064e3b" stroke="#059669" strokeWidth="1" />
+      <text x="705" y="72" textAnchor="middle" fill="white" fontSize="9" fontWeight="bold">Neon PostgreSQL</text>
+      <text x="705" y="85" textAnchor="middle" fill="#34d399" fontSize="8" fontStyle="italic">Drizzle ORM & Migrations</text>
+
+      <rect x="640" y="132" width="130" height="50" rx="8" fill="#1e1b4b" stroke="#6366f1" strokeWidth="1" />
+      <text x="705" y="157" textAnchor="middle" fill="white" fontSize="9" fontWeight="bold">Mailgun & Supabase</text>
+      <text x="705" y="170" textAnchor="middle" fill="#818cf8" fontSize="8" fontStyle="italic">OTP & Cloud Assets</text>
+
+      {/* Connection arrows */}
+      <path d="M150 37 h50 v62 h30" stroke="#C4A77D" strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-gold)" />
+      <path d="M150 87 h80" stroke="#C4A77D" strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-gold)" />
+      <path d="M150 137 h50 v-20 h30" stroke="#C4A77D" strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-gold)" />
+      <path d="M150 187 h60 v-62 h20" stroke="#C4A77D" strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-gold)" />
+
+      <line x1="340" y1="117" x2="410" y2="117" stroke="#818cf8" strokeWidth="2" strokeDasharray="3" markerEnd="url(#arrowhead-gold)" />
+
+      <path d="M560 102 h30 v-25 h50" stroke="#a855f7" strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-gold)" />
+      <path d="M560 132 h30 v-5 h50" stroke="#a855f7" strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-gold)" />
+    </svg>
+  </div>
+);
+
 // --- Main Page ---
 
 export default function Home() {
@@ -170,8 +226,94 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Flagship Project 1 - AI Voice */}
+      {/* Flagship Project - BhaoBhao */}
       <section id="projects" className="max-w-6xl mx-auto px-6 py-32 border-t border-white/10">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+          <div>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4 text-white">Flagship Project</h2>
+            <p className="text-gray-400 font-medium italic">Bhao Bhao — Multi-Portal Full-Stack Platform</p>
+          </div>
+          <div className="flex gap-6">
+            <a href="https://bhao-bhao.vercel.app" target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-amber-400 hover:text-amber-300 transition-colors border-b border-amber-500/50 pb-1">
+              Live Demo &rarr;
+            </a>
+            <a href="https://github.com/sanjanamahajan2001-sys/BhaoBhao" target="_blank" rel="noopener noreferrer" className="text-sm font-bold text-indigo-400 hover:text-indigo-300 transition-colors border-b border-indigo-500/50 pb-1">
+              GitHub Repo &rarr;
+            </a>
+          </div>
+        </div>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-32">
+          <div className="lg:col-span-7 space-y-6">
+            <div className="p-8 rounded-3xl border border-white/10 bg-white/5 space-y-8">
+              <div className="flex items-center gap-4">
+                <span className="text-4xl">🐕</span>
+                <h4 className="text-2xl font-black tracking-tight text-white">Full-Stack Monorepo Service</h4>
+              </div>
+              
+              {/* Architecture Diagram */}
+              <div className="space-y-4">
+                <p className="text-[10px] font-black text-amber-400 uppercase tracking-widest text-center">Monorepo System Architecture</p>
+                <BhaoBhaoArchitecture />
+              </div>
+
+              {/* Architecture Cards */}
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { label: "Monorepo", value: "4 Micro-Frontends (Vercel)" },
+                  { label: "Express API", value: "Auto-Scaling (Render)" },
+                  { label: "Database", value: "Neon Serverless Postgres" },
+                  { label: "ORM", value: "Drizzle & Schema Migrations" }
+                ].map((card, i) => (
+                  <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/10">
+                    <p className="text-amber-400 text-[10px] font-black uppercase mb-1">{card.label}</p>
+                    <p className="text-white text-xs font-medium">{card.value}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="space-y-4 pt-4 border-t border-white/10">
+                <h5 className="text-sm font-bold text-gray-300">DevOps Deployment Flow</h5>
+                <div className="flex gap-2 items-center text-[10px] font-mono text-gray-500">
+                  <span>Git Push</span> <span className="text-amber-500">→</span> 
+                  <span>GitHub Hooks</span> <span className="text-amber-500">→</span> 
+                  <span>Vercel MFE Builds</span> <span className="text-amber-500">→</span> 
+                  <span>Render API Engine</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-5 space-y-8">
+            <div className="space-y-4">
+              <h4 className="text-lg font-bold text-white uppercase tracking-tighter">Project Architecture</h4>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Standardized a complex 5-portal micro-frontend ecosystem inside a single unified GitHub monorepo. This production-ready platform coordinates live customer bookings, dynamic OTP registration, a comprehensive groomer workflow engine, and granular admin dashboards.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <h4 className="text-lg font-bold text-white uppercase tracking-tighter">Engineering Focus</h4>
+              <ul className="space-y-3">
+                {[
+                  "Dynamic CORS configuration & JWT session isolation across frontends",
+                  "Auto-healing backend API Key middleware supporting multi-key singular/plural keys",
+                  "Serverless PostgreSQL using Neon DB with strict Drizzle migrations",
+                  "Mailgun dynamic SMTP OTP delivery for phone-number authentication",
+                  "Unified Recruiter Gateway directly on the public homepage for one-click portal exploration"
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-gray-300">
+                    <span className="text-amber-500 font-bold">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Flagship Project 1 - AI Voice */}
+      <section className="max-w-6xl mx-auto px-6 py-32 border-t border-white/10">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div>
             <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4 text-white">Featured Project</h2>
