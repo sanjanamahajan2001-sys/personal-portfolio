@@ -113,87 +113,393 @@ const EmailIntelligenceArchitecture = ({ themeColor = "#6366f1" }) => (
 );
 
 const AcceleratorDiagram = ({ themeColor = "#a855f7" }) => (
-  <div className="w-full py-8 px-4 bg-white/5 rounded-2xl border border-white/10 my-6 transition-all duration-500">
-    <svg viewBox="0 0 800 150" className="w-full h-auto">
+  <div className="w-full py-8 px-4 bg-[#080510]/60 rounded-2xl border border-white/10 my-6 transition-all duration-500 shadow-2xl relative overflow-hidden group hover:border-purple-500/30">
+    <div className="absolute top-0 right-0 w-24 h-24 bg-purple-500/5 rounded-full blur-xl pointer-events-none"></div>
+    <svg viewBox="0 0 800 240" className="w-full h-auto">
       <defs>
-        <marker id="arrowhead-acc" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
-          <polygon points="0 0, 10 3.5, 0 7" fill={themeColor} />
+        <linearGradient id="purple-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#d8b4fe" />
+          <stop offset="100%" stopColor={themeColor} />
+        </linearGradient>
+        <linearGradient id="spot-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#f472b6" />
+          <stop offset="100%" stopColor="#db2777" />
+        </linearGradient>
+        <filter id="glow-purple" x="-10%" y="-10%" width="120%" height="120%">
+          <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor={themeColor} floodOpacity="0.25" />
+        </filter>
+        <marker id="arrowhead-acc" markerWidth="8" markerHeight="6" refX="5" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill={themeColor} />
+        </marker>
+        <marker id="arrowhead-spot" markerWidth="8" markerHeight="6" refX="5" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#f472b6" />
         </marker>
       </defs>
-      <rect x="50" y="50" width="120" height="50" rx="10" fill="#14081c" stroke={themeColor} strokeWidth="1" />
-      <text x="110" y="80" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">Terraform Modules</text>
-      
-      <rect x="230" y="50" width="120" height="50" rx="10" fill="#14081c" stroke={themeColor} strokeWidth="1" />
-      <text x="290" y="80" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">Helm Templates</text>
-      
-      <rect x="410" y="50" width="120" height="50" rx="10" fill="#14081c" stroke={themeColor} strokeWidth="1" />
-      <text x="470" y="80" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">Security Scan</text>
-      
-      <rect x="590" y="40" width="140" height="70" rx="15" fill="#200d2b" stroke={themeColor} strokeWidth="2" />
-      <text x="660" y="80" textAnchor="middle" fill="white" fontSize="14" fontWeight="black">PROD EKS</text>
 
-      <path d="M170 75 H220" stroke={themeColor} strokeWidth="2" fill="none" markerEnd="url(#arrowhead-acc)" />
-      <path d="M350 75 H400" stroke={themeColor} strokeWidth="2" fill="none" markerEnd="url(#arrowhead-acc)" />
-      <path d="M530 75 H580" stroke={themeColor} strokeWidth="2" fill="none" markerEnd="url(#arrowhead-acc)" />
+      {/* Grid Lines for tech aesthetic */}
+      <g stroke="rgba(255,255,255,0.02)" strokeWidth="1">
+        <line x1="100" y1="0" x2="100" y2="240" />
+        <line x1="200" y1="0" x2="200" y2="240" />
+        <line x1="300" y1="0" x2="300" y2="240" />
+        <line x1="400" y1="0" x2="400" y2="240" />
+        <line x1="500" y1="0" x2="500" y2="240" />
+        <line x1="600" y1="0" x2="600" y2="240" />
+        <line x1="700" y1="0" x2="700" y2="240" />
+        <line x1="0" y1="60" x2="800" y2="60" />
+        <line x1="0" y1="120" x2="800" y2="120" />
+        <line x1="0" y1="180" x2="800" y2="180" />
+      </g>
+
+      {/* Step 1: Git Ingest */}
+      <rect x="20" y="80" width="110" height="70" rx="8" fill="#0d081b" stroke="url(#purple-grad)" strokeWidth="1.5" filter="url(#glow-purple)" />
+      <path d="M45 105 A 6 6 0 0 1 45 125 A 6 6 0 0 1 45 105 M45 111 V 129 M55 123 A 6 6 0 0 1 55 135 M45 120 H 52 A 6 6 0 0 0 55 123" stroke="#d8b4fe" strokeWidth="1.5" fill="none" />
+      <text x="75" y="112" fill="white" fontSize="10" fontWeight="bold">Git Repo</text>
+      <text x="75" y="125" fill="#a78bfa" fontSize="8">YAML Webhooks</text>
+      <text x="75" y="137" fill="#6b7280" fontSize="7" fontStyle="italic">triggers pipeline</text>
+
+      {/* Step 2: Policy Compliance Check */}
+      <rect x="165" y="80" width="110" height="70" rx="8" fill="#0d081b" stroke="#6b7280" strokeWidth="1" strokeDasharray="3" />
+      <path d="M185 105 L 195 100 L 205 105 V 117 C 205 123 195 130 195 130 C 195 130 185 123 185 117 Z" stroke="#94a3b8" strokeWidth="1.5" fill="none" />
+      <text x="215" y="112" fill="white" fontSize="10" fontWeight="bold">OPA Engine</text>
+      <text x="215" y="125" fill="#94a3b8" fontSize="8">Gatekeeper</text>
+      <text x="215" y="137" fill="#ef4444" fontSize="7" fontWeight="bold">Deny on Drift</text>
+
+      {/* Step 3: IaC Orchestrator & Helm Packaging */}
+      <rect x="310" y="30" width="180" height="175" rx="12" fill="#120c24" stroke="url(#purple-grad)" strokeWidth="1" />
+      <text x="400" y="48" textAnchor="middle" fill="#d8b4fe" fontSize="11" fontWeight="extrabold" letterSpacing="0.05em">IAC COMPILER LAYER</text>
+      
+      {/* Terraform Sub-Box */}
+      <rect x="325" y="65" width="150" height="45" rx="6" fill="#0c0717" stroke={themeColor} strokeWidth="1" />
+      <path d="M335 77 L342 72 L349 77 L342 82 Z M335 88 L342 83 L349 88 L342 93 Z M342 83 V 72" stroke="#c084fc" strokeWidth="1" fill="none" />
+      <text x="358" y="82" fill="white" fontSize="9" fontWeight="bold">Terraform Modules</text>
+      <text x="358" y="93" fill="#a78bfa" fontSize="7">Multi-AZ VPC / IAM Roles</text>
+
+      {/* Helm Sub-Box */}
+      <rect x="325" y="125" width="150" height="45" rx="6" fill="#0c0717" stroke={themeColor} strokeWidth="1" />
+      <circle cx="342" cy="148" r="8" stroke="#a78bfa" strokeWidth="1" fill="none" />
+      <path d="M342 140 V 156 M334 148 H 350 M337 143 L 347 153 M337 153 L 347 143" stroke="#a78bfa" strokeWidth="1" />
+      <text x="358" y="142" fill="white" fontSize="9" fontWeight="bold">Helm Templates</text>
+      <text x="358" y="153" fill="#a78bfa" fontSize="7">Dynamic Manifest Compiles</text>
+
+      {/* Step 4: Production EKS Cluster (VPC isolated) */}
+      <rect x="525" y="30" width="250" height="175" rx="12" fill="#080414" stroke="#a855f7" strokeWidth="2" filter="url(#glow-purple)" />
+      <text x="650" y="48" textAnchor="middle" fill="white" fontSize="12" fontWeight="black" letterSpacing="0.05em">PROD EKS CLUSTER</text>
+      
+      {/* Node Group 1 - On Demand */}
+      <rect x="540" y="65" width="105" height="50" rx="6" fill="#140b29" stroke="#a855f7" strokeWidth="1" />
+      <text x="548" y="80" fill="white" fontSize="9" fontWeight="bold">On-Demand Nodes</text>
+      <text x="548" y="92" fill="#c084fc" fontSize="7">M5 instances (Core)</text>
+      <text x="548" y="103" fill="#059669" fontSize="7" fontWeight="bold">Active & Stable</text>
+
+      {/* Node Group 2 - Spot Instances */}
+      <rect x="655" y="65" width="105" height="50" rx="6" fill="#200d2b" stroke="url(#spot-grad)" strokeWidth="1" />
+      <text x="663" y="80" fill="white" fontSize="9" fontWeight="bold">Spot Workers</text>
+      <text x="663" y="92" fill="#f472b6" fontSize="7">Up to 75% savings</text>
+      <text x="663" y="103" fill="#db2777" fontSize="7" fontWeight="bold">Billing Shielded</text>
+
+      {/* Pod Ingress & ALB router */}
+      <rect x="540" y="130" width="220" height="40" rx="6" fill="#0a0518" stroke="#6b7280" strokeWidth="1" />
+      <path d="M552 150 H 570 M561 143 L 570 150 L 561 157" stroke="#a78bfa" strokeWidth="1.5" fill="none" />
+      <text x="580" y="145" fill="white" fontSize="9" fontWeight="bold">ALB Controller & Route53</text>
+      <text x="580" y="156" fill="#94a3b8" fontSize="7">HPA auto-scaler dynamically managing pod replication</text>
+
+      {/* Connecting Flows */}
+      <path d="M130 115 H 165" stroke={themeColor} strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-acc)" />
+      <path d="M275 115 H 310" stroke={themeColor} strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-acc)" />
+      
+      {/* Route out of IAC to EKS */}
+      <path d="M490 88 H 525" stroke={themeColor} strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-acc)" />
+      <path d="M490 148 H 525" stroke={themeColor} strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-acc)" />
+      
+      {/* Dynamic spot instance fallback arrow */}
+      <path d="M600 115 V 122 H 680 V 115" stroke="#f472b6" strokeWidth="1" strokeDasharray="3" fill="none" markerEnd="url(#arrowhead-spot)" />
+
+      <text x="400" y="222" textAnchor="middle" fill="#94a3b8" fontSize="8" fontStyle="italic">Fully automated zero-downtime GitOps deployment orchestrations</text>
     </svg>
   </div>
 );
 
 const MonitoringDiagram = ({ themeColor = "#3b82f6" }) => (
-  <div className="w-full py-8 px-4 bg-white/5 rounded-2xl border border-white/10 my-6 transition-all duration-500">
-    <svg viewBox="0 0 800 180" className="w-full h-auto">
+  <div className="w-full py-8 px-4 bg-[#050915]/60 rounded-2xl border border-white/10 my-6 transition-all duration-500 shadow-2xl relative overflow-hidden group hover:border-blue-500/30">
+    <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/5 rounded-full blur-xl pointer-events-none"></div>
+    <svg viewBox="0 0 800 240" className="w-full h-auto">
       <defs>
-        <marker id="arrowhead-mon" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
-          <polygon points="0 0, 10 3.5, 0 7" fill={themeColor} />
+        <linearGradient id="blue-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#93c5fd" />
+          <stop offset="100%" stopColor={themeColor} />
+        </linearGradient>
+        <linearGradient id="green-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#34d399" />
+          <stop offset="100%" stopColor="#059669" />
+        </linearGradient>
+        <linearGradient id="purple-grad-mon" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#c084fc" />
+          <stop offset="100%" stopColor="#a855f7" />
+        </linearGradient>
+        <filter id="glow-blue" x="-10%" y="-10%" width="120%" height="120%">
+          <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor={themeColor} floodOpacity="0.25" />
+        </filter>
+        <marker id="arrowhead-mon" markerWidth="8" markerHeight="6" refX="5" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill={themeColor} />
+        </marker>
+        <marker id="arrowhead-purple" markerWidth="8" markerHeight="6" refX="5" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#a855f7" />
         </marker>
       </defs>
-      <circle cx="100" cy="90" r="40" fill="#071b3d" stroke={themeColor} strokeWidth="2" />
-      <text x="100" y="95" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">K8s Cluster</text>
-      
-      <rect x="220" y="30" width="100" height="40" rx="5" fill="#08070d" stroke={themeColor} strokeWidth="1" />
-      <text x="270" y="55" textAnchor="middle" fill="white" fontSize="10">Prometheus</text>
-      
-      <rect x="220" y="110" width="100" height="40" rx="5" fill="#08070d" stroke={themeColor} strokeWidth="1" />
-      <text x="270" y="135" textAnchor="middle" fill="white" fontSize="10">Loki (Logs)</text>
-      
-      <rect x="400" y="70" width="120" height="40" rx="8" fill="#091b3b" stroke={themeColor} strokeWidth="1" />
-      <text x="460" y="95" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">Grafana</text>
-      
-      <rect x="600" y="70" width="100" height="40" rx="8" fill="#3b0a0a" stroke="#ef4444" strokeWidth="1" />
-      <text x="650" y="95" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">Slack Alerts</text>
 
-      <path d="M140 70 L210 50" stroke={themeColor} strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-mon)" />
-      <path d="M140 110 L210 130" stroke={themeColor} strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-mon)" />
-      <path d="M320 50 L390 80" stroke={themeColor} strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-mon)" />
-      <path d="M320 130 L390 100" stroke={themeColor} strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-mon)" />
-      <path d="M520 90 H590" stroke="#ef4444" strokeWidth="2" strokeDasharray="4" fill="none" markerEnd="url(#arrowhead-mon)" />
+      {/* Grid Lines */}
+      <g stroke="rgba(255,255,255,0.02)" strokeWidth="1">
+        <line x1="100" y1="0" x2="100" y2="240" />
+        <line x1="200" y1="0" x2="200" y2="240" />
+        <line x1="300" y1="0" x2="300" y2="240" />
+        <line x1="400" y1="0" x2="400" y2="240" />
+        <line x1="500" y1="0" x2="500" y2="240" />
+        <line x1="600" y1="0" x2="600" y2="240" />
+        <line x1="700" y1="0" x2="700" y2="240" />
+        <line x1="0" y1="60" x2="800" y2="60" />
+        <line x1="0" y1="120" x2="800" y2="120" />
+        <line x1="0" y1="180" x2="800" y2="180" />
+      </g>
+
+      {/* Step 1: Target Fleet (EKS/VMs) */}
+      <rect x="20" y="30" width="115" height="175" rx="10" fill="#070b1b" stroke="#1e293b" strokeWidth="1" />
+      <text x="77" y="48" textAnchor="middle" fill="#94a3b8" fontSize="9" fontWeight="bold">TARGET FLEET</text>
+      
+      {/* Node Box 1 */}
+      <rect x="30" y="62" width="95" height="35" rx="6" fill="#0d1430" stroke="#3b82f6" strokeWidth="1" />
+      <circle cx="45" cy="80" r="4" fill="#059669" />
+      <text x="56" y="80" fill="white" fontSize="8" fontWeight="bold">k8s-pod-auth</text>
+      <text x="56" y="89" fill="#93c5fd" fontSize="6">Go Service</text>
+
+      {/* Node Box 2 */}
+      <rect x="30" y="107" width="95" height="35" rx="6" fill="#0d1430" stroke="#3b82f6" strokeWidth="1" />
+      <circle cx="45" cy="125" r="4" fill="#059669" />
+      <text x="56" y="125" fill="white" fontSize="8" fontWeight="bold">k8s-pod-billing</text>
+      <text x="56" y="134" fill="#93c5fd" fontSize="6">Go Service</text>
+
+      {/* Node Box 3 */}
+      <rect x="30" y="152" width="95" height="40" rx="6" fill="#0d1430" stroke="#1e293b" strokeWidth="1" />
+      <circle cx="45" cy="172" r="4" fill="#d97706" />
+      <text x="56" y="171" fill="white" fontSize="8" fontWeight="bold">bare-metal-db</text>
+      <text x="56" y="180" fill="#94a3b8" fontSize="6">PostgreSQL</text>
+
+      {/* Step 2: Telemetry Pipelines (Prometheus, Loki, Tempo) */}
+      <rect x="165" y="30" width="145" height="175" rx="10" fill="#090f24" stroke="url(#blue-grad)" strokeWidth="1" />
+      <text x="237" y="48" textAnchor="middle" fill="#93c5fd" fontSize="9" fontWeight="bold" letterSpacing="0.05em">TELEMETRY SCAPERS</text>
+      
+      {/* Prometheus Scraper */}
+      <rect x="175" y="62" width="125" height="38" rx="6" fill="#070c1e" stroke={themeColor} strokeWidth="1" />
+      <path d="M182 85 L 187 75 L 192 82 L 197 70 L 202 85" stroke="#f97316" strokeWidth="1.5" fill="none" />
+      <text x="210" y="78" fill="white" fontSize="8" fontWeight="bold">Prometheus Server</text>
+      <text x="210" y="87" fill="#f97316" fontSize="7">PromQL metrics scrapers</text>
+
+      {/* Grafana Loki Collector */}
+      <rect x="175" y="108" width="125" height="38" rx="6" fill="#070c1e" stroke={themeColor} strokeWidth="1" />
+      <path d="M182 127 H 202 M187 122 V 132" stroke="#eab308" strokeWidth="1" />
+      <text x="210" y="124" fill="white" fontSize="8" fontWeight="bold">Grafana Loki</text>
+      <text x="210" y="133" fill="#eab308" fontSize="7">LogQL index parsers</text>
+
+      {/* Tempo distributed tracer */}
+      <rect x="175" y="154" width="125" height="38" rx="6" fill="#070c1e" stroke={themeColor} strokeWidth="1" />
+      <circle cx="187" cy="173" r="5" stroke="#c084fc" strokeWidth="1" fill="none" />
+      <line x1="192" y1="173" x2="202" y2="173" stroke="#c084fc" strokeWidth="1" />
+      <circle cx="202" cy="173" r="3" fill="#c084fc" />
+      <text x="210" y="170" fill="white" fontSize="8" fontWeight="bold">Tempo / Jaeger</text>
+      <text x="210" y="179" fill="#c084fc" fontSize="7">TraceQL spanning</text>
+
+      {/* Step 3: Go SRE Core Engine */}
+      <rect x="340" y="30" width="220" height="175" rx="12" fill="#0a122e" stroke="url(#blue-grad)" strokeWidth="1.5" filter="url(#glow-blue)" />
+      <text x="450" y="48" textAnchor="middle" fill="white" fontSize="11" fontWeight="black" letterSpacing="0.05em">GO SRE RELIABILITY CORE</text>
+      
+      {/* Alert Webhook Ingest */}
+      <rect x="352" y="62" width="196" height="38" rx="6" fill="#050a1b" stroke="#3b82f6" strokeWidth="1" />
+      <text x="362" y="78" fill="white" fontSize="8" fontWeight="bold">Alert Webhook Ingest Queue</text>
+      <text x="362" y="87" fill="#93c5fd" fontSize="7">Bearer verification & rate limit routing</text>
+
+      {/* Log-to-Trace Correlator */}
+      <rect x="352" y="108" width="196" height="38" rx="6" fill="#050a1b" stroke="#3b82f6" strokeWidth="1" />
+      <text x="362" y="124" fill="white" fontSize="8" fontWeight="bold">LogQL &amp; TraceQL Correlator</text>
+      <text x="362" y="133" fill="#93c5fd" fontSize="7">Auto-extracts traces linked to error logs</text>
+
+      {/* TUI Bubble Tea State Processor */}
+      <rect x="352" y="154" width="196" height="38" rx="6" fill="#050a1b" stroke="#a855f7" strokeWidth="1" />
+      <text x="362" y="170" fill="white" fontSize="8" fontWeight="bold">Bubble Tea TUI State Engine</text>
+      <text x="362" y="179" fill="#c084fc" fontSize="7">Refreshes terminal panels in real time</text>
+
+      {/* Step 4: SRE Collaborative Spaces & Incidents DB */}
+      {/* SSH Wish Tunnel Gateway */}
+      <rect x="590" y="30" width="190" height="75" rx="10" fill="#0f0c24" stroke="url(#purple-grad-mon)" strokeWidth="1.5" />
+      <rect x="600" y="42" width="22" height="22" rx="4" fill="#a855f7" />
+      {/* Padlock Icon */}
+      <circle cx="611" cy="51" r="4" stroke="white" strokeWidth="1.5" fill="none" />
+      <rect x="606" y="52" width="10" height="8" rx="1" fill="white" />
+      <text x="630" y="48" fill="white" fontSize="9" fontWeight="bold">SSH Wish Server</text>
+      <text x="630" y="59" fill="#c084fc" fontSize="7">Secure Tunnel (:9022)</text>
+      <text x="630" y="70" fill="#34d399" fontSize="7" fontWeight="bold">Dynamic Session Syncing</text>
+
+      {/* SQLite Incident Registry & Postmortem Generator */}
+      <rect x="590" y="120" width="190" height="85" rx="10" fill="#061214" stroke="#059669" strokeWidth="1" />
+      <text x="600" y="135" fill="white" fontSize="9" fontWeight="bold">Incident Manager (SQLite)</text>
+      <text x="600" y="148" fill="#34d399" fontSize="7">Autolog correlation store</text>
+      {/* Postmortem card */}
+      <rect x="600" y="160" width="170" height="34" rx="4" fill="#040d0e" stroke="#059669" strokeWidth="1" />
+      <text x="608" y="172" fill="#34d399" fontSize="8" fontWeight="bold">Markdown Postmortems</text>
+      <text x="608" y="183" fill="#94a3b8" fontSize="7">Technical timelines exported automatically</text>
+
+      {/* Connectors */}
+      {/* Node to metrics collector line */}
+      <path d="M135 115 H 165" stroke={themeColor} strokeWidth="1.5" strokeDasharray="2" fill="none" />
+      
+      {/* Collectors to Go Core */}
+      <path d="M290 85 Q315 85 340 85" stroke={themeColor} strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-mon)" />
+      <path d="M290 170 Q315 170 340 170" stroke={themeColor} strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-mon)" />
+      
+      {/* Go Core to SSH Tunnel and SQLite */}
+      <path d="M560 85 Q575 85 590 68" stroke="#a855f7" strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-purple)" />
+      <path d="M560 148 Q575 148 590 148" stroke="#34d399" strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-mon)" />
+
+      <text x="400" y="222" textAnchor="middle" fill="#94a3b8" fontSize="8" fontStyle="italic">Real-time anomaly discovery, incident correlation, and collaborative terminal syncing</text>
     </svg>
   </div>
 );
 
 const TokenAgentDiagram = ({ themeColor = "#f59e0b" }) => (
-  <div className="w-full py-8 px-4 bg-white/5 rounded-2xl border border-white/10 my-6 transition-all duration-500">
-    <svg viewBox="0 0 800 160" className="w-full h-auto">
+  <div className="w-full py-8 px-4 bg-[#100b05]/60 rounded-2xl border border-white/10 my-6 transition-all duration-500 shadow-2xl relative overflow-hidden group hover:border-amber-500/30">
+    <div className="absolute top-0 right-0 w-24 h-24 bg-amber-500/5 rounded-full blur-xl pointer-events-none"></div>
+    <svg viewBox="0 0 800 240" className="w-full h-auto">
       <defs>
-        <marker id="arrowhead-tkn" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
-          <polygon points="0 0, 10 3.5, 0 7" fill={themeColor} />
+        <linearGradient id="amber-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#fde68a" />
+          <stop offset="100%" stopColor={themeColor} />
+        </linearGradient>
+        <linearGradient id="green-grad-tkn" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#34d399" />
+          <stop offset="100%" stopColor="#059669" />
+        </linearGradient>
+        <linearGradient id="red-grad-tkn" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#fca5a5" />
+          <stop offset="100%" stopColor="#dc2626" />
+        </linearGradient>
+        <filter id="glow-amber" x="-10%" y="-10%" width="120%" height="120%">
+          <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor={themeColor} floodOpacity="0.25" />
+        </filter>
+        <marker id="arrowhead-tkn" markerWidth="8" markerHeight="6" refX="5" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill={themeColor} />
+        </marker>
+        <marker id="arrowhead-green" markerWidth="8" markerHeight="6" refX="5" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#059669" />
         </marker>
       </defs>
-      <rect x="50" y="50" width="120" height="50" rx="10" fill="#140f05" stroke={themeColor} strokeWidth="1" />
-      <text x="110" y="80" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">PDF / Text Data</text>
-      
-      <rect x="230" y="50" width="130" height="50" rx="10" fill="#140f05" stroke={themeColor} strokeWidth="1" />
-      <text x="295" y="80" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">BPE Tokenizer Engine</text>
-      
-      <rect x="420" y="50" width="120" height="50" rx="10" fill="#140f05" stroke={themeColor} strokeWidth="1" />
-      <text x="480" y="80" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">Prompt Minifier</text>
-      
-      <rect x="600" y="40" width="140" height="70" rx="15" fill="#291803" stroke={themeColor} strokeWidth="2" />
-      <text x="670" y="80" textAnchor="middle" fill="white" fontSize="14" fontWeight="black">Atoma Core</text>
 
-      <path d="M170 75 H220" stroke={themeColor} strokeWidth="2" fill="none" markerEnd="url(#arrowhead-tkn)" />
-      <path d="M360 75 H410" stroke={themeColor} strokeWidth="2" fill="none" markerEnd="url(#arrowhead-tkn)" />
-      <path d="M540 75 H590" stroke={themeColor} strokeWidth="2" fill="none" markerEnd="url(#arrowhead-tkn)" />
+      {/* Grid Lines */}
+      <g stroke="rgba(255,255,255,0.02)" strokeWidth="1">
+        <line x1="100" y1="0" x2="100" y2="240" />
+        <line x1="200" y1="0" x2="200" y2="240" />
+        <line x1="300" y1="0" x2="300" y2="240" />
+        <line x1="400" y1="0" x2="400" y2="240" />
+        <line x1="500" y1="0" x2="500" y2="240" />
+        <line x1="600" y1="0" x2="600" y2="240" />
+        <line x1="700" y1="0" x2="700" y2="240" />
+        <line x1="0" y1="60" x2="800" y2="60" />
+        <line x1="0" y1="120" x2="800" y2="120" />
+        <line x1="0" y1="180" x2="800" y2="180" />
+      </g>
+
+      {/* Step 1: Multi-Source Ingestion */}
+      <rect x="20" y="30" width="120" height="175" rx="10" fill="#0c0804" stroke="#292015" strokeWidth="1" />
+      <text x="80" y="48" textAnchor="middle" fill="#d97706" fontSize="9" fontWeight="bold" letterSpacing="0.05em">INGEST SOURCES</text>
+      
+      {/* PDF file icon representation */}
+      <rect x="35" y="62" width="90" height="35" rx="6" fill="#140f09" stroke="#d97706" strokeWidth="1" />
+      <path d="M42 75 V 85 M42 75 H 48 M45 80 H 50" stroke="#f59e0b" strokeWidth="1.5" />
+      <text x="56" y="78" fill="white" fontSize="8" fontWeight="bold">PDF Extractor</text>
+      <text x="56" y="87" fill="#fcd34d" fontSize="6">ledongthuc/pdf</text>
+
+      {/* Chat logs JSONL representation */}
+      <rect x="35" y="107" width="90" height="35" rx="6" fill="#140f09" stroke="#d97706" strokeWidth="1" />
+      <text x="45" y="128" fill="#f59e0b" fontSize="12" fontWeight="bold">&#123;..&#125;</text>
+      <text x="56" y="123" fill="white" fontSize="8" fontWeight="bold">JSON / JSONL</text>
+      <text x="56" y="132" fill="#fcd34d" fontSize="6">Chat conversations</text>
+
+      {/* Plain texts representation */}
+      <rect x="35" y="152" width="90" height="40" rx="6" fill="#140f09" stroke="#292015" strokeWidth="1" />
+      <path d="M42 168 H 52 M42 176 H 50" stroke="#a1a1aa" strokeWidth="1" />
+      <text x="56" y="171" fill="white" fontSize="8" fontWeight="bold">Standard Text</text>
+      <text x="56" y="180" fill="#a1a1aa" fontSize="6">RAW developer prompts</text>
+
+      {/* Step 2: Go Worker Channels (Goroutines) */}
+      {/* Dynamic parallel channels visual */}
+      <line x1="140" y1="90" x2="190" y2="70" stroke={themeColor} strokeWidth="1.5" strokeDasharray="3" markerEnd="url(#arrowhead-tkn)" />
+      <line x1="140" y1="120" x2="190" y2="120" stroke={themeColor} strokeWidth="1.5" markerEnd="url(#arrowhead-tkn)" />
+      <line x1="140" y1="150" x2="190" y2="170" stroke={themeColor} strokeWidth="1.5" strokeDasharray="3" markerEnd="url(#arrowhead-tkn)" />
+      <text x="165" y="110" textAnchor="middle" fill="#d97706" fontSize="7" fontWeight="bold" transform="rotate(-20 165 110)">go routines</text>
+
+      {/* Step 3: Atoma BPE Compiler Core */}
+      <rect x="195" y="30" width="225" height="175" rx="12" fill="#160e06" stroke="url(#amber-grad)" strokeWidth="1.5" filter="url(#glow-amber)" />
+      <text x="307" y="48" textAnchor="middle" fill="white" fontSize="11" fontWeight="black" letterSpacing="0.05em">ATOMA COMPILER CORE</text>
+      
+      {/* Tiktoken cl100k Registry */}
+      <rect x="207" y="62" width="201" height="38" rx="6" fill="#0b0703" stroke={themeColor} strokeWidth="1" />
+      <text x="217" y="78" fill="white" fontSize="8" fontWeight="bold">Tiktoken cl100k Base Encoder</text>
+      <text x="217" y="87" fill="#fcd34d" fontSize="7">Strict parity parser for OpenAI cl100k payloads</text>
+
+      {/* Claude & Gemini Estimator ratio */}
+      <rect x="207" y="108" width="201" height="38" rx="6" fill="#0b0703" stroke={themeColor} strokeWidth="1" />
+      <text x="217" y="124" fill="white" fontSize="8" fontWeight="bold">Claude &amp; Gemini Ratios Estimator</text>
+      <text x="217" y="133" fill="#fcd34d" fontSize="7">Statistical model for multi-provider cost weighting</text>
+
+      {/* Reasoning Delta isolator */}
+      <rect x="207" y="154" width="201" height="38" rx="6" fill="#0b0703" stroke="#ef4444" strokeWidth="1" />
+      <text x="217" y="170" fill="white" fontSize="8" fontWeight="bold">Reasoning Delta Auditor (o1/o3)</text>
+      <text x="217" y="179" fill="#fca5a5" fontSize="7">Isolates thinking tokens in billed calculations</text>
+
+      {/* Step 4: Prompt Minifier & Rules */}
+      <rect x="445" y="30" width="165" height="175" rx="10" fill="#0a0a07" stroke="#854d0e" strokeWidth="1" />
+      <text x="527" y="48" textAnchor="middle" fill="#eab308" fontSize="9" fontWeight="bold" letterSpacing="0.05em">RULES MINIFIER ENGINE</text>
+      
+      {/* Rules list */}
+      <rect x="455" y="62" width="145" height="32" rx="4" fill="#14140f" stroke="#eab308" strokeWidth="1" />
+      <text x="462" y="75" fill="white" fontSize="8" fontWeight="bold">Vocabulary Redundancies</text>
+      <text x="462" y="84" fill="#a1a1aa" fontSize="6">Strips conversational clichés &amp; wordy fillers</text>
+
+      <rect x="455" y="100" width="145" height="32" rx="4" fill="#14140f" stroke="#eab308" strokeWidth="1" />
+      <text x="462" y="113" fill="white" fontSize="8" fontWeight="bold">White-Space Compaction</text>
+      <text x="462" y="122" fill="#a1a1aa" fontSize="6">Minifies duplicate carriage returns &amp; tabs</text>
+
+      <rect x="455" y="138" width="145" height="52" rx="4" fill="#14140f" stroke="#059669" strokeWidth="1" />
+      <text x="462" y="152" fill="#34d399" fontSize="8" fontWeight="bold">Savings Result</text>
+      <text x="462" y="163" fill="white" fontSize="8" fontWeight="bold">Reduces billed tokens by</text>
+      <text x="462" y="175" fill="#34d399" fontSize="11" fontWeight="black">UP TO 50% SAVINGS</text>
+
+      {/* Step 5: Multi-Provider Pricing Matrix */}
+      <rect x="635" y="30" width="145" height="175" rx="10" fill="#080c05" stroke="url(#green-grad-tkn)" strokeWidth="1.5" />
+      <text x="707" y="48" textAnchor="middle" fill="#34d399" fontSize="9" fontWeight="bold" letterSpacing="0.05em">PTERM TERMINAL VIEW</text>
+      
+      {/* terminal mockup lines */}
+      <rect x="642" y="60" width="130" height="132" rx="6" fill="#030502" stroke="#1e293b" strokeWidth="1" />
+      {/* prompt symbol */}
+      <text x="648" y="74" fill="#34d399" fontSize="8" fontWeight="bold">&gt;_ Atoma analyze</text>
+      
+      {/* mini table representation */}
+      <text x="648" y="90" fill="#6b7280" fontSize="6">Provider  | Model      | Cost ($)</text>
+      <line x1="648" y1="94" x2="766" y2="94" stroke="#334155" strokeWidth="0.5" />
+      <text x="648" y="104" fill="#ef4444" fontSize="6" fontWeight="bold">openai    | gpt-4o     | $0.0121</text>
+      <text x="648" y="114" fill="#a855f7" fontSize="6" fontWeight="bold">anthropic | claude-3.5 | $0.0098</text>
+      <text x="648" y="124" fill="#3b82f6" fontSize="6" fontWeight="bold">gemini    | gem-1.5-pr | $0.0042</text>
+      
+      <rect x="648" y="138" width="118" height="46" rx="4" fill="#081005" stroke="#059669" strokeWidth="0.5" />
+      <text x="652" y="148" fill="#34d399" fontSize="6" fontWeight="bold">Optimization gains:</text>
+      <text x="652" y="158" fill="white" fontSize="6">Minified input: 1,120 tkn</text>
+      <text x="652" y="168" fill="white" fontSize="6">Original input: 2,430 tkn</text>
+      <text x="652" y="177" fill="#34d399" fontSize="6" fontWeight="bold">Total Cost Saved: 53.9%</text>
+
+      {/* Connectors from compiler to minifier */}
+      <path d="M420 115 H 445" stroke={themeColor} strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-tkn)" />
+      
+      {/* Connectors from minifier to output */}
+      <path d="M610 115 H 635" stroke="#059669" strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-green)" />
+
+      <text x="400" y="222" textAnchor="middle" fill="#94a3b8" fontSize="8" fontStyle="italic">Concurrent BPE lexical optimization engines providing comprehensive model-price matrixes</text>
     </svg>
   </div>
 );
@@ -819,73 +1125,213 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Project 3, 4 & 5 (EKS Accelerator, SRE Engine & Token Agent - DevOps & Systems Highlights) */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* K8s Accelerator */}
-          <div className={`p-8 rounded-3xl border bg-white/5 backdrop-blur-md flex flex-col justify-between transition-all duration-500 ${!isBuild ? 'border-emerald-500/20 shadow-lg shadow-emerald-500/5' : 'border-white/10'}`}>
-            <div>
-              <div className="flex justify-between items-start mb-6">
-                <div className="flex items-center gap-3">
-                  <span className="text-3xl">⚡</span>
-                  <h4 className="text-xl font-black text-white">K8s Accelerator</h4>
+        {/* Project 4: Health-Monitor Observability & SRE Automation Engine (Dual Focus) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-32 border-b border-white/5 pb-20">
+          <div className="lg:col-span-7 space-y-6">
+            <div className={`p-8 rounded-3xl border bg-white/5 backdrop-blur-md space-y-8 transition-all duration-500 ${!isBuild ? 'border-emerald-500/20 shadow-lg shadow-emerald-500/5' : 'border-white/10'}`}>
+              <div className="flex items-center gap-4">
+                <span className="text-4xl">🔍</span>
+                <div>
+                  <h4 className="text-2xl font-bold text-white">Health-Monitor SRE Engine</h4>
+                  <p className="text-xs text-blue-400 font-mono">Go Systems Daemon & Bubble Tea TUI</p>
                 </div>
-                <span className="text-xs text-purple-400 font-mono font-bold uppercase tracking-wider">Platform Engine</span>
               </div>
-              <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                A "Platform-in-a-Box" framework designed to reduce onboarding time by 70%. Abstraction layers using versioned Terraform, Helm library charts, and secure GitOps deployment triggers.
-              </p>
-              <AcceleratorDiagram themeColor={isBuild ? '#a855f7' : '#10b981'} />
-            </div>
-            <div className="pt-6 border-t border-white/5 flex justify-between items-center">
-              <span className="text-[10px] text-gray-500 font-mono">Helm / Terraform / OPA / Go</span>
-              <a href="https://github.com/sanjanamahajan2001-sys/k8s-deployment-accelerator" target="_blank" className="text-xs font-bold text-purple-400 hover:underline">
-                Explore Framework &rarr;
-              </a>
+              
+              <MonitoringDiagram themeColor={isBuild ? '#3b82f6' : '#10b981'} />
+
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { label: "O11y Correlation", value: "PromQL + LogQL + TraceQL dynamic maps" },
+                  { label: "Incident Recovery", value: "65% MTTR reduction via autologs" },
+                  { label: "Toil Optimization", value: "24h/week SRE toil task automation" },
+                  { label: "Collaborative Sync", value: "Instant SSH-Wish tunnel sessions" }
+                ].map((card, i) => (
+                  <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/10">
+                    <p className={`text-[10px] font-black uppercase mb-1 ${isBuild ? 'text-blue-400' : 'text-emerald-400'}`}>{card.label}</p>
+                    <p className="text-white text-xs font-medium">{card.value}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Observability Engine */}
-          <div className={`p-8 rounded-3xl border bg-white/5 backdrop-blur-md flex flex-col justify-between transition-all duration-500 ${!isBuild ? 'border-emerald-500/20 shadow-lg shadow-emerald-500/5' : 'border-white/10'}`}>
-            <div>
-              <div className="flex justify-between items-start mb-6">
-                <div className="flex items-center gap-3">
-                  <span className="text-3xl">🔍</span>
-                  <h4 className="text-xl font-black text-white">Health-Monitor SRE Engine</h4>
-                </div>
-                <span className="text-xs text-blue-400 font-mono font-bold uppercase tracking-wider">Reliability & O11y</span>
-              </div>
-              <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                An autonomous systems observability and incident response automation engine in Go. Integrates Prometheus, Loki, and Tempo for real-time SLA metrics tracking, ML predictive anomalies discovery, and multi-user collaborative SRE SSH tunnels.
+          <div className="lg:col-span-5 space-y-8">
+            <div className="space-y-4">
+              <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${
+                isBuild 
+                  ? 'bg-blue-500/10 border-blue-500/20 text-blue-400' 
+                  : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
+              }`}>
+                Systems Engineering & Observability
+              </span>
+              <h3 className="text-3xl font-black tracking-tighter text-white">Health-Monitor SRE Engine</h3>
+              <p className="text-gray-400 text-sm leading-relaxed font-medium">
+                {isBuild ? (
+                  "An autonomous systems reliability platform engineered in Go. Dynamically aggregates multi-source infrastructure state by scraping real-time PromQL time-series, regex pattern-matching Loki system logs, and correlating Tempo trace segments. Translates high-cardinality telemetry into SRE-actionable indicators, rendering a beautiful terminal dashboard via Bubble Tea."
+                ) : (
+                  "A high-availability systems daemon built on top of native Go channels. Automates EKS service discovery via Kubernetes client-go libraries, hooks securely to PagerDuty/Slack routing tables, and exposes a collaborative multi-user SSH Wish shell running on port :9022 with unique session synchronization tokens."
+                )}
               </p>
-              <MonitoringDiagram themeColor={isBuild ? '#3b82f6' : '#10b981'} />
             </div>
-            <div className="pt-6 border-t border-white/5 flex justify-between items-center">
-              <span className="text-[10px] text-gray-500 font-mono">Go / Prometheus / Loki / SSH Wish</span>
-              <a href="https://github.com/sanjanamahajan2001-sys/health-monitor-sre-engine" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-blue-400 hover:underline">
+
+            <div className="space-y-4">
+              <h4 className="text-xs font-bold text-white uppercase tracking-wider">Engineering Focus</h4>
+              <ul className="space-y-3">
+                {isBuild ? [
+                  "Embedded SSH tunnel using the Wish framework for multi-user real-time session sync",
+                  "Adaptive metrics mapping querying /api/v1/series to dynamically discover cluster services",
+                  "Blameless postmortem generator automatically extracting technical evidence & timelines",
+                  "Bubble Tea terminal UI loaded with interactive scorecards, system dashboards, and incident browsers"
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-gray-300">
+                    <span className="text-blue-400 font-bold">✓</span>
+                    {item}
+                  </li>
+                )) : [
+                  "AWS environment credential isolation for AWS EKS cluster discovery via secure sudo sessions",
+                  "Systemd daemon setup with automatic recovery loops and isolated file system permissions",
+                  "Toil analytics reporting engine generating leadership-ready cost & savings reviews",
+                  "Prometheus AlertManager webhook listener with bearer token verification & rate limiters"
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-gray-300">
+                    <span className="text-emerald-500 font-bold">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="flex gap-6 pt-4">
+              <a href="https://github.com/sanjanamahajan2001-sys/health-monitor-sre-engine" target="_blank" rel="noopener noreferrer" className={`px-5 py-2.5 text-xs font-bold rounded-xl hover:scale-105 active:scale-95 transition-all text-black font-sans ${
+                isBuild ? 'bg-blue-400 hover:bg-blue-500' : 'bg-emerald-400 hover:bg-emerald-500'
+              }`}>
                 Explore Observability Engine &rarr;
               </a>
             </div>
           </div>
+        </div>
 
-          {/* Atoma Token Auditor Agent */}
-          <div className={`p-8 rounded-3xl border bg-white/5 backdrop-blur-md flex flex-col justify-between transition-all duration-500 ${!isBuild ? 'border-emerald-500/20 shadow-lg shadow-emerald-500/5' : 'border-white/10'}`}>
-            <div>
-              <div className="flex justify-between items-start mb-6">
-                <div className="flex items-center gap-3">
-                  <span className="text-3xl">🪙</span>
-                  <h4 className="text-xl font-black text-white">Atoma Token Agent</h4>
+        {/* Project 5: Atoma Token Auditor & Prompt Cost Optimizer (Dual Focus) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-32 border-b border-white/5 pb-20">
+          <div className="lg:col-span-7 space-y-6">
+            <div className={`p-8 rounded-3xl border bg-white/5 backdrop-blur-md space-y-8 transition-all duration-500 ${!isBuild ? 'border-emerald-500/20 shadow-lg shadow-emerald-500/5' : 'border-white/10'}`}>
+              <div className="flex items-center gap-4">
+                <span className="text-4xl">🪙</span>
+                <div>
+                  <h4 className="text-2xl font-bold text-white">Atoma Token Agent</h4>
+                  <p className="text-xs text-amber-500 font-mono">BPE Encoders & Concurrent Batch Engine</p>
                 </div>
-                <span className="text-xs text-amber-500 font-mono font-bold uppercase tracking-wider">Systems & AI SRE</span>
               </div>
-              <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                A high-precision, concurrent LLM token auditor and prompt optimization engine in Go. Features native PDF stream parsing, multi-provider BPE cost models, and rules-based prompt minification.
-              </p>
+              
               <TokenAgentDiagram themeColor={isBuild ? '#f59e0b' : '#10b981'} />
+
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { label: "BPE Ingest Speed", value: "10k+ tokens/sec multithreaded ledongthuc/pdf" },
+                  { label: "Lexical Minification", value: "Up to 50% prompt token reduction" },
+                  { label: "Estimator Accuracy", value: "100% tiktoken parity + Claude/Gemini ratios" },
+                  { label: "o1/o3 Audit Parity", value: "Realtime reasoning delta isolation" }
+                ].map((card, i) => (
+                  <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/10">
+                    <p className={`text-[10px] font-black uppercase mb-1 ${isBuild ? 'text-amber-500' : 'text-emerald-400'}`}>{card.label}</p>
+                    <p className="text-white text-xs font-medium">{card.value}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="pt-6 border-t border-white/5 flex justify-between items-center">
-              <span className="text-[10px] text-gray-500 font-mono">Go / Tiktoken / PDF Parser</span>
-              <a href="https://github.com/sanjanamahajan2001-sys/atoma-token-agent" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-amber-500 hover:underline">
+          </div>
+
+          <div className="lg:col-span-5 space-y-8">
+            <div className="space-y-4">
+              <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${
+                isBuild 
+                  ? 'bg-amber-500/10 border-amber-500/20 text-amber-500' 
+                  : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
+              }`}>
+                Lexical Parsers & AI SRE
+              </span>
+              <h3 className="text-3xl font-black tracking-tighter text-white">Atoma Token Agent</h3>
+              <p className="text-gray-400 text-sm leading-relaxed font-medium">
+                {isBuild ? (
+                  "A high-precision BPE lexical auditor utility written in Go. Natively loads the cl100k_base vocabulary registry to calculate prompt token lengths with mathematical precision, and implements advanced statistical models to estimate Claude and Gemini pricing. Features a real-time reasoning delta engine that separates billed thinking tokens from chat history payloads."
+                ) : (
+                  "A concurrent batch-processing CLI orchestrator utilizing thread-safe Go worker pools and pipeline channels. Processes directory targets containing thousands of PDF and JSONL data files, running multiple goroutine workers under isolated system RAM footprints, with runtime configuration hot-reloaded dynamically from YAML pricing databases."
+                )}
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <h4 className="text-xs font-bold text-white uppercase tracking-wider">Engineering Focus</h4>
+              <ul className="space-y-3">
+                {isBuild ? [
+                  "High-fidelity Byte Pair Encoding (BPE) calculations using native Tiktoken cl100k encoders",
+                  "Lexical rules engine stripping polite conversational fillers and wordy clichés to reduce spend",
+                  "Invisible reasoning delta calculator measuring actual billed tokens against prompt lengths",
+                  "Turn-by-turn chat heatmap analytics identifying candidates for token pruning and summaries"
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-gray-300">
+                    <span className="text-amber-500 font-bold">✓</span>
+                    {item}
+                  </li>
+                )) : [
+                  "Multi-threaded folder auditor using dynamic Go channel pipelines to prevent memory leaks",
+                  "Low-level enterprise PDF plain text extractor using native ledongthuc/pdf stream readers",
+                  "Dynamic YAML-based pricing database hot-reloading configurations at runtime",
+                  "Rich colorized Pterm terminal comparative dashboards with tables and side-by-side panels"
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-gray-300">
+                    <span className="text-emerald-500 font-bold">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="flex gap-6 pt-4">
+              <a href="https://github.com/sanjanamahajan2001-sys/atoma-token-agent" target="_blank" rel="noopener noreferrer" className={`px-5 py-2.5 text-xs font-bold rounded-xl hover:scale-105 active:scale-95 transition-all text-black font-sans ${
+                isBuild ? 'bg-amber-400 hover:bg-amber-500' : 'bg-emerald-400 hover:bg-emerald-500'
+              }`}>
                 Explore Token Agent &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Project 6: K8s Accelerator (Deep Highlights Card) */}
+        <div className="grid grid-cols-1 gap-8 mb-32">
+          <div className={`p-8 rounded-3xl border bg-white/5 backdrop-blur-md transition-all duration-500 ${!isBuild ? 'border-emerald-500/20 shadow-lg shadow-emerald-500/5' : 'border-white/10'}`}>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-5 space-y-6">
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl">⚡</span>
+                  <h4 className="text-2xl font-black text-white">K8s Deployment Accelerator</h4>
+                </div>
+                <span className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-purple-500/10 border border-purple-500/20 text-purple-400">Platform Infrastructure &amp; CD</span>
+                <p className="text-gray-400 text-sm leading-relaxed font-medium">
+                  An enterprise \"Platform-in-a-Box\" orchestration framework designed to accelerate multi-tenant EKS node environments. Couples deterministic modular Terraform base infrastructures with scalable dynamic Helm library charts. Integrates strict Open Policy Agent (OPA) Gatekeeper policies directly into automated GitOps delivery routes to guarantee zero configuration drifts.
+                </p>
+                <div className="grid grid-cols-2 gap-3 pt-2">
+                  {[
+                    { label: "Bootstrap Velocity", value: "<8 mins spin-up time" },
+                    { label: "OPA Compliance", value: "100% policy enforcement" },
+                    { label: "Spot Cost Fallbacks", value: "Up to 75% compute savings" },
+                    { label: "Developer Onboard", value: "70% faster cluster access" }
+                  ].map((metric, idx) => (
+                    <div key={idx} className="p-3 rounded-lg bg-white/5 border border-white/10">
+                      <p className="text-purple-400 text-[9px] font-black uppercase mb-1">{metric.label}</p>
+                      <p className="text-white text-xs font-semibold">{metric.value}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="lg:col-span-7 w-full">
+                <AcceleratorDiagram themeColor={isBuild ? '#a855f7' : '#10b981'} />
+              </div>
+            </div>
+            <div className="pt-6 mt-6 border-t border-white/5 flex justify-between items-center">
+              <span className="text-[10px] text-gray-500 font-mono">Helm / Terraform / OPA / Go</span>
+              <a href="https://github.com/sanjanamahajan2001-sys/k8s-deployment-accelerator" target="_blank" className="text-xs font-bold text-purple-400 hover:underline">
+                Explore Framework &rarr;
               </a>
             </div>
           </div>
