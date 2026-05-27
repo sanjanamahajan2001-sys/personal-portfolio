@@ -817,25 +817,25 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Observability Incidents */}
+          {/* Observability Engine */}
           <div className={`p-8 rounded-3xl border bg-white/5 backdrop-blur-md flex flex-col justify-between transition-all duration-500 ${!isBuild ? 'border-emerald-500/20 shadow-lg shadow-emerald-500/5' : 'border-white/10'}`}>
             <div>
               <div className="flex justify-between items-start mb-6">
                 <div className="flex items-center gap-3">
                   <span className="text-3xl">🔍</span>
-                  <h4 className="text-xl font-black text-white">Observability Stack</h4>
+                  <h4 className="text-xl font-black text-white">Health-Monitor SRE Engine</h4>
                 </div>
-                <span className="text-xs text-blue-400 font-mono font-bold uppercase tracking-wider">Operations</span>
+                <span className="text-xs text-blue-400 font-mono font-bold uppercase tracking-wider">Reliability & O11y</span>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                Centralized monitoring platform using the LGTM stack (Loki, Grafana, Tempest, Prometheus). Structures SLA alerts, log correlation, and automated Slack incident dispatching.
+                An autonomous systems observability and incident response automation engine in Go. Integrates Prometheus, Loki, and Tempo for real-time SLA metrics tracking, ML predictive anomalies discovery, and multi-user collaborative SRE SSH tunnels.
               </p>
               <MonitoringDiagram themeColor={isBuild ? '#3b82f6' : '#10b981'} />
             </div>
             <div className="pt-6 border-t border-white/5 flex justify-between items-center">
-              <span className="text-[10px] text-gray-500 font-mono">Prometheus / Loki / Alerts</span>
-              <a href="https://github.com/sanjanamahajan2001-sys/production-monitoring-platform" target="_blank" className="text-xs font-bold text-blue-400 hover:underline">
-                Explore Observability &rarr;
+              <span className="text-[10px] text-gray-500 font-mono">Go / Prometheus / Loki / SSH Wish</span>
+              <a href="https://github.com/sanjanamahajan2001-sys/health-monitor-sre-engine" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-blue-400 hover:underline">
+                Explore Observability Engine &rarr;
               </a>
             </div>
           </div>
