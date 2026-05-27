@@ -71,6 +71,47 @@ const VoiceArchitecture = ({ themeColor = "#6366f1" }) => (
   </div>
 );
 
+const EmailIntelligenceArchitecture = ({ themeColor = "#6366f1" }) => (
+  <div className="w-full py-8 px-4 bg-white/5 rounded-2xl border border-white/10 my-6 transition-all duration-500">
+    <svg viewBox="0 0 800 200" className="w-full h-auto">
+      <defs>
+        <marker id="arrowhead-email" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill={themeColor} />
+        </marker>
+      </defs>
+      
+      {/* Nodes */}
+      <rect x="20" y="75" width="120" height="50" rx="8" fill="#040912" stroke={themeColor} strokeWidth="1" />
+      <text x="80" y="105" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">React UI (Vercel)</text>
+      
+      <rect x="200" y="75" width="130" height="50" rx="8" fill="#040912" stroke={themeColor} strokeWidth="1" />
+      <text x="265" y="105" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Gin API Router (Render)</text>
+      
+      <rect x="380" y="45" width="160" height="110" rx="12" fill="#090514" stroke={themeColor} strokeWidth="2" strokeDasharray="3" />
+      <text x="460" y="70" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Go Validation Engine</text>
+      <text x="460" y="92" textAnchor="middle" fill="#9fb3c8" fontSize="9">DNS Resolving & RFC</text>
+      <text x="460" y="112" textAnchor="middle" fill="#9fb3c8" fontSize="9">SMTP TCP Handshake</text>
+      <text x="460" y="132" textAnchor="middle" fill="#9fb3c8" fontSize="9">Zero-Day Heuristics</text>
+      
+      <rect x="600" y="30" width="160" height="50" rx="8" fill="#02140e" stroke="#059669" strokeWidth="1" />
+      <text x="680" y="60" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">SQLite DB (emails.db)</text>
+      
+      <rect x="600" y="120" width="160" height="50" rx="8" fill="#14081c" stroke="#a855f7" strokeWidth="1" />
+      <text x="680" y="150" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Discovery Pump worker</text>
+
+      {/* Connections */}
+      <line x1="140" y1="100" x2="190" y2="100" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-email)" />
+      <line x1="330" y1="100" x2="370" y2="100" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-email)" />
+      
+      <path d="M540 80 h30 v-25 h20" stroke={themeColor} strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-email)" />
+      <path d="M540 120 h30 v-25 h20" stroke="#a855f7" strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-email)" />
+      <path d="M680 120 v-40" stroke="#a855f7" strokeWidth="1.5" fill="none" strokeDasharray="3" markerEnd="url(#arrowhead-email)" />
+      
+      <text x="460" y="180" textAnchor="middle" fill={themeColor} fontSize="10" fontStyle="italic">Core Validation Service Layer</text>
+    </svg>
+  </div>
+);
+
 const AcceleratorDiagram = ({ themeColor = "#a855f7" }) => (
   <div className="w-full py-8 px-4 bg-white/5 rounded-2xl border border-white/10 my-6 transition-all duration-500">
     <svg viewBox="0 0 800 150" className="w-full h-auto">
@@ -658,6 +699,95 @@ export default function Home() {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Project 3: Enterprise Email Intelligence Engine (Dual Focus) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-32 border-b border-white/5 pb-20">
+          <div className="lg:col-span-7 space-y-6">
+            <div className={`p-8 rounded-3xl border bg-white/5 backdrop-blur-md space-y-8 transition-all duration-500 ${isBuild ? 'border-indigo-500/20' : 'border-emerald-500/20'}`}>
+              <div className="flex items-center gap-4">
+                <span className="text-4xl">🛡️</span>
+                <div>
+                  <h4 className="text-2xl font-bold text-white">Email Intelligence Platform</h4>
+                  <p className="text-xs text-indigo-400 font-mono">Go Systems Core & React Visual client</p>
+                </div>
+              </div>
+              
+              <EmailIntelligenceArchitecture themeColor={accentHex} />
+
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { label: "Core Engine", value: "Go / Zero-Dependency / Sockets" },
+                  { label: "Database Layer", value: "SQLite / Caching / Telemetry" },
+                  { label: "API Service", value: "Gin HTTP / Secure Auth / IP-Rate Limit" },
+                  { label: "Frontend App", value: "React / Vite / Vanilla HSL CSS" }
+                ].map((card, i) => (
+                  <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/10">
+                    <p className={`text-[10px] font-black uppercase mb-1 ${isBuild ? 'text-indigo-400' : 'text-emerald-400'}`}>{card.label}</p>
+                    <p className="text-white text-xs font-medium">{card.value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-5 space-y-8">
+            <div className="space-y-4">
+              <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${
+                isBuild 
+                  ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400' 
+                  : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
+              }`}>
+                Systems Engineering & Full Stack
+              </span>
+              <h3 className="text-3xl font-black tracking-tighter text-white">Enterprise Email Intelligence Engine</h3>
+              <p className="text-gray-400 text-sm leading-relaxed font-medium">
+                {isBuild ? (
+                  "A high-performance email verification and threat engine engineered in Go and React. Operating with zero third-party APIs, it executes syntax, DNS/MX, and SMTP handshakes concurrently, backed by a polished dark-mode client that visualizes execution step-timelines and 6 global lifecycle states."
+                ) : (
+                  "A zero-dependency network security API server containerized with CGO-compiled SQLite drivers. Features native port-25 timeout resilience, custom IP rate-limiting middleware, randomized SMTP jitter, and an autonomous background pump telemetry worker."
+                )}
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <h4 className="text-xs font-bold text-white uppercase tracking-wider">Engineering Focus</h4>
+              <ul className="space-y-3">
+                {isBuild ? [
+                  "Raw Go SMTP TCP socket connections with custom greylist & soft-fail handlers",
+                  "Double-probe junk-email catch-all filtering bypass logic on active mail servers",
+                  "Interactive React UI dashboard with custom HSL CSS styling and responsive states",
+                  "Automatic identity age comparisons against RDAP registry creation stamps to flag hijack attempts"
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-gray-300">
+                    <span className="text-indigo-400 font-bold">✓</span>
+                    {item}
+                  </li>
+                )) : [
+                  "Layer-optimized multi-stage Docker build with native C SQLite drivers",
+                  "Self-learning background Discovery Pump crawler telemetrying disposable domains",
+                  "Custom token-bucket IP-based rate limiting & SMTP jitter protection preventing locks",
+                  "Robust CORS & OPTIONS middleware deployed globally across Render/Vercel"
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-gray-300">
+                    <span className="text-emerald-500 font-bold">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="flex gap-6 pt-4">
+              <a href="https://email-intelligence-engine.vercel.app/" target="_blank" rel="noopener noreferrer" className={`px-5 py-2.5 text-xs font-bold rounded-xl hover:scale-105 active:scale-95 transition-all text-black font-sans ${
+                isBuild ? 'bg-indigo-400 hover:bg-indigo-500' : 'bg-emerald-400 hover:bg-emerald-500'
+              }`}>
+                Live Sandbox &rarr;
+              </a>
+              <a href="https://github.com/sanjanamahajan2001-sys/email-intelligence-engine" target="_blank" rel="noopener noreferrer" className="px-5 py-2.5 bg-white/5 border border-white/10 text-white text-xs font-bold rounded-xl hover:bg-white/10 transition-all">
+                GitHub Repository
+              </a>
             </div>
           </div>
         </div>
