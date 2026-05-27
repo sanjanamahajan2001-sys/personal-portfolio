@@ -171,6 +171,33 @@ const MonitoringDiagram = ({ themeColor = "#3b82f6" }) => (
   </div>
 );
 
+const TokenAgentDiagram = ({ themeColor = "#f59e0b" }) => (
+  <div className="w-full py-8 px-4 bg-white/5 rounded-2xl border border-white/10 my-6 transition-all duration-500">
+    <svg viewBox="0 0 800 160" className="w-full h-auto">
+      <defs>
+        <marker id="arrowhead-tkn" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill={themeColor} />
+        </marker>
+      </defs>
+      <rect x="50" y="50" width="120" height="50" rx="10" fill="#140f05" stroke={themeColor} strokeWidth="1" />
+      <text x="110" y="80" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">PDF / Text Data</text>
+      
+      <rect x="230" y="50" width="130" height="50" rx="10" fill="#140f05" stroke={themeColor} strokeWidth="1" />
+      <text x="295" y="80" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">BPE Tokenizer Engine</text>
+      
+      <rect x="420" y="50" width="120" height="50" rx="10" fill="#140f05" stroke={themeColor} strokeWidth="1" />
+      <text x="480" y="80" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">Prompt Minifier</text>
+      
+      <rect x="600" y="40" width="140" height="70" rx="15" fill="#291803" stroke={themeColor} strokeWidth="2" />
+      <text x="670" y="80" textAnchor="middle" fill="white" fontSize="14" fontWeight="black">Atoma Core</text>
+
+      <path d="M170 75 H220" stroke={themeColor} strokeWidth="2" fill="none" markerEnd="url(#arrowhead-tkn)" />
+      <path d="M360 75 H410" stroke={themeColor} strokeWidth="2" fill="none" markerEnd="url(#arrowhead-tkn)" />
+      <path d="M540 75 H590" stroke={themeColor} strokeWidth="2" fill="none" markerEnd="url(#arrowhead-tkn)" />
+    </svg>
+  </div>
+);
+
 const BhaoBhaoArchitecture = ({ themeColor = "#C4A77D" }) => (
   <div className="w-full py-8 px-4 bg-white/5 rounded-2xl border border-white/10 my-6 transition-all duration-500">
     <svg viewBox="0 0 800 240" className="w-full h-auto">
@@ -792,8 +819,8 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Project 3 & 4 (EKS Accelerator & Production Observability - DevOps Highlights) */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        {/* Project 3, 4 & 5 (EKS Accelerator, SRE Engine & Token Agent - DevOps & Systems Highlights) */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* K8s Accelerator */}
           <div className={`p-8 rounded-3xl border bg-white/5 backdrop-blur-md flex flex-col justify-between transition-all duration-500 ${!isBuild ? 'border-emerald-500/20 shadow-lg shadow-emerald-500/5' : 'border-white/10'}`}>
             <div>
@@ -836,6 +863,29 @@ export default function Home() {
               <span className="text-[10px] text-gray-500 font-mono">Go / Prometheus / Loki / SSH Wish</span>
               <a href="https://github.com/sanjanamahajan2001-sys/health-monitor-sre-engine" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-blue-400 hover:underline">
                 Explore Observability Engine &rarr;
+              </a>
+            </div>
+          </div>
+
+          {/* Atoma Token Auditor Agent */}
+          <div className={`p-8 rounded-3xl border bg-white/5 backdrop-blur-md flex flex-col justify-between transition-all duration-500 ${!isBuild ? 'border-emerald-500/20 shadow-lg shadow-emerald-500/5' : 'border-white/10'}`}>
+            <div>
+              <div className="flex justify-between items-start mb-6">
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl">🪙</span>
+                  <h4 className="text-xl font-black text-white">Atoma Token Agent</h4>
+                </div>
+                <span className="text-xs text-amber-500 font-mono font-bold uppercase tracking-wider">Systems & AI SRE</span>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                A high-precision, concurrent LLM token auditor and prompt optimization engine in Go. Features native PDF stream parsing, multi-provider BPE cost models, and rules-based prompt minification.
+              </p>
+              <TokenAgentDiagram themeColor={isBuild ? '#f59e0b' : '#10b981'} />
+            </div>
+            <div className="pt-6 border-t border-white/5 flex justify-between items-center">
+              <span className="text-[10px] text-gray-500 font-mono">Go / Tiktoken / PDF Parser</span>
+              <a href="https://github.com/sanjanamahajan2001-sys/atoma-token-agent" target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-amber-500 hover:underline">
+                Explore Token Agent &rarr;
               </a>
             </div>
           </div>
