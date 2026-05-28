@@ -63,7 +63,7 @@ const VoiceArchitecture = ({ themeColor = "#6366f1" }) => (
       
       <rect x="430" y="80" width="100" height="100" rx="12" fill="#14111c" stroke={themeColor} strokeWidth="2" strokeDasharray="4" />
       <text x="480" y="130" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">FastAPI Pods</text>
-      <text x="480" y="148" textAnchor="middle" fill="#a78bfa" fontSize="8">HPA: 3 -> 50 replicas</text>
+      <text x="480" y="148" textAnchor="middle" fill="#a78bfa" fontSize="8">{"HPA: 3 -> 50 replicas"}</text>
       
       <rect x="590" y="70" width="80" height="40" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
       <text x="630" y="95" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">Redis/RDS</text>
