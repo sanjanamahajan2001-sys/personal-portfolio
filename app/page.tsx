@@ -32,121 +32,159 @@ import {
 // --- Architecture Diagram Components (SVG) ---
 
 const VoiceArchitecture = ({ themeColor = "#6366f1" }) => (
-  <div className="w-full py-8 px-4 bg-white/5 rounded-2xl border border-white/10 my-6 transition-all duration-500">
-    <svg viewBox="0 0 800 200" className="w-full h-auto">
+  <div className="w-full py-8 px-4 bg-white/5 rounded-2xl border border-white/10 my-6 transition-all duration-500 hover:border-emerald-500/30">
+    <svg viewBox="0 0 800 240" className="w-full h-auto">
       <defs>
         <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
           <polygon points="0 0, 10 3.5, 0 7" fill={themeColor} />
         </marker>
+        <linearGradient id="metric-glow-eks" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#10b981" stopOpacity="0.2" />
+          <stop offset="100%" stopColor="#059669" stopOpacity="0.05" />
+        </linearGradient>
       </defs>
       
+      {/* Metrics Overlays inside SVG */}
+      <rect x="15" y="10" width="200" height="30" rx="6" fill="url(#metric-glow-eks)" stroke="#10b981" strokeWidth="1" />
+      <text x="115" y="29" textAnchor="middle" fill="#34d399" fontSize="10" fontWeight="bold">🔥 10k+ Concurrent Streams</text>
+
+      <rect x="585" y="10" width="200" height="30" rx="6" fill="url(#metric-glow-eks)" stroke="#10b981" strokeWidth="1" />
+      <text x="685" y="29" textAnchor="middle" fill="#34d399" fontSize="10" fontWeight="bold">💰 30% AWS Cost Reduction</text>
+
       {/* Nodes */}
-      <rect x="10" y="75" width="80" height="50" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
-      <text x="50" y="105" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">User</text>
+      <rect x="10" y="105" width="80" height="50" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
+      <text x="50" y="135" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">User</text>
       
-      <rect x="150" y="75" width="80" height="50" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
-      <text x="190" y="105" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">AWS ALB</text>
+      <rect x="150" y="105" width="80" height="50" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
+      <text x="190" y="135" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">AWS ALB</text>
       
-      <rect x="290" y="75" width="80" height="50" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
-      <text x="330" y="105" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">Ingress</text>
+      <rect x="290" y="105" width="80" height="50" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
+      <text x="330" y="135" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Nginx Ingress</text>
       
-      <rect x="430" y="50" width="100" height="100" rx="12" fill="#14111c" stroke={themeColor} strokeWidth="2" strokeDasharray="4" />
-      <text x="480" y="105" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold">FastAPI Pods</text>
+      <rect x="430" y="80" width="100" height="100" rx="12" fill="#14111c" stroke={themeColor} strokeWidth="2" strokeDasharray="4" />
+      <text x="480" y="130" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">FastAPI Pods</text>
+      <text x="480" y="148" textAnchor="middle" fill="#a78bfa" fontSize="8">HPA: 3 -> 50 replicas</text>
       
-      <rect x="590" y="40" width="80" height="40" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
-      <text x="630" y="65" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">Redis/RDS</text>
+      <rect x="590" y="70" width="80" height="40" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
+      <text x="630" y="95" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">Redis/RDS</text>
       
-      <rect x="590" y="120" width="80" height="40" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
-      <text x="630" y="145" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">LGTM Stack</text>
+      <rect x="590" y="150" width="80" height="40" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
+      <text x="630" y="175" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">Loki Stack</text>
 
       {/* Connections */}
-      <line x1="90" y1="100" x2="140" y2="100" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead)" />
-      <line x1="230" y1="100" x2="280" y2="100" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead)" />
-      <line x1="370" y1="100" x2="420" y2="100" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead)" />
-      <line x1="530" y1="85" x2="580" y2="65" stroke={themeColor} strokeWidth="1.5" markerEnd="url(#arrowhead)" />
-      <line x1="530" y1="115" x2="580" y2="135" stroke={themeColor} strokeWidth="1.5" markerEnd="url(#arrowhead)" />
+      <line x1="90" y1="130" x2="140" y2="130" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead)" />
+      <line x1="230" y1="130" x2="280" y2="130" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead)" />
+      <line x1="370" y1="130" x2="420" y2="130" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead)" />
+      <line x1="530" y1="115" x2="580" y2="95" stroke={themeColor} strokeWidth="1.5" markerEnd="url(#arrowhead)" />
+      <line x1="530" y1="145" x2="580" y2="165" stroke={themeColor} strokeWidth="1.5" markerEnd="url(#arrowhead)" />
       
-      <text x="480" y="165" textAnchor="middle" fill={themeColor} fontSize="10" fontStyle="italic">EKS Cluster (Multi-AZ)</text>
+      <text x="480" y="200" textAnchor="middle" fill={themeColor} fontSize="10" fontStyle="italic">EKS Cluster Topology (Multi-AZ)</text>
     </svg>
   </div>
 );
 
 const AlconAppArchitecture = ({ themeColor = "#6366f1" }) => (
-  <div className="w-full py-8 px-4 bg-white/5 rounded-2xl border border-white/10 my-6 transition-all duration-500">
-    <svg viewBox="0 0 800 200" className="w-full h-auto">
+  <div className="w-full py-8 px-4 bg-white/5 rounded-2xl border border-white/10 my-6 transition-all duration-500 hover:border-indigo-500/30">
+    <svg viewBox="0 0 800 240" className="w-full h-auto">
       <defs>
         <marker id="arrowhead-app" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
           <polygon points="0 0, 10 3.5, 0 7" fill={themeColor} />
         </marker>
+        <linearGradient id="metric-glow-app" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#6366f1" stopOpacity="0.2" />
+          <stop offset="100%" stopColor="#4f46e5" stopOpacity="0.05" />
+        </linearGradient>
       </defs>
+
+      {/* Metrics Overlays inside SVG */}
+      <rect x="15" y="10" width="200" height="30" rx="6" fill="url(#metric-glow-app)" stroke="#6366f1" strokeWidth="1" />
+      <text x="115" y="29" textAnchor="middle" fill="#818cf8" fontSize="10" fontWeight="bold">⚡ 35% Response Latency Drop</text>
+
+      <rect x="585" y="10" width="200" height="30" rx="6" fill="url(#metric-glow-app)" stroke="#6366f1" strokeWidth="1" />
+      <text x="685" y="29" textAnchor="middle" fill="#818cf8" fontSize="10" fontWeight="bold">🛡️ 100% Calling Idempotency</text>
       
       {/* Nodes */}
-      <rect x="15" y="75" width="100" height="50" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
-      <text x="65" y="105" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Twilio Stream</text>
+      <rect x="15" y="105" width="100" height="50" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
+      <text x="65" y="135" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Twilio Stream</text>
       
-      <rect x="160" y="45" width="150" height="110" rx="12" fill="#14111c" stroke={themeColor} strokeWidth="2" strokeDasharray="3" />
-      <text x="235" y="70" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">FastAPI Core</text>
-      <text x="235" y="92" textAnchor="middle" fill="#9fb3c8" fontSize="9">Flow Runtime Engine</text>
-      <text x="235" y="112" textAnchor="middle" fill="#9fb3c8" fontSize="9">Hinglish Intent Engine</text>
-      <text x="235" y="132" textAnchor="middle" fill="#9fb3c8" fontSize="9">IRDAI Consent Guard</text>
+      <rect x="160" y="75" width="150" height="110" rx="12" fill="#14111c" stroke={themeColor} strokeWidth="2" strokeDasharray="3" />
+      <text x="235" y="100" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">FastAPI Core</text>
+      <text x="235" y="122" textAnchor="middle" fill="#9fb3c8" fontSize="9">Flow Runtime Engine</text>
+      <text x="235" y="142" textAnchor="middle" fill="#9fb3c8" fontSize="9">Hinglish Intent Engine</text>
+      <text x="235" y="162" textAnchor="middle" fill="#9fb3c8" fontSize="9">IRDAI Consent Guard</text>
       
-      <rect x="360" y="75" width="100" height="50" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
-      <text x="410" y="105" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Redis Lock</text>
+      <rect x="360" y="105" width="100" height="50" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
+      <text x="410" y="135" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">Redis Lock: SETNX</text>
       
-      <rect x="500" y="45" width="130" height="110" rx="12" fill="#14111c" stroke={themeColor} strokeWidth="2" strokeDasharray="3" />
-      <text x="565" y="70" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Celery Workers</text>
-      <text x="565" y="92" textAnchor="middle" fill="#9fb3c8" fontSize="9">Campaign Schedule</text>
-      <text x="565" y="112" textAnchor="middle" fill="#9fb3c8" fontSize="9">Multi-Channel Retry</text>
-      <text x="565" y="132" textAnchor="middle" fill="#9fb3c8" fontSize="9">PostgreSQL Sync</text>
+      <rect x="500" y="75" width="130" height="110" rx="12" fill="#14111c" stroke={themeColor} strokeWidth="2" strokeDasharray="3" />
+      <text x="565" y="100" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Celery Workers</text>
+      <text x="565" y="122" textAnchor="middle" fill="#9fb3c8" fontSize="9">Campaign Schedule</text>
+      <text x="565" y="142" textAnchor="middle" fill="#9fb3c8" fontSize="9">Multi-Channel Retry</text>
+      <text x="565" y="162" textAnchor="middle" fill="#9fb3c8" fontSize="9">PostgreSQL Sync</text>
       
-      <rect x="670" y="75" width="115" height="50" rx="8" fill="#02140e" stroke="#059669" strokeWidth="1" />
-      <text x="727" y="105" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">RDS / PG Store</text>
+      <rect x="670" y="105" width="115" height="50" rx="8" fill="#02140e" stroke="#059669" strokeWidth="1" />
+      <text x="727" y="135" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">RDS / PG Store</text>
 
       {/* Connections */}
-      <line x1="115" y1="100" x2="150" y2="100" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-app)" />
-      <line x1="310" y1="100" x2="350" y2="100" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-app)" />
-      <line x1="460" y1="100" x2="490" y2="100" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-app)" />
-      <line x1="630" y1="100" x2="660" y2="100" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-app)" />
+      <line x1="115" y1="130" x2="150" y2="130" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-app)" />
+      <line x1="310" y1="130" x2="350" y2="130" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-app)" />
+      <line x1="460" y1="130" x2="490" y2="130" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-app)" />
+      <line x1="630" y1="130" x2="660" y2="130" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-app)" />
+      
+      <text x="410" y="200" textAnchor="middle" fill={themeColor} fontSize="10" fontStyle="italic">Call Session Caching & Redis Locking Workflow</text>
     </svg>
   </div>
 );
 
 const MirrorVaultArchitecture = ({ themeColor = "#10b981" }) => (
-  <div className="w-full py-8 px-4 bg-white/5 rounded-2xl border border-white/10 my-6 transition-all duration-500">
-    <svg viewBox="0 0 800 200" className="w-full h-auto">
+  <div className="w-full py-8 px-4 bg-white/5 rounded-2xl border border-white/10 my-6 transition-all duration-500 hover:border-emerald-500/30">
+    <svg viewBox="0 0 800 240" className="w-full h-auto">
       <defs>
         <marker id="arrowhead-mv" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
           <polygon points="0 0, 10 3.5, 0 7" fill={themeColor} />
         </marker>
+        <linearGradient id="metric-glow-mv" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#10b981" stopOpacity="0.2" />
+          <stop offset="100%" stopColor="#059669" stopOpacity="0.05" />
+        </linearGradient>
       </defs>
+
+      {/* Metrics Overlays inside SVG */}
+      <rect x="15" y="10" width="220" height="30" rx="6" fill="url(#metric-glow-mv)" stroke="#10b981" strokeWidth="1" />
+      <text x="125" y="29" textAnchor="middle" fill="#34d399" fontSize="10" fontWeight="bold">🛡️ 100% Pre-Restore Safety Guard</text>
+
+      <rect x="565" y="10" width="220" height="30" rx="6" fill="url(#metric-glow-mv)" stroke="#10b981" strokeWidth="1" />
+      <text x="675" y="29" textAnchor="middle" fill="#34d399" fontSize="10" fontWeight="bold">🧹 14-Day Automated Pruning</text>
       
       {/* Nodes */}
-      <rect x="15" y="75" width="105" height="50" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
-      <text x="67" y="105" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">Bubble Tea TUI</text>
+      <rect x="15" y="105" width="105" height="50" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
+      <text x="67" y="135" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">Bubble Tea TUI</text>
       
-      <rect x="160" y="45" width="150" height="110" rx="12" fill="#14111c" stroke={themeColor} strokeWidth="2" strokeDasharray="3" />
-      <text x="235" y="70" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Go Agent Engine</text>
-      <text x="235" y="92" textAnchor="middle" fill="#9fb3c8" fontSize="9">Active Discovery Scan</text>
-      <text x="235" y="112" textAnchor="middle" fill="#9fb3c8" fontSize="9">Auto Systemd Scheduler</text>
-      <text x="235" y="132" textAnchor="middle" fill="#9fb3c8" fontSize="9">Rollback Snapshot Guard</text>
+      <rect x="160" y="75" width="150" height="110" rx="12" fill="#14111c" stroke={themeColor} strokeWidth="2" strokeDasharray="3" />
+      <text x="235" y="100" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Go Agent Engine</text>
+      <text x="235" y="122" textAnchor="middle" fill="#9fb3c8" fontSize="9">Active Discovery Scan</text>
+      <text x="235" y="142" textAnchor="middle" fill="#9fb3c8" fontSize="9">Auto Systemd Scheduler</text>
+      <text x="235" y="162" textAnchor="middle" fill="#9fb3c8" fontSize="9">Rollback Snapshot Guard</text>
       
-      <rect x="350" y="75" width="105" height="50" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
-      <text x="402" y="105" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">Local /var/backups</text>
+      <rect x="350" y="105" width="105" height="50" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
+      <text x="402" y="135" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">Local /var/backups</text>
       
-      <rect x="495" y="45" width="140" height="110" rx="12" fill="#14111c" stroke={themeColor} strokeWidth="2" strokeDasharray="3" />
-      <text x="565" y="70" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">OAuth Device Flow</text>
-      <text x="565" y="92" textAnchor="middle" fill="#9fb3c8" fontSize="9">Drive Space Validation</text>
-      <text x="565" y="112" textAnchor="middle" fill="#9fb3c8" fontSize="9">Token Encryption</text>
-      <text x="565" y="132" textAnchor="middle" fill="#9fb3c8" fontSize="9">Device Verification</text>
+      <rect x="495" y="75" width="140" height="110" rx="12" fill="#14111c" stroke={themeColor} strokeWidth="2" strokeDasharray="3" />
+      <text x="565" y="100" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">OAuth Device Flow</text>
+      <text x="565" y="122" textAnchor="middle" fill="#9fb3c8" fontSize="9">Drive Space Validation</text>
+      <text x="565" y="142" textAnchor="middle" fill="#9fb3c8" fontSize="9">Token Encryption</text>
+      <text x="565" y="162" textAnchor="middle" fill="#9fb3c8" fontSize="9">Device Verification</text>
       
-      <rect x="670" y="75" width="115" height="50" rx="8" fill="#02140e" stroke="#059669" strokeWidth="1" />
-      <text x="727" y="105" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">Google Drive Cloud</text>
+      <rect x="670" y="105" width="115" height="50" rx="8" fill="#02140e" stroke="#059669" strokeWidth="1" />
+      <text x="727" y="135" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">Google Drive Cloud</text>
 
       {/* Connections */}
-      <line x1="120" y1="100" x2="150" y2="100" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-mv)" />
-      <line x1="310" y1="100" x2="340" y2="100" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-mv)" />
-      <line x1="455" y1="100" x2="485" y2="100" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-mv)" />
-      <line x1="635" y1="100" x2="660" y2="100" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-mv)" />
+      <line x1="120" y1="130" x2="150" y2="130" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-mv)" />
+      <line x1="310" y1="130" x2="340" y2="130" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-mv)" />
+      <line x1="455" y1="130" x2="485" y2="130" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-mv)" />
+      <line x1="635" y1="130" x2="660" y2="130" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-mv)" />
+      
+      <text x="400" y="205" textAnchor="middle" fill={themeColor} fontSize="10" fontStyle="italic">Discovery, Systemd Scheduler, & Cloud Handshake Sequence</text>
     </svg>
   </div>
 );
@@ -821,12 +859,12 @@ export default function Home() {
           <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-8 leading-[0.95] text-white">
             {isBuild ? (
               <>
-                Double-Engine <br/> 
-                <span className={`text-transparent bg-clip-text bg-gradient-to-r ${textGradClass} transition-all duration-500`}>Full Stack</span> Developer
+                Cloud-Native <br/> 
+                <span className={`text-transparent bg-clip-text bg-gradient-to-r ${textGradClass} transition-all duration-500`}>Full Stack</span> Engineer
               </>
             ) : (
               <>
-                High-Availability <br/>
+                Cloud-Native <br/> 
                 <span className={`text-transparent bg-clip-text bg-gradient-to-r ${textGradClass} transition-all duration-500`}>DevOps Platform</span> Engineer
               </>
             )}
@@ -834,9 +872,9 @@ export default function Home() {
 
           <p className="text-lg md:text-xl text-gray-400 max-w-3xl leading-relaxed font-medium mx-auto mb-12 transition-all duration-500">
             {isBuild ? (
-              "Designing elegant frontend interfaces, modeling highly normalized relational databases, and crafting secure asynchronous API gateways. I build apps that are clean, performant, and ready to scale."
+              "Building scalable backend systems, low-latency API architectures, and real-time distributed applications that are clean, secure, and ready to scale."
             ) : (
-              "Orchestrating production-grade Kubernetes environments, writing modular Infrastructure as Code (IaC), building zero-downtime CI/CD workflows, and implementing enterprise observability stacks."
+              "Provisioning resilient Kubernetes platforms, writing modular Infrastructure as Code, and automating high-availability GitOps pipelines from commit to cloud."
             )}
           </p>
 
