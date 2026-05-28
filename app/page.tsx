@@ -1050,6 +1050,18 @@ export default function Home() {
                   "A cloud-native AWS EKS container platform provisioned deterministically with Terraform. Features custom Prometheus scrapers measuring P99 voice latency, automated GitHub Actions, multi-AZ VPC design, and cost-efficient Spot instance groups."
                 )}
               </p>
+              
+              {/* Engineering Challenges & Resolution */}
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-2 mt-4">
+                <p className="text-[10px] font-black uppercase tracking-widest text-amber-500">⚠️ Engineering Challenge</p>
+                <p className="text-xs text-gray-300">
+                  Bidirectional voice streams over WebSockets suffered packet drops and high latency during high-volume calling campaigns, while concurrent queue schedulers triggered duplicate active calls.
+                </p>
+                <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400">🛡️ Resolution</p>
+                <p className="text-xs text-gray-300">
+                  Stateless FastAPI scaling managed context via Redis session caches, integrated **Redis distributed locks (SETNX)** for 100% idempotency, and routed audio chunks through celery background buffers to RDS.
+                </p>
+              </div>
             </div>
 
             <div className="space-y-4">
@@ -1208,6 +1220,18 @@ export default function Home() {
                   "A highly resilient automated systems daemon integrated directly into native Linux systemd timer configurations. Features secure OAuth 2.0 Device flow handshakes, Google Drive API cloud sync, and an automated 14-day archival retention rotation script."
                 )}
               </p>
+              
+              {/* Engineering Challenges & Resolution */}
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-2 mt-4">
+                <p className="text-[10px] font-black uppercase tracking-widest text-amber-500">⚠️ Engineering Challenge</p>
+                <p className="text-xs text-gray-300">
+                  Executing direct, manual database restoration dumps risked data corruption or complete loss if the dump files were damaged or network streams failed mid-transfer.
+                </p>
+                <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400">🛡️ Resolution</p>
+                <p className="text-xs text-gray-300">
+                  Developed an automated, transactional pre-restore snapshot wrapper that isolates running states, and bound Go error signals to execute atomic rollbacks back to original configurations on failure.
+                </p>
+              </div>
             </div>
 
             <div className="space-y-4">
@@ -1547,8 +1571,21 @@ export default function Home() {
                 </div>
                 <span className="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-purple-500/10 border border-purple-500/20 text-purple-400">Platform Infrastructure &amp; CD</span>
                 <p className="text-gray-400 text-sm leading-relaxed font-medium">
-                  An enterprise \"Platform-in-a-Box\" orchestration framework designed to accelerate multi-tenant EKS node environments. Couples deterministic modular Terraform base infrastructures with scalable dynamic Helm library charts. Integrates strict Open Policy Agent (OPA) Gatekeeper policies directly into automated GitOps delivery routes to guarantee zero configuration drifts.
+                  An enterprise "Platform-in-a-Box" orchestration framework designed to accelerate multi-tenant EKS node environments. Couples deterministic modular Terraform base infrastructures with scalable dynamic Helm library charts.
                 </p>
+
+                {/* Engineering Challenges & Resolution */}
+                <div className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-2 mt-2">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-amber-500">⚠️ Engineering Challenge</p>
+                  <p className="text-xs text-gray-300">
+                    Unrestricted deployment capabilities by diverse developer teams introduced severe security configurations (privileged containers) and resource drifts across multitenant clusters.
+                  </p>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400">🛡️ Resolution</p>
+                  <p className="text-xs text-gray-300">
+                    Embedded automated **Open Policy Agent (OPA) Gatekeeper** validation hooks into dynamic Helm charts and pre-deployment pipelines, systematically blocking non-compliant manifests.
+                  </p>
+                </div>
+
                 <div className="grid grid-cols-2 gap-3 pt-2">
                   {[
                     { label: "Bootstrap Velocity", value: "<8 mins spin-up time" },
