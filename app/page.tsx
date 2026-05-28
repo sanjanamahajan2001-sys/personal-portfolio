@@ -1045,10 +1045,47 @@ export default function Home() {
               <p className="text-gray-400 text-sm leading-relaxed font-medium">
                 Standardized a complex 5-portal micro-frontend system inside a single, high-performance GitHub monorepo. Built for instant recruiting sandbox validation, this active system aggregates client appointments, real-time OTP logins, comprehensive pet service flows, and multi-tenant admin dashboards.
               </p>
+
+              {/* Infrastructure Stack quick scan */}
+              <div className="space-y-1.5 pt-2">
+                <p className="text-[9px] font-black text-gray-500 uppercase tracking-widest">Infrastructure Stack</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["Node.js", "Express.js", "PostgreSQL", "React", "TypeScript", "Nginx", "JWT", "AWS"].map((tech) => (
+                    <span key={tech} className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[9px] font-mono text-gray-400 font-semibold">{tech}</span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Why This Architecture? */}
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-3 mt-4">
+                <p className="text-[10px] font-black uppercase tracking-widest text-amber-400">📐 Why This Architecture?</p>
+                <div className="grid grid-cols-1 gap-2 text-[11px] leading-relaxed">
+                  <div>
+                    <span className="font-bold text-gray-200">Why Turborepo Monorepo?</span>
+                    <p className="text-gray-400">Enforces unified package locks, shared type constraints, and zero deployment configuration drift across 4 portals.</p>
+                  </div>
+                  <div>
+                    <span className="font-bold text-gray-200">Why PostgreSQL Advisory Locks?</span>
+                    <p className="text-gray-400">Guarantees strict scheduling exclusivity by preventing transactional race conditions during simultaneous reservations.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Engineering Challenge & Resolution */}
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-2 mt-4">
+                <p className="text-[10px] font-black uppercase tracking-widest text-amber-500">⚠️ Engineering Challenge</p>
+                <p className="text-xs text-gray-300">
+                  Race conditions arose when multiple customers attempted to book the exact same grooming slot concurrently, leading to double-booking database integrity failures.
+                </p>
+                <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400">🛡️ Resolution</p>
+                <p className="text-xs text-gray-300">
+                  Implemented PostgreSQL session-level advisory locks inside atomic Drizzle transactions, blocking concurrent attempts on identical slots with instant validation.
+                </p>
+              </div>
             </div>
             
             <div className="space-y-4">
-              <h4 className="text-xs font-bold text-white uppercase tracking-wider">Focus Highlights</h4>
+              <h4 className="text-xs font-bold text-white uppercase tracking-wider">Engineering Focus</h4>
               <ul className="space-y-3">
                 {[
                   "Strict CORS isolation & token-based session handling across MFEs",
@@ -1094,6 +1131,35 @@ export default function Home() {
                   "A cloud-native AWS EKS container platform provisioned deterministically with Terraform. Features custom Prometheus scrapers measuring P99 voice latency, automated GitHub Actions, multi-AZ VPC design, and cost-efficient Spot instance groups."
                 )}
               </p>
+
+              {/* Infrastructure Stack quick scan */}
+              <div className="space-y-1.5 pt-2">
+                <p className="text-[9px] font-black text-gray-500 uppercase tracking-widest">Infrastructure Stack</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["Python", "FastAPI", "ElevenLabs", "Twilio", "Redis", "PostgreSQL", "LLM", "AWS EKS", "Nginx"].map((tech) => (
+                    <span key={tech} className={`px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[9px] font-mono text-gray-400 font-semibold`}>{tech}</span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Why This Architecture? */}
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-3 mt-4">
+                <p className="text-[10px] font-black uppercase tracking-widest text-indigo-400">📐 Why This Architecture?</p>
+                <div className="grid grid-cols-1 gap-2 text-[11px] leading-relaxed">
+                  <div>
+                    <span className="font-bold text-gray-200">Why Redis?</span>
+                    <p className="text-gray-400">Maintains real-time active call states, acts as high-speed session caches, and enforces distributed locking (SETNX) to achieve absolute idempotency.</p>
+                  </div>
+                  <div>
+                    <span className="font-bold text-gray-200">Why Kubernetes (EKS)?</span>
+                    <p className="text-gray-400">Manages high-availability pod workloads, provides secure container isolation, and routes WebSocket traffic dynamically under HPA scaling boundaries.</p>
+                  </div>
+                  <div>
+                    <span className="font-bold text-gray-200">Why Loki?</span>
+                    <p className="text-gray-400">Enables centralized log aggregation and trace correlation, allowing seamless debugging of voice packet failures without exposing customer PII.</p>
+                  </div>
+                </div>
+              </div>
               
               {/* Engineering Challenges & Resolution */}
               <div className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-2 mt-4">
@@ -1274,6 +1340,35 @@ export default function Home() {
                   "A highly resilient automated systems daemon integrated directly into native Linux systemd timer configurations. Features secure OAuth 2.0 Device flow handshakes, Google Drive API cloud sync, and an automated 14-day archival retention rotation script."
                 )}
               </p>
+
+              {/* Infrastructure Stack quick scan */}
+              <div className="space-y-1.5 pt-2">
+                <p className="text-[9px] font-black text-gray-500 uppercase tracking-widest">Infrastructure Stack</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["Go", "Bubble Tea", "PostgreSQL", "Redis", "systemd", "Google Drive API"].map((tech) => (
+                    <span key={tech} className={`px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[9px] font-mono text-gray-400 font-semibold`}>{tech}</span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Why This Architecture? */}
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-3 mt-4">
+                <p className="text-[10px] font-black uppercase tracking-widest text-indigo-400">📐 Why This Architecture?</p>
+                <div className="grid grid-cols-1 gap-2 text-[11px] leading-relaxed">
+                  <div>
+                    <span className="font-bold text-gray-200">Why Go?</span>
+                    <p className="text-gray-400">Enables high-performance systems access, minimal binary size, and zero external dependency runtime overhead on host servers.</p>
+                  </div>
+                  <div>
+                    <span className="font-bold text-gray-200">Why systemd Timers?</span>
+                    <p className="text-gray-400">Leverages native, highly reliable Linux kernel daemon processes for scheduling backups instead of third-party user-space libraries.</p>
+                  </div>
+                  <div>
+                    <span className="font-bold text-gray-200">Why OAuth 2.0 Device Flow?</span>
+                    <p className="text-gray-400">Permits secure headless-server cloud integrations with Google Drive without requiring graphical browser environments.</p>
+                  </div>
+                </div>
+              </div>
               
               {/* Engineering Challenges & Resolution */}
               <div className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-2 mt-4">
@@ -1410,6 +1505,43 @@ export default function Home() {
                   "A zero-dependency network security API server containerized with CGO-compiled SQLite drivers. Features native port-25 timeout resilience, custom IP rate-limiting middleware, randomized SMTP jitter, and an autonomous background pump telemetry worker."
                 )}
               </p>
+
+              {/* Infrastructure Stack quick scan */}
+              <div className="space-y-1.5 pt-2">
+                <p className="text-[9px] font-black text-gray-500 uppercase tracking-widest">Infrastructure Stack</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["Go", "Gin", "React", "SQLite", "CGO", "SMTP sockets"].map((tech) => (
+                    <span key={tech} className={`px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[9px] font-mono text-gray-400 font-semibold`}>{tech}</span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Why This Architecture? */}
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-3 mt-4">
+                <p className="text-[10px] font-black uppercase tracking-widest text-indigo-400">📐 Why This Architecture?</p>
+                <div className="grid grid-cols-1 gap-2 text-[11px] leading-relaxed">
+                  <div>
+                    <span className="font-bold text-gray-200">Why Go SMTP TCP Sockets?</span>
+                    <p className="text-gray-400">Enables exact raw socket control to probe MX servers, audit catch-all relays, and handle greylisting behaviors safely.</p>
+                  </div>
+                  <div>
+                    <span className="font-bold text-gray-200">Why CGO SQLite?</span>
+                    <p className="text-gray-400">Integrates an embedded SQL database directly into the Go binary, avoiding external service dependencies and networking costs.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Engineering Challenge & Resolution */}
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-2 mt-4">
+                <p className="text-[10px] font-black uppercase tracking-widest text-amber-500">⚠️ Engineering Challenge</p>
+                <p className="text-xs text-gray-300">
+                  Target mail servers frequently blacklisted our validating host due to rapid SMTP verification packet bursts, marking checks as spam or abuse.
+                </p>
+                <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400">🛡️ Resolution</p>
+                <p className="text-xs text-gray-300">
+                  Built a dynamic IP proxy rotator combined with random connection jitter inside Go channel workers, dispersing and pacing SMTP handshakes.
+                </p>
+              </div>
             </div>
 
             <div className="space-y-4">
@@ -1504,6 +1636,43 @@ export default function Home() {
                   "A high-availability systems daemon built on top of native Go channels. Automates EKS service discovery via Kubernetes client-go libraries, hooks securely to PagerDuty/Slack routing tables, and exposes a collaborative multi-user SSH Wish shell running on port :9022 with unique session synchronization tokens."
                 )}
               </p>
+
+              {/* Infrastructure Stack quick scan */}
+              <div className="space-y-1.5 pt-2">
+                <p className="text-[9px] font-black text-gray-500 uppercase tracking-widest">Infrastructure Stack</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["Go", "Bubble Tea", "PromQL", "LogQL", "TraceQL", "Wish SSH"].map((tech) => (
+                    <span key={tech} className={`px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[9px] font-mono text-gray-400 font-semibold`}>{tech}</span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Why This Architecture? */}
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-3 mt-4">
+                <p className="text-[10px] font-black uppercase tracking-widest text-blue-400">📐 Why This Architecture?</p>
+                <div className="grid grid-cols-1 gap-2 text-[11px] leading-relaxed">
+                  <div>
+                    <span className="font-bold text-gray-200">Why PromQL / LogQL / TraceQL?</span>
+                    <p className="text-gray-400">Decouples monitor daemons from direct application logic by querying standardized time-series and log ingestion APIs.</p>
+                  </div>
+                  <div>
+                    <span className="font-bold text-gray-200">Why Wish SSH Collaborative TUI?</span>
+                    <p className="text-gray-400">Spawns an interactive multi-user terminal shell directly on port :9022, enabling instant shared troubleshooting logs.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Engineering Challenge & Resolution */}
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-2 mt-4">
+                <p className="text-[10px] font-black uppercase tracking-widest text-amber-500">⚠️ Engineering Challenge</p>
+                <p className="text-xs text-gray-300">
+                  Massive, high-cardinality log floods during EKS pod crashes completely overwhelmed operational support staff, severely inflating incident MTTR.
+                </p>
+                <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400">🛡️ Resolution</p>
+                <p className="text-xs text-gray-300">
+                  Built a native Go log grouping filter that matches Loki patterns, groups identical failures dynamically, and visualizes trace paths to slash MTTR by 65%.
+                </p>
+              </div>
             </div>
 
             <div className="space-y-4">
@@ -1595,6 +1764,43 @@ export default function Home() {
                   "A concurrent batch-processing CLI orchestrator utilizing thread-safe Go worker pools and pipeline channels. Processes directory targets containing thousands of PDF and JSONL data files, running multiple goroutine workers under isolated system RAM footprints, with runtime configuration hot-reloaded dynamically from YAML pricing databases."
                 )}
               </p>
+
+              {/* Infrastructure Stack quick scan */}
+              <div className="space-y-1.5 pt-2">
+                <p className="text-[9px] font-black text-gray-500 uppercase tracking-widest">Infrastructure Stack</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["Go", "Pterm", "Tiktoken", "ledongthuc/pdf"].map((tech) => (
+                    <span key={tech} className={`px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[9px] font-mono text-gray-400 font-semibold`}>{tech}</span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Why This Architecture? */}
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-3 mt-4">
+                <p className="text-[10px] font-black uppercase tracking-widest text-amber-500">📐 Why This Architecture?</p>
+                <div className="grid grid-cols-1 gap-2 text-[11px] leading-relaxed">
+                  <div>
+                    <span className="font-bold text-gray-200">Why Go Worker Pools?</span>
+                    <p className="text-gray-400">Allows parallel, CPU-bound parsing of thousands of chat transcripts using simple thread-safe sync primitives.</p>
+                  </div>
+                  <div>
+                    <span className="font-bold text-gray-200">Why cl100k Registry?</span>
+                    <p className="text-gray-400">Ensures absolute mathematical token validation parity against OpenAI's proprietary billing systems.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Engineering Challenge & Resolution */}
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-2 mt-4">
+                <p className="text-[10px] font-black uppercase tracking-widest text-amber-500">⚠️ Engineering Challenge</p>
+                <p className="text-xs text-gray-300">
+                  Large PDF and raw chat directories took too long to ingest, blocking quick-scan token cost estimations and pricing weight comparison routines.
+                </p>
+                <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400">🛡️ Resolution</p>
+                <p className="text-xs text-gray-300">
+                  Implemented concurrent Goroutines and bounded memory channels with `ledongthuc/pdf`, accelerating batch scanning speeds past 10k+ tokens/sec.
+                </p>
+              </div>
             </div>
 
             <div className="space-y-4">
@@ -1647,6 +1853,31 @@ export default function Home() {
                 <p className="text-gray-400 text-sm leading-relaxed font-medium">
                   An enterprise "Platform-in-a-Box" orchestration framework designed to accelerate multi-tenant EKS node environments. Couples deterministic modular Terraform base infrastructures with scalable dynamic Helm library charts.
                 </p>
+
+                {/* Infrastructure Stack quick scan */}
+                <div className="space-y-1.5 pt-2">
+                  <p className="text-[9px] font-black text-gray-500 uppercase tracking-widest">Infrastructure Stack</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {["Kubernetes", "Terraform", "Helm", "AWS EKS", "OPA Gatekeeper", "GitHub Actions"].map((tech) => (
+                      <span key={tech} className={`px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[9px] font-mono text-gray-400 font-semibold`}>{tech}</span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Why This Architecture? */}
+                <div className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-3 mt-4">
+                  <p className="text-[10px] font-black uppercase tracking-widest text-purple-400">📐 Why This Architecture?</p>
+                  <div className="grid grid-cols-1 gap-2 text-[11px] leading-relaxed">
+                    <div>
+                      <span className="font-bold text-gray-200">Why Terraform?</span>
+                      <p className="text-gray-400">Standardizes production-grade EKS cluster infrastructure, isolated subnets, and Spot Instance groups deterministically.</p>
+                    </div>
+                    <div>
+                      <span className="font-bold text-gray-200">Why OPA Gatekeeper?</span>
+                      <p className="text-gray-400">Automates cluster governance at admission time, preventing insecure configurations from executing on EKS nodes.</p>
+                    </div>
+                  </div>
+                </div>
 
                 {/* Engineering Challenges & Resolution */}
                 <div className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-2 mt-2">
