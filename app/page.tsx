@@ -1011,8 +1011,8 @@ export default function Home() {
               {/* Architecture Diagram */}
               <div className="space-y-4">
                 <p className="text-[10px] font-black text-amber-400 uppercase tracking-widest text-center">Monorepo System Architecture</p>
-                <div onClick={() => setActiveModalDiagram('bhaobhao')} className="cursor-pointer relative group/diagram">
-                  <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-amber-400 opacity-0 group-hover/diagram:opacity-100 transition-opacity z-10">
+                <div onClick={() => setActiveModalDiagram('bhaobhao')} className="cursor-pointer relative group">
+                  <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-amber-400 opacity-0 group-hover:opacity-100 transition-opacity z-10">
                     🔍 Click to expand
                   </div>
                   <BhaoBhaoArchitecture themeColor={isBuild ? "#6366f1" : "#C4A77D"} />
@@ -1191,8 +1191,8 @@ export default function Home() {
                     </button>
                   </div>
                   
-                  <div onClick={() => setActiveModalDiagram('voice_eks')} className="cursor-pointer relative group/diagram">
-                    <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-emerald-400 opacity-0 group-hover/diagram:opacity-100 transition-opacity z-10">
+                  <div onClick={() => setActiveModalDiagram('voice_eks')} className="cursor-pointer relative group">
+                    <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity z-10">
                       🔍 Click to expand
                     </div>
                     <VoiceArchitecture themeColor="#10b981" />
@@ -1228,8 +1228,8 @@ export default function Home() {
                     </button>
                   </div>
                   
-                  <div onClick={() => setActiveModalDiagram('voice_app')} className="cursor-pointer relative group/diagram">
-                    <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-indigo-400 opacity-0 group-hover/diagram:opacity-100 transition-opacity z-10">
+                  <div onClick={() => setActiveModalDiagram('voice_app')} className="cursor-pointer relative group">
+                    <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity z-10">
                       🔍 Click to expand
                     </div>
                     <AlconAppArchitecture themeColor="#6366f1" />
@@ -1334,8 +1334,8 @@ export default function Home() {
                 </div>
               </div>
               
-              <div onClick={() => setActiveModalDiagram('mirrorvault')} className="cursor-pointer relative group/diagram">
-                <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-emerald-400 opacity-0 group-hover/diagram:opacity-100 transition-opacity z-10">
+              <div onClick={() => setActiveModalDiagram('mirrorvault')} className="cursor-pointer relative group">
+                <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity z-10">
                   🔍 Click to expand
                 </div>
                 <MirrorVaultArchitecture themeColor={accentHex} />
@@ -1370,7 +1370,12 @@ export default function Home() {
                 </div>
               </div>
               
-              <EmailIntelligenceArchitecture themeColor={accentHex} />
+              <div onClick={() => setActiveModalDiagram('email')} className="cursor-pointer relative group/diagram">
+                <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-indigo-400 opacity-0 group-hover/diagram:opacity-100 transition-opacity z-10">
+                  🔍 Click to expand
+                </div>
+                <EmailIntelligenceArchitecture themeColor={accentHex} />
+              </div>
 
               <div className="grid grid-cols-2 gap-4">
                 {[
@@ -1459,7 +1464,12 @@ export default function Home() {
                 </div>
               </div>
               
-              <MonitoringDiagram themeColor={isBuild ? '#3b82f6' : '#10b981'} />
+              <div onClick={() => setActiveModalDiagram('health')} className="cursor-pointer relative group/diagram">
+                <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-blue-400 opacity-0 group-hover/diagram:opacity-100 transition-opacity z-10">
+                  🔍 Click to expand
+                </div>
+                <MonitoringDiagram themeColor={isBuild ? '#3b82f6' : '#10b981'} />
+              </div>
 
               <div className="grid grid-cols-2 gap-4">
                 {[
@@ -1545,8 +1555,8 @@ export default function Home() {
                 </div>
               </div>
               
-              <div onClick={() => setActiveModalDiagram('atoma')} className="cursor-pointer relative group/diagram">
-                <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-amber-500 opacity-0 group-hover/diagram:opacity-100 transition-opacity z-10">
+              <div onClick={() => setActiveModalDiagram('atoma')} className="cursor-pointer relative group">
+                <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-amber-500 opacity-0 group-hover:opacity-100 transition-opacity z-10">
                   🔍 Click to expand
                 </div>
                 <TokenAgentDiagram themeColor={isBuild ? '#f59e0b' : '#10b981'} />
@@ -1665,8 +1675,8 @@ export default function Home() {
                 </div>
               </div>
               <div className="lg:col-span-7 w-full">
-                <div onClick={() => setActiveModalDiagram('accelerator')} className="cursor-pointer relative group/diagram">
-                  <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-purple-400 opacity-0 group-hover/diagram:opacity-100 transition-opacity z-10">
+                <div onClick={() => setActiveModalDiagram('accelerator')} className="cursor-pointer relative group">
+                  <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity z-10">
                     🔍 Click to expand
                   </div>
                   <AcceleratorDiagram themeColor={isBuild ? '#a855f7' : '#10b981'} />
@@ -1892,6 +1902,8 @@ export default function Home() {
               {activeModalDiagram === 'bhaobhao' && <BhaoBhaoArchitecture themeColor="#C4A77D" />}
               {activeModalDiagram === 'accelerator' && <AcceleratorDiagram themeColor="#a855f7" />}
               {activeModalDiagram === 'atoma' && <TokenAgentDiagram themeColor="#f59e0b" />}
+              {activeModalDiagram === 'email' && <EmailIntelligenceArchitecture themeColor={accentHex} />}
+              {activeModalDiagram === 'health' && <MonitoringDiagram themeColor={isBuild ? '#3b82f6' : '#10b981'} />}
             </div>
             <p className="text-gray-500 text-[10px] mt-4 font-mono uppercase tracking-widest animate-pulse">🔍 Click anywhere outside or use close button to return</p>
           </div>
