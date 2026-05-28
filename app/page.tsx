@@ -111,6 +111,46 @@ const AlconAppArchitecture = ({ themeColor = "#6366f1" }) => (
   </div>
 );
 
+const MirrorVaultArchitecture = ({ themeColor = "#10b981" }) => (
+  <div className="w-full py-8 px-4 bg-white/5 rounded-2xl border border-white/10 my-6 transition-all duration-500">
+    <svg viewBox="0 0 800 200" className="w-full h-auto">
+      <defs>
+        <marker id="arrowhead-mv" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill={themeColor} />
+        </marker>
+      </defs>
+      
+      {/* Nodes */}
+      <rect x="15" y="75" width="105" height="50" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
+      <text x="67" y="105" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">Bubble Tea TUI</text>
+      
+      <rect x="160" y="45" width="150" height="110" rx="12" fill="#14111c" stroke={themeColor} strokeWidth="2" strokeDasharray="3" />
+      <text x="235" y="70" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Go Agent Engine</text>
+      <text x="235" y="92" textAnchor="middle" fill="#9fb3c8" fontSize="9">Active Discovery Scan</text>
+      <text x="235" y="112" textAnchor="middle" fill="#9fb3c8" fontSize="9">Auto Systemd Scheduler</text>
+      <text x="235" y="132" textAnchor="middle" fill="#9fb3c8" fontSize="9">Rollback Snapshot Guard</text>
+      
+      <rect x="350" y="75" width="105" height="50" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
+      <text x="402" y="105" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">Local /var/backups</text>
+      
+      <rect x="495" y="45" width="140" height="110" rx="12" fill="#14111c" stroke={themeColor} strokeWidth="2" strokeDasharray="3" />
+      <text x="565" y="70" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">OAuth Device Flow</text>
+      <text x="565" y="92" textAnchor="middle" fill="#9fb3c8" fontSize="9">Drive Space Validation</text>
+      <text x="565" y="112" textAnchor="middle" fill="#9fb3c8" fontSize="9">Token Encryption</text>
+      <text x="565" y="132" textAnchor="middle" fill="#9fb3c8" fontSize="9">Device Verification</text>
+      
+      <rect x="670" y="75" width="115" height="50" rx="8" fill="#02140e" stroke="#059669" strokeWidth="1" />
+      <text x="727" y="105" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">Google Drive Cloud</text>
+
+      {/* Connections */}
+      <line x1="120" y1="100" x2="150" y2="100" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-mv)" />
+      <line x1="310" y1="100" x2="340" y2="100" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-mv)" />
+      <line x1="455" y1="100" x2="485" y2="100" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-mv)" />
+      <line x1="635" y1="100" x2="660" y2="100" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-mv)" />
+    </svg>
+  </div>
+);
+
 const EmailIntelligenceArchitecture = ({ themeColor = "#6366f1" }) => (
   <div className="w-full py-8 px-4 bg-white/5 rounded-2xl border border-white/10 my-6 transition-all duration-500">
     <svg viewBox="0 0 800 200" className="w-full h-auto">
@@ -1144,6 +1184,92 @@ export default function Home() {
                   </div>
                 </div>
 
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Project 2.5: MirrorVault (Systems & DevOps Backup Agent) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-32 border-b border-white/5 pb-20">
+          <div className="lg:col-span-5 order-2 lg:order-1 space-y-8">
+            <div className="space-y-4">
+              <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${
+                isBuild 
+                  ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400' 
+                  : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
+              }`}>
+                Systems & DevOps Engineering
+              </span>
+              <h3 className="text-3xl font-black tracking-tighter text-white">MirrorVault Backup Agent</h3>
+              <p className="text-gray-400 text-sm leading-relaxed font-medium">
+                {isBuild ? (
+                  "An autonomous database discovery and recovery systems agent programmed in Go. Features a beautiful, interactive Bubble Tea terminal user interface, strict transactional pre-restore snapshot validations, and auto-rollback rules protecting active records on command exit-code errors."
+                ) : (
+                  "A highly resilient automated systems daemon integrated directly into native Linux systemd timer configurations. Features secure OAuth 2.0 Device flow handshakes, Google Drive API cloud sync, and an automated 14-day archival retention rotation script."
+                )}
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              <h4 className="text-xs font-bold text-white uppercase tracking-wider">Engineering Focus</h4>
+              <ul className="space-y-3">
+                {isBuild ? [
+                  "Core system utilities wrapper for zero-dependency local database dumps",
+                  "Strict pre-restore safety snapshots preventing transactional data loss",
+                  "Go error traps and automated database rollbacks restoring original state",
+                  "Bubble Tea & Lip Gloss terminal interface loaded with real-time progress monitors"
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-gray-300">
+                    <span className="text-indigo-400 font-bold">✓</span>
+                    {item}
+                  </li>
+                )) : [
+                  "Dynamic systemd service and timer unit creation on host Linux environments",
+                  "Secure password secrets vault utilizing 0600 Linux root access permissions",
+                  "Automated Google Drive backups with dual-size storage safety validation checking",
+                  "Automated 14-day retention rotator pruning old local files automatically"
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-gray-300">
+                    <span className="text-emerald-500 font-bold">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="pt-4">
+              <a href="https://github.com/sanjanamahajan2001-sys/mirrorvault" target="_blank" className={`px-5 py-2.5 text-xs font-bold rounded-xl hover:scale-105 active:scale-95 transition-all text-white border ${
+                isBuild ? 'bg-indigo-500/10 border-indigo-500/30' : 'bg-emerald-500/10 border-emerald-500/30'
+              }`}>
+                Explore Systems Agent &rarr;
+              </a>
+            </div>
+          </div>
+
+          <div className="lg:col-span-7 order-1 lg:order-2 space-y-6">
+            <div className={`p-8 rounded-3xl border bg-white/5 backdrop-blur-md space-y-8 transition-all duration-500 ${!isBuild ? 'border-emerald-500/20 shadow-lg shadow-emerald-500/5' : 'border-white/10'}`}>
+              <div className="flex items-center gap-4">
+                <span className="text-4xl">🗄️</span>
+                <div>
+                  <h4 className="text-2xl font-bold text-white">MirrorVault Engine</h4>
+                  <p className="text-xs text-gray-400 font-mono">Secure Go Agent & System Schedulers</p>
+                </div>
+              </div>
+              
+              <MirrorVaultArchitecture themeColor={accentHex} />
+
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { label: "Core Systems", value: "Go / Process Discovery" },
+                  { label: "Scheduling Engine", value: "Systemd Service / Timers" },
+                  { label: "Cloud Uploads", value: "GDrive OAuth Device Flow" },
+                  { label: "Integrity Checks", value: "Pre-Restore Rollback Guard" }
+                ].map((card, i) => (
+                  <div key={i} className="p-4 rounded-xl bg-black/40 border border-white/10">
+                    <p className={`text-[10px] font-black uppercase mb-1 ${isBuild ? 'text-indigo-400' : 'text-emerald-400'}`}>{card.label}</p>
+                    <p className="text-white text-xs font-semibold">{card.value}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
