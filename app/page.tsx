@@ -71,6 +71,46 @@ const VoiceArchitecture = ({ themeColor = "#6366f1" }) => (
   </div>
 );
 
+const AlconAppArchitecture = ({ themeColor = "#6366f1" }) => (
+  <div className="w-full py-8 px-4 bg-white/5 rounded-2xl border border-white/10 my-6 transition-all duration-500">
+    <svg viewBox="0 0 800 200" className="w-full h-auto">
+      <defs>
+        <marker id="arrowhead-app" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill={themeColor} />
+        </marker>
+      </defs>
+      
+      {/* Nodes */}
+      <rect x="15" y="75" width="100" height="50" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
+      <text x="65" y="105" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Twilio Stream</text>
+      
+      <rect x="160" y="45" width="150" height="110" rx="12" fill="#14111c" stroke={themeColor} strokeWidth="2" strokeDasharray="3" />
+      <text x="235" y="70" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">FastAPI Core</text>
+      <text x="235" y="92" textAnchor="middle" fill="#9fb3c8" fontSize="9">Flow Runtime Engine</text>
+      <text x="235" y="112" textAnchor="middle" fill="#9fb3c8" fontSize="9">Hinglish Intent Engine</text>
+      <text x="235" y="132" textAnchor="middle" fill="#9fb3c8" fontSize="9">IRDAI Consent Guard</text>
+      
+      <rect x="360" y="75" width="100" height="50" rx="8" fill="#0c0a0f" stroke={themeColor} strokeWidth="1" />
+      <text x="410" y="105" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Redis Lock</text>
+      
+      <rect x="500" y="45" width="130" height="110" rx="12" fill="#14111c" stroke={themeColor} strokeWidth="2" strokeDasharray="3" />
+      <text x="565" y="70" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Celery Workers</text>
+      <text x="565" y="92" textAnchor="middle" fill="#9fb3c8" fontSize="9">Campaign Schedule</text>
+      <text x="565" y="112" textAnchor="middle" fill="#9fb3c8" fontSize="9">Multi-Channel Retry</text>
+      <text x="565" y="132" textAnchor="middle" fill="#9fb3c8" fontSize="9">PostgreSQL Sync</text>
+      
+      <rect x="670" y="75" width="115" height="50" rx="8" fill="#02140e" stroke="#059669" strokeWidth="1" />
+      <text x="727" y="105" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">RDS / PG Store</text>
+
+      {/* Connections */}
+      <line x1="115" y1="100" x2="150" y2="100" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-app)" />
+      <line x1="310" y1="100" x2="350" y2="100" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-app)" />
+      <line x1="460" y1="100" x2="490" y2="100" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-app)" />
+      <line x1="630" y1="100" x2="660" y2="100" stroke={themeColor} strokeWidth="2" markerEnd="url(#arrowhead-app)" />
+    </svg>
+  </div>
+);
+
 const EmailIntelligenceArchitecture = ({ themeColor = "#6366f1" }) => (
   <div className="w-full py-8 px-4 bg-white/5 rounded-2xl border border-white/10 my-6 transition-all duration-500">
     <svg viewBox="0 0 800 200" className="w-full h-auto">
@@ -631,6 +671,7 @@ function BitbucketIcon({ size = 24, className = "" }) {
 export default function Home() {
   const [perspective, setPerspective] = useState<Perspective>('build');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [alconFlipped, setAlconFlipped] = useState(false);
 
   // Monitor scroll for nav header blur effect
   useEffect(() => {
@@ -1008,29 +1049,101 @@ export default function Home() {
           </div>
 
           <div className="lg:col-span-7 order-1 lg:order-2 space-y-6">
-            <div className={`p-8 rounded-3xl border bg-white/5 backdrop-blur-md space-y-8 transition-all duration-500 ${!isBuild ? 'border-emerald-500/20' : 'border-white/10'}`}>
-              <div className="flex items-center gap-4">
-                <span className="text-4xl">🎙️</span>
-                <div>
-                  <h4 className="text-2xl font-bold text-white">AI Voice Engine</h4>
-                  <p className="text-xs text-gray-400 font-mono">EKS Pod Scaling & Audio persistence</p>
-                </div>
+            {/* Visual Flipper Control Bar - Highly Noticeable Toggle */}
+            <div className="flex justify-between items-center bg-white/5 p-2 rounded-2xl border border-white/10 backdrop-blur-md">
+              <span className="text-xs font-bold text-gray-400 pl-2">🔄 Click tabs to flip card:</span>
+              <div className="flex gap-2">
+                <button 
+                  onClick={() => setAlconFlipped(false)}
+                  className={`px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 ${
+                    !alconFlipped 
+                      ? 'bg-emerald-500 text-white shadow-lg' 
+                      : 'bg-white/5 text-gray-400 hover:text-white'
+                  }`}
+                >
+                  🚀 Deploy & Infra
+                </button>
+                <button 
+                  onClick={() => setAlconFlipped(true)}
+                  className={`px-4 py-2 rounded-xl text-xs font-bold transition-all duration-300 ${
+                    alconFlipped 
+                      ? 'bg-indigo-500 text-white shadow-lg' 
+                      : 'bg-white/5 text-gray-400 hover:text-white'
+                  }`}
+                >
+                  🏗️ App Build & Logic
+                </button>
               </div>
-              
-              <VoiceArchitecture themeColor={accentHex} />
+            </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { label: "Compute", value: "AWS EKS (Kubernetes)" },
-                  { label: "Deployment IaC", value: "Modular Terraform" },
-                  { label: "Realtime API", value: "FastAPI / WebSocket" },
-                  { label: "Observability", value: "Prometheus / Loki Stack" }
-                ].map((card, i) => (
-                  <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/10">
-                    <p className={`text-[10px] font-black uppercase mb-1 ${isBuild ? 'text-indigo-400' : 'text-emerald-400'}`}>{card.label}</p>
-                    <p className="text-white text-xs font-medium">{card.value}</p>
+            {/* 3D Flip Card Container */}
+            <div className="perspective-1000 w-full min-h-[640px] relative">
+              <div className={`w-full h-full duration-700 transform-style-3d relative transition-transform ${alconFlipped ? 'rotate-y-180' : ''}`}>
+                
+                {/* --- FRONT FACE: DEPLOYMENT/INFRASTRUCTURE (Shown First) --- */}
+                <div className={`w-full absolute backface-hidden left-0 top-0 p-8 rounded-3xl border bg-white/5 backdrop-blur-md space-y-8 transition-all duration-500 border-emerald-500/20 shadow-lg shadow-emerald-500/5 ${alconFlipped ? 'pointer-events-none opacity-0' : 'opacity-100'}`}>
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center gap-4">
+                      <span className="text-4xl">🚀</span>
+                      <div>
+                        <h4 className="text-2xl font-bold text-white">AI Voice Platform</h4>
+                        <p className="text-xs text-emerald-400 font-mono">EKS Cluster Deploy & Orchestration</p>
+                      </div>
+                    </div>
+                    <button onClick={() => setAlconFlipped(true)} className="p-2 bg-emerald-500/10 hover:bg-emerald-500/25 border border-emerald-500/25 rounded-xl text-[10px] font-bold text-emerald-400 flex items-center gap-1.5 transition-all">
+                      Flip to App 🔄
+                    </button>
                   </div>
-                ))}
+                  
+                  <VoiceArchitecture themeColor="#10b981" />
+
+                  <div className="grid grid-cols-2 gap-4">
+                    {[
+                      { label: "Compute Platform", value: "AWS EKS (Kubernetes)" },
+                      { label: "Deployment IaC", value: "Modular Terraform" },
+                      { label: "Cluster Ingress", value: "Nginx / Cert-Manager" },
+                      { label: "Observability", value: "Prometheus / Loki Stack" }
+                    ].map((card, i) => (
+                      <div key={i} className="p-4 rounded-xl bg-black/40 border border-white/10">
+                        <p className="text-[10px] font-black uppercase mb-1 text-emerald-400">{card.label}</p>
+                        <p className="text-white text-xs font-semibold">{card.value}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* --- BACK FACE: APPLICATION BUILD/LOGIC --- */}
+                <div className={`w-full absolute backface-hidden left-0 top-0 p-8 rounded-3xl border bg-white/5 backdrop-blur-md space-y-8 transition-all duration-500 border-indigo-500/20 shadow-lg shadow-indigo-500/5 rotate-y-180 ${!alconFlipped ? 'pointer-events-none opacity-0' : 'opacity-100'}`}>
+                  <div className="flex justify-between items-center">
+                    <div className="flex items-center gap-4">
+                      <span className="text-4xl">🏗️</span>
+                      <div>
+                        <h4 className="text-2xl font-bold text-white">AI Voice Engine</h4>
+                        <p className="text-xs text-indigo-400 font-mono">FastAPI Telephony & Asynchronous Logic</p>
+                      </div>
+                    </div>
+                    <button onClick={() => setAlconFlipped(false)} className="p-2 bg-indigo-500/10 hover:bg-indigo-500/25 border border-indigo-500/25 rounded-xl text-[10px] font-bold text-indigo-400 flex items-center gap-1.5 transition-all">
+                      Flip to Deploy 🚀
+                    </button>
+                  </div>
+                  
+                  <AlconAppArchitecture themeColor="#6366f1" />
+
+                  <div className="grid grid-cols-2 gap-4">
+                    {[
+                      { label: "Voice Stream", value: "Twilio Media Streams" },
+                      { label: "Session Cache", value: "ElastiCache Redis" },
+                      { label: "Concurrency Lock", value: "Redis Distributed SETNX" },
+                      { label: "Data Persistence", value: "RDS PostgreSQL" }
+                    ].map((card, i) => (
+                      <div key={i} className="p-4 rounded-xl bg-black/40 border border-white/10">
+                        <p className="text-[10px] font-black uppercase mb-1 text-indigo-400">{card.label}</p>
+                        <p className="text-white text-xs font-semibold">{card.value}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
