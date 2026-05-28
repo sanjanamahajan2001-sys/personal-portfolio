@@ -750,6 +750,7 @@ export default function Home() {
   const [perspective, setPerspective] = useState<Perspective>('build');
   const [isScrolled, setIsScrolled] = useState(false);
   const [alconFlipped, setAlconFlipped] = useState(false);
+  const [activeModalDiagram, setActiveModalDiagram] = useState<string | null>(null);
 
   // Monitor scroll for nav header blur effect
   useEffect(() => {
@@ -1010,7 +1011,12 @@ export default function Home() {
               {/* Architecture Diagram */}
               <div className="space-y-4">
                 <p className="text-[10px] font-black text-amber-400 uppercase tracking-widest text-center">Monorepo System Architecture</p>
-                <BhaoBhaoArchitecture themeColor={isBuild ? "#6366f1" : "#C4A77D"} />
+                <div onClick={() => setActiveModalDiagram('bhaobhao')} className="cursor-pointer relative group/diagram">
+                  <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-amber-400 opacity-0 group-hover/diagram:opacity-100 transition-opacity z-10">
+                    🔍 Click to expand
+                  </div>
+                  <BhaoBhaoArchitecture themeColor={isBuild ? "#6366f1" : "#C4A77D"} />
+                </div>
               </div>
 
               {/* Grid cards */}
@@ -1185,7 +1191,12 @@ export default function Home() {
                     </button>
                   </div>
                   
-                  <VoiceArchitecture themeColor="#10b981" />
+                  <div onClick={() => setActiveModalDiagram('voice_eks')} className="cursor-pointer relative group/diagram">
+                    <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-emerald-400 opacity-0 group-hover/diagram:opacity-100 transition-opacity z-10">
+                      🔍 Click to expand
+                    </div>
+                    <VoiceArchitecture themeColor="#10b981" />
+                  </div>
 
                   <div className="grid grid-cols-2 gap-4">
                     {[
@@ -1217,7 +1228,12 @@ export default function Home() {
                     </button>
                   </div>
                   
-                  <AlconAppArchitecture themeColor="#6366f1" />
+                  <div onClick={() => setActiveModalDiagram('voice_app')} className="cursor-pointer relative group/diagram">
+                    <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-indigo-400 opacity-0 group-hover/diagram:opacity-100 transition-opacity z-10">
+                      🔍 Click to expand
+                    </div>
+                    <AlconAppArchitecture themeColor="#6366f1" />
+                  </div>
 
                   <div className="grid grid-cols-2 gap-4">
                     {[
@@ -1318,7 +1334,12 @@ export default function Home() {
                 </div>
               </div>
               
-              <MirrorVaultArchitecture themeColor={accentHex} />
+              <div onClick={() => setActiveModalDiagram('mirrorvault')} className="cursor-pointer relative group/diagram">
+                <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-emerald-400 opacity-0 group-hover/diagram:opacity-100 transition-opacity z-10">
+                  🔍 Click to expand
+                </div>
+                <MirrorVaultArchitecture themeColor={accentHex} />
+              </div>
 
               <div className="grid grid-cols-2 gap-4">
                 {[
@@ -1524,7 +1545,12 @@ export default function Home() {
                 </div>
               </div>
               
-              <TokenAgentDiagram themeColor={isBuild ? '#f59e0b' : '#10b981'} />
+              <div onClick={() => setActiveModalDiagram('atoma')} className="cursor-pointer relative group/diagram">
+                <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-amber-500 opacity-0 group-hover/diagram:opacity-100 transition-opacity z-10">
+                  🔍 Click to expand
+                </div>
+                <TokenAgentDiagram themeColor={isBuild ? '#f59e0b' : '#10b981'} />
+              </div>
 
               <div className="grid grid-cols-2 gap-4">
                 {[
@@ -1639,7 +1665,12 @@ export default function Home() {
                 </div>
               </div>
               <div className="lg:col-span-7 w-full">
-                <AcceleratorDiagram themeColor={isBuild ? '#a855f7' : '#10b981'} />
+                <div onClick={() => setActiveModalDiagram('accelerator')} className="cursor-pointer relative group/diagram">
+                  <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-purple-400 opacity-0 group-hover/diagram:opacity-100 transition-opacity z-10">
+                    🔍 Click to expand
+                  </div>
+                  <AcceleratorDiagram themeColor={isBuild ? '#a855f7' : '#10b981'} />
+                </div>
               </div>
             </div>
             <div className="pt-6 mt-6 border-t border-white/5 flex justify-between items-center">
@@ -1838,6 +1869,34 @@ export default function Home() {
           &copy; 2026 Sanjana / Cloud & DevOps Engineer | <a href="https://www.linkedin.com/in/sanjana-mahajan-467982233/" className="hover:text-white transition-colors">LinkedIn</a>
         </p>
       </footer>
+      
+      {activeModalDiagram && (
+        <div 
+          onClick={() => setActiveModalDiagram(null)}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-md p-6 cursor-pointer"
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-6xl w-full bg-black/90 border border-white/10 p-8 rounded-3xl backdrop-blur-2xl shadow-2xl flex flex-col items-center cursor-default"
+          >
+            <button 
+              onClick={() => setActiveModalDiagram(null)}
+              className="absolute top-4 right-4 text-white/50 hover:text-white p-2 rounded-full hover:bg-white/10 transition-all font-bold text-xs"
+            >
+              ✕ CLOSE
+            </button>
+            <div className="w-full overflow-auto max-h-[75vh] flex items-center justify-center p-4 bg-black/40 rounded-xl border border-white/5">
+              {activeModalDiagram === 'voice_eks' && <VoiceArchitecture themeColor="#10b981" />}
+              {activeModalDiagram === 'voice_app' && <AlconAppArchitecture themeColor="#6366f1" />}
+              {activeModalDiagram === 'mirrorvault' && <MirrorVaultArchitecture themeColor="#10b981" />}
+              {activeModalDiagram === 'bhaobhao' && <BhaoBhaoArchitecture themeColor="#C4A77D" />}
+              {activeModalDiagram === 'accelerator' && <AcceleratorDiagram themeColor="#a855f7" />}
+              {activeModalDiagram === 'atoma' && <TokenAgentDiagram themeColor="#f59e0b" />}
+            </div>
+            <p className="text-gray-500 text-[10px] mt-4 font-mono uppercase tracking-widest animate-pulse">🔍 Click anywhere outside or use close button to return</p>
+          </div>
+        </div>
+      )}
 
     </div>
   );
