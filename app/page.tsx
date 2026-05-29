@@ -746,6 +746,102 @@ function BitbucketIcon({ size = 24, className = "" }) {
 }
 
 
+interface ProjectCarouselProps {
+  diagram: React.ReactNode;
+  images: string[];
+  title: string;
+  accentColor: string;
+  onClickDiagram?: () => void;
+}
+
+const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ diagram, images, title, accentColor, onClickDiagram }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const totalSlides = diagram ? 1 + images.length : images.length;
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
+  };
+
+  const isDiagramActive = diagram && currentIndex === 0;
+
+  return (
+    <div className="w-full relative group/carousel bg-black/40 rounded-3xl border border-white/10 p-4 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:border-white/20 shadow-2xl">
+      {/* Active Slide Container */}
+      <div className="w-full flex items-center justify-center min-h-[260px] md:min-h-[300px]">
+        {isDiagramActive ? (
+          <div onClick={onClickDiagram} className="w-full cursor-pointer relative group/diagram">
+            <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-white/70 opacity-0 group-hover/diagram:opacity-100 transition-opacity z-10">
+              🔍 Click to expand
+            </div>
+            {diagram}
+          </div>
+        ) : (
+          <div className="w-full h-full flex items-center justify-center p-2">
+            <img 
+              src={diagram ? images[currentIndex - 1] : images[currentIndex]} 
+              alt={`${title} slide ${currentIndex}`} 
+              className="max-h-[320px] md:max-h-[380px] w-auto h-auto object-contain rounded-2xl shadow-xl transition-all duration-500 ease-out transform scale-100 hover:scale-[1.02]"
+              style={{ maxHeight: '350px' }}
+            />
+          </div>
+        )}
+      </div>
+
+      {/* Slide Navigation Controls */}
+      <div className="flex justify-between items-center mt-4 px-2">
+        {/* Indicators Dots */}
+        <div className="flex gap-2.5">
+          {Array.from({ length: totalSlides }).map((_, idx) => (
+            <button
+              key={idx}
+              onClick={(e) => {
+                e.stopPropagation();
+                setCurrentIndex(idx);
+              }}
+              className={`h-2.5 rounded-full transition-all duration-300 ${
+                currentIndex === idx 
+                  ? `w-7 bg-${accentColor}` 
+                  : 'w-2.5 bg-white/20 hover:bg-white/40'
+              }`}
+              title={diagram && idx === 0 ? "Architecture Diagram" : `Screenshot ${idx}`}
+            />
+          ))}
+        </div>
+
+        {/* Prev / Next Buttons */}
+        <div className="flex gap-2">
+          <button 
+            onClick={handlePrev}
+            className="p-2 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-white/20 transition-all text-white/70 hover:text-white font-mono text-xs"
+            title="Previous slide"
+          >
+            ←
+          </button>
+          <button 
+            onClick={handleNext}
+            className="p-2 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-white/20 transition-all text-white/70 hover:text-white font-mono text-xs"
+            title="Next slide"
+          >
+            →
+          </button>
+        </div>
+      </div>
+      
+      {/* Slide Context Label */}
+      <div className="absolute bottom-4 left-6 text-[9px] font-black uppercase tracking-widest text-gray-500 pointer-events-none">
+        {isDiagramActive ? "📐 System Diagram" : `📸 Slide ${diagram ? currentIndex : currentIndex + 1} of ${diagram ? totalSlides - 1 : totalSlides}`}
+      </div>
+    </div>
+  );
+};
+
+
 export default function Home() {
   const [perspective, setPerspective] = useState<Perspective>('build');
   const [isScrolled, setIsScrolled] = useState(false);
@@ -1008,16 +1104,14 @@ export default function Home() {
                 </div>
               </div>
               
-              {/* Architecture Diagram */}
-              <div className="space-y-4">
-                <p className="text-[10px] font-black text-amber-400 uppercase tracking-widest text-center">Monorepo System Architecture</p>
-                <div onClick={() => setActiveModalDiagram('bhaobhao')} className="cursor-pointer relative group">
-                  <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-amber-400 opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                    🔍 Click to expand
-                  </div>
-                  <BhaoBhaoArchitecture themeColor={isBuild ? "#6366f1" : "#C4A77D"} />
-                </div>
-              </div>
+              {/* Dynamic Project Carousel (Architecture Diagram + Screenshots) */}
+              <ProjectCarousel 
+                diagram={<BhaoBhaoArchitecture themeColor={isBuild ? "#6366f1" : "#C4A77D"} />}
+                images={["/assets/bhaobhao1.png", "/assets/bhaobhao2.png", "/assets/bhaobhao3.png", "/assets/bhaobhao4.png"]}
+                title="Bhao Bhao"
+                accentColor="amber-500"
+                onClickDiagram={() => setActiveModalDiagram('bhaobhao')}
+              />
 
               {/* Grid cards */}
               <div className="grid grid-cols-2 gap-4">
@@ -1257,12 +1351,13 @@ export default function Home() {
                     </button>
                   </div>
                   
-                  <div onClick={() => setActiveModalDiagram('voice_eks')} className="cursor-pointer relative group">
-                    <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                      🔍 Click to expand
-                    </div>
-                    <VoiceArchitecture themeColor="#10b981" />
-                  </div>
+                  <ProjectCarousel 
+                    diagram={<VoiceArchitecture themeColor="#10b981" />}
+                    images={["/assets/deploy.png"]}
+                    title="AI Voice Platform"
+                    accentColor="emerald-500"
+                    onClickDiagram={() => setActiveModalDiagram('voice_eks')}
+                  />
 
                   <div className="grid grid-cols-2 gap-4">
                     {[
@@ -1294,12 +1389,13 @@ export default function Home() {
                     </button>
                   </div>
                   
-                  <div onClick={() => setActiveModalDiagram('voice_app')} className="cursor-pointer relative group">
-                    <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                      🔍 Click to expand
-                    </div>
-                    <AlconAppArchitecture themeColor="#6366f1" />
-                  </div>
+                  <ProjectCarousel 
+                    diagram={<AlconAppArchitecture themeColor="#6366f1" />}
+                    images={["/assets/build.png"]}
+                    title="AI Voice Engine"
+                    accentColor="indigo-500"
+                    onClickDiagram={() => setActiveModalDiagram('voice_app')}
+                  />
 
                   <div className="grid grid-cols-2 gap-4">
                     {[
@@ -1429,12 +1525,23 @@ export default function Home() {
                 </div>
               </div>
               
-              <div onClick={() => setActiveModalDiagram('mirrorvault')} className="cursor-pointer relative group">
-                <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                  🔍 Click to expand
-                </div>
-                <MirrorVaultArchitecture themeColor={accentHex} />
-              </div>
+              <ProjectCarousel 
+                diagram={<MirrorVaultArchitecture themeColor={accentHex} />}
+                images={[
+                  "/assets/mirrorvault1.png",
+                  "/assets/mirrorvault2.png",
+                  "/assets/mirrorvault3.png",
+                  "/assets/mirrorvault4.png",
+                  "/assets/mirrorvault5.png",
+                  "/assets/mirrorvault6.png",
+                  "/assets/mirrorvault7.png",
+                  "/assets/mirrorvault8.png",
+                  "/assets/mirrorvault9.png"
+                ]}
+                title="MirrorVault"
+                accentColor={isBuild ? "indigo-500" : "emerald-500"}
+                onClickDiagram={() => setActiveModalDiagram('mirrorvault')}
+              />
 
               <div className="grid grid-cols-2 gap-4">
                 {[
@@ -1465,12 +1572,17 @@ export default function Home() {
                 </div>
               </div>
               
-              <div onClick={() => setActiveModalDiagram('email')} className="cursor-pointer relative group/diagram">
-                <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-indigo-400 opacity-0 group-hover/diagram:opacity-100 transition-opacity z-10">
-                  🔍 Click to expand
-                </div>
-                <EmailIntelligenceArchitecture themeColor={accentHex} />
-              </div>
+              <ProjectCarousel 
+                diagram={<EmailIntelligenceArchitecture themeColor={accentHex} />}
+                images={[
+                  "/assets/emailvalidator1.png",
+                  "/assets/emailvalidator2.png",
+                  "/assets/emailvalidator3.png"
+                ]}
+                title="Email Intelligence Platform"
+                accentColor={isBuild ? "indigo-500" : "emerald-500"}
+                onClickDiagram={() => setActiveModalDiagram('email')}
+              />
 
               <div className="grid grid-cols-2 gap-4">
                 {[
@@ -1584,6 +1696,132 @@ export default function Home() {
           </div>
         </div>
 
+        {/* Project 3.5: Narayan Pharmacy Operations Platform (Live Platform) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-32 border-b border-white/5 pb-20">
+          <div className="lg:col-span-7 space-y-6">
+            <div className={`p-8 rounded-3xl border bg-white/5 backdrop-blur-md space-y-8 transition-all duration-500 ${isBuild ? 'border-indigo-500/20' : 'border-emerald-500/20'}`}>
+              <div className="flex items-center gap-4">
+                <span className="text-4xl">💊</span>
+                <div>
+                  <h4 className="text-2xl font-bold text-white">Narayan Pharmacy Operations</h4>
+                  <p className="text-xs text-indigo-400 font-mono">Healthcare Logistics & Real-Time Sync</p>
+                </div>
+              </div>
+              
+              <ProjectCarousel 
+                diagram={null}
+                images={[
+                  "/assets/narayan1.png",
+                  "/assets/narayan2.png",
+                  "/assets/narayan3.png"
+                ]}
+                title="Narayan Pharmacy Operations"
+                accentColor={isBuild ? "indigo-500" : "emerald-500"}
+              />
+
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { label: "Compliance Model", value: "Strict HIPAA Row-Level Encryption" },
+                  { label: "Routing Engine", value: "Mapbox Real-Time Dynamic Routes" },
+                  { label: "Sync Pipeline", value: "Apache Kafka Event Ingestion" },
+                  { label: "State Broker", value: "Redis Active Session Locks" }
+                ].map((card, i) => (
+                  <div key={i} className="p-4 rounded-xl bg-white/5 border border-white/10">
+                    <p className={`text-[10px] font-black uppercase mb-1 ${isBuild ? 'text-indigo-400' : 'text-emerald-400'}`}>{card.label}</p>
+                    <p className="text-white text-xs font-medium">{card.value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-5 space-y-8">
+            <div className="space-y-4">
+              <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${
+                isBuild 
+                  ? 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400' 
+                  : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'
+              }`}>
+                Systems Logistics & High Concurrency
+              </span>
+              <h3 className="text-3xl font-black tracking-tighter text-white">Narayan Pharmacy Operations Platform</h3>
+              <p className="text-gray-400 text-sm leading-relaxed font-medium">
+                Co-developed a high-throughput, secure healthcare logistics and operational platform supporting patient workflows, driver dispatch runs, and real-time order tracking. Built to handle PioneerRx POS synchronizations securely under high-concurrency patient demands.
+              </p>
+
+              {/* Infrastructure Stack quick scan */}
+              <div className="space-y-1.5 pt-2">
+                <p className="text-[9px] font-black text-gray-500 uppercase tracking-widest">Infrastructure Stack</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {["Go", "Django", "FastAPI", "Next.js", "PostgreSQL", "Redis", "Apache Kafka", "AWS EKS", "Terraform"].map((tech) => (
+                    <span key={tech} className={`px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[9px] font-mono text-gray-400 font-semibold`}>{tech}</span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Why This Architecture? */}
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-3 mt-4">
+                <p className="text-[10px] font-black uppercase tracking-widest text-indigo-400">📐 Why This Architecture?</p>
+                <div className="grid grid-cols-1 gap-2 text-[11px] leading-relaxed">
+                  <div>
+                    <span className="font-bold text-gray-200">Why Apache Kafka?</span>
+                    <p className="text-gray-400">Handles high-concurrency operational streams securely from PioneerRx POS systems into PostgreSQL without write locks.</p>
+                  </div>
+                  <div>
+                    <span className="font-bold text-gray-200">Why WebSockets & Django Channels?</span>
+                    <p className="text-gray-400">Streams instantaneous dynamic routing maps and active dispatcher states to driver panels without polling overhead.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Engineering Challenge & Resolution */}
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-2 mt-4">
+                <p className="text-[10px] font-black uppercase tracking-widest text-amber-500">⚠️ Engineering Challenge</p>
+                <p className="text-xs text-gray-300">
+                  Heavy PioneerRx POS synchronization loads frequently locked patient order tables, degrading dispatch board responsiveness for active pharmacy staff.
+                </p>
+                <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400">🛡️ Resolution</p>
+                <p className="text-xs text-gray-300">
+                  Designed a high-throughput event buffer using Apache Kafka to queue incoming POS updates, executing batch operations on dedicated read-replicas.
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h4 className="text-xs font-bold text-white uppercase tracking-wider">Engineering Focus</h4>
+              <ul className="space-y-3">
+                {isBuild ? [
+                  "Kafka event ingestion pipelines streaming order modifications",
+                  "Mapbox integration with custom dynamic route-clustering algorithms",
+                  "FastAPI WebSocket relays streaming real-time driver coordinates",
+                  "Active Redis locks preventing collision on patient dispatch runs"
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-gray-300">
+                    <span className="text-indigo-400 font-bold">✓</span>
+                    {item}
+                  </li>
+                )) : [
+                  "HIPAA-compliant AWS EKS namespaces with strict network policies",
+                  "Modular Terraform components describing secure VPC network segments",
+                  "Strict PostgreSQL row-level encryption protecting patient sensitive PII",
+                  "Centralized logging stack tracing POS syncing pipelines securely"
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-3 text-sm text-gray-300">
+                    <span className="text-emerald-500 font-bold">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="flex gap-6 pt-4">
+              <span className="px-5 py-2.5 bg-white/5 border border-white/10 text-white/50 text-xs font-bold rounded-xl cursor-default">
+                🔒 Enterprise Platform (Private IP)
+              </span>
+            </div>
+          </div>
+        </div>
+
         {/* Project 4: Health-Monitor Observability & SRE Automation Engine (Dual Focus) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-32 border-b border-white/5 pb-20">
           <div className="lg:col-span-7 space-y-6">
@@ -1596,12 +1834,25 @@ export default function Home() {
                 </div>
               </div>
               
-              <div onClick={() => setActiveModalDiagram('health')} className="cursor-pointer relative group/diagram">
-                <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-blue-400 opacity-0 group-hover/diagram:opacity-100 transition-opacity z-10">
-                  🔍 Click to expand
-                </div>
-                <MonitoringDiagram themeColor={isBuild ? '#3b82f6' : '#10b981'} />
-              </div>
+              <ProjectCarousel 
+                diagram={<MonitoringDiagram themeColor={isBuild ? '#3b82f6' : '#10b981'} />}
+                images={[
+                  "/assets/healthmonitor1.png",
+                  "/assets/healthmonitor2.png",
+                  "/assets/healthmonitor3.png",
+                  "/assets/healthmonitor4.png",
+                  "/assets/healthmonitor5.png",
+                  "/assets/healthmonitor6.png",
+                  "/assets/healthmonitor7.png",
+                  "/assets/healthmonitor8.png",
+                  "/assets/healthmonitor9.png",
+                  "/assets/healthmonitor10.png",
+                  "/assets/healthmonitor11.png"
+                ]}
+                title="Health-Monitor SRE Engine"
+                accentColor="blue-500"
+                onClickDiagram={() => setActiveModalDiagram('health')}
+              />
 
               <div className="grid grid-cols-2 gap-4">
                 {[
@@ -1724,12 +1975,19 @@ export default function Home() {
                 </div>
               </div>
               
-              <div onClick={() => setActiveModalDiagram('atoma')} className="cursor-pointer relative group">
-                <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-amber-500 opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                  🔍 Click to expand
-                </div>
-                <TokenAgentDiagram themeColor={isBuild ? '#f59e0b' : '#10b981'} />
-              </div>
+              <ProjectCarousel 
+                diagram={<TokenAgentDiagram themeColor={isBuild ? '#f59e0b' : '#10b981'} />}
+                images={[
+                  "/assets/tokenagent1.png",
+                  "/assets/tokenagent2.png",
+                  "/assets/tokenagent3.png",
+                  "/assets/tokenagent4.png",
+                  "/assets/tokenagent5.png"
+                ]}
+                title="Atoma Token Agent"
+                accentColor="amber-500"
+                onClickDiagram={() => setActiveModalDiagram('atoma')}
+              />
 
               <div className="grid grid-cols-2 gap-4">
                 {[
