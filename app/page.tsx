@@ -2472,15 +2472,25 @@ export default function Home() {
               ✕ CLOSE
             </button>
             <div className="w-full overflow-auto max-h-[75vh] flex items-center justify-center p-4 bg-black/40 rounded-xl border border-white/5">
-              {activeModalDiagram === 'voice_eks' && <VoiceArchitecture themeColor="#10b981" />}
-              {activeModalDiagram === 'voice_app' && <AlconAppArchitecture themeColor="#6366f1" />}
-              {activeModalDiagram === 'mirrorvault' && <MirrorVaultArchitecture themeColor="#10b981" />}
-              {activeModalDiagram === 'bhaobhao' && <BhaoBhaoArchitecture themeColor="#C4A77D" />}
-              {activeModalDiagram === 'accelerator' && <AcceleratorDiagram themeColor="#a855f7" />}
-              {activeModalDiagram === 'atoma' && <TokenAgentDiagram themeColor="#f59e0b" />}
-              {activeModalDiagram === 'email' && <EmailIntelligenceArchitecture themeColor={accentHex} />}
-              {activeModalDiagram === 'health' && <MonitoringDiagram themeColor={isBuild ? '#3b82f6' : '#10b981'} />}
-              {activeModalDiagram === 'narayan' && <NarayanArchitecture themeColor={accentHex} />}
+              {activeModalDiagram.startsWith('/assets/') ? (
+                <img 
+                  src={activeModalDiagram} 
+                  alt="Expanded Screenshot" 
+                  className="max-h-[70vh] w-auto object-contain rounded-xl shadow-2xl transition-all" 
+                />
+              ) : (
+                <>
+                  {activeModalDiagram === 'voice_eks' && <VoiceArchitecture themeColor="#10b981" />}
+                  {activeModalDiagram === 'voice_app' && <AlconAppArchitecture themeColor="#6366f1" />}
+                  {activeModalDiagram === 'mirrorvault' && <MirrorVaultArchitecture themeColor="#10b981" />}
+                  {activeModalDiagram === 'bhaobhao' && <BhaoBhaoArchitecture themeColor="#C4A77D" />}
+                  {activeModalDiagram === 'accelerator' && <AcceleratorDiagram themeColor="#a855f7" />}
+                  {activeModalDiagram === 'atoma' && <TokenAgentDiagram themeColor="#f59e0b" />}
+                  {activeModalDiagram === 'email' && <EmailIntelligenceArchitecture themeColor={accentHex} />}
+                  {activeModalDiagram === 'health' && <MonitoringDiagram themeColor={isBuild ? '#3b82f6' : '#10b981'} />}
+                  {activeModalDiagram === 'narayan' && <NarayanArchitecture themeColor={accentHex} />}
+                </>
+              )}
             </div>
             <p className="text-gray-500 text-[10px] mt-4 font-mono uppercase tracking-widest animate-pulse">🔍 Click anywhere outside or use close button to return</p>
           </div>
