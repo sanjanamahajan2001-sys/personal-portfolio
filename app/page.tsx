@@ -613,7 +613,6 @@ const TokenAgentDiagram = ({ themeColor = "#f59e0b" }) => (
 
       {/* Connectors from compiler to minifier */}
       <path d="M420 115 H 445" stroke={themeColor} strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-tkn)" />
-      
       {/* Connectors from minifier to output */}
       <path d="M610 115 H 635" stroke="#059669" strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-green)" />
 
@@ -629,6 +628,10 @@ const BhaoBhaoArchitecture = ({ themeColor = "#C4A77D" }) => (
         <marker id="arrowhead-gold" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
           <polygon points="0 0, 10 3.5, 0 7" fill={themeColor} />
         </marker>
+        <linearGradient id="gold-glow" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#C4A77D" />
+          <stop offset="100%" stopColor="#854d0e" />
+        </linearGradient>
       </defs>
       
       {/* 4 Frontends (Monorepo Micro-Frontends) */}
@@ -649,31 +652,100 @@ const BhaoBhaoArchitecture = ({ themeColor = "#C4A77D" }) => (
       <text x="285" y="118" textAnchor="middle" fill="white" fontSize="9" fontWeight="bold">Recruiter Sandbox</text>
       <text x="285" y="131" textAnchor="middle" fill="#818cf8" fontSize="8" fontStyle="italic">One-Click Router</text>
 
-      {/* Express Node.js API Gateway */}
-      <rect x="420" y="77" width="140" height="80" rx="12" fill="#14081c" stroke="#a855f7" strokeWidth="2" />
-      <text x="490" y="107" textAnchor="middle" fill="white" fontSize="11" fontWeight="bold">Node.js Express API</text>
-      <text x="490" y="124" textAnchor="middle" fill="#d8b4fe" fontSize="9">Render Web Service</text>
-      <text x="490" y="140" textAnchor="middle" fill="#c084fc" fontSize="8" fontStyle="italic">verifyApiKey Middleware</text>
+      {/* Express API Backend */}
+      <rect x="420" y="90" width="120" height="55" rx="12" fill="#080c14" stroke="url(#gold-glow)" strokeWidth="1.5" />
+      <text x="480" y="115" textAnchor="middle" fill="white" fontSize="10" fontWeight="black" letterSpacing="0.05em">EXPRESS.JS API</text>
+      <text x="480" y="130" textAnchor="middle" fill={themeColor} fontSize="8" fontStyle="italic">Monorepo Gateway</text>
 
-      {/* Database / Third-Party */}
-      <rect x="640" y="47" width="130" height="50" rx="8" fill="#02140e" stroke="#059669" strokeWidth="1" />
-      <text x="705" y="72" textAnchor="middle" fill="white" fontSize="9" fontWeight="bold">Neon PostgreSQL</text>
-      <text x="705" y="85" textAnchor="middle" fill="#34d399" fontSize="8" fontStyle="italic">Drizzle ORM & Migrations</text>
+      {/* Neon PostgreSQL */}
+      <rect x="640" y="25" width="130" height="60" rx="10" fill="#040912" stroke="#10b981" strokeWidth="1.5" />
+      <text x="705" y="50" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">Neon Serverless SQL</text>
+      <text x="705" y="65" textAnchor="middle" fill="#10b981" fontSize="8" fontStyle="italic">Drizzle Schema Guard</text>
 
-      <rect x="640" y="132" width="130" height="50" rx="8" fill="#0a0814" stroke="#6366f1" strokeWidth="1" />
-      <text x="705" y="157" textAnchor="middle" fill="white" fontSize="9" fontWeight="bold">Mailgun & Supabase</text>
-      <text x="705" y="170" textAnchor="middle" fill="#818cf8" fontSize="8" fontStyle="italic">OTP & Cloud Assets</text>
+      {/* Supabase Storage */}
+      <rect x="640" y="95" width="130" height="60" rx="10" fill="#040912" stroke="#059669" strokeWidth="1.5" />
+      <text x="705" y="120" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">Supabase Buckets</text>
+      <text x="705" y="135" textAnchor="middle" fill="#059669" fontSize="8" fontStyle="italic">Secure Asset Blobs</text>
 
-      {/* Connection arrows */}
-      <path d="M150 37 h50 v62 h30" stroke={themeColor} strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-gold)" />
-      <path d="M150 87 h80" stroke={themeColor} strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-gold)" />
-      <path d="M150 137 h50 v-20 h30" stroke={themeColor} strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-gold)" />
-      <path d="M150 187 h60 v-62 h20" stroke={themeColor} strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-gold)" />
+      {/* Mailgun API */}
+      <rect x="640" y="165" width="130" height="60" rx="10" fill="#040912" stroke="#ef4444" strokeWidth="1.5" />
+      <text x="705" y="190" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">Mailgun SMTP Relays</text>
+      <text x="705" y="205" textAnchor="middle" fill="#ef4444" fontSize="8" fontStyle="italic">OTP Trigger Alerts</text>
 
-      <line x1="340" y1="117" x2="410" y2="117" stroke="#818cf8" strokeWidth="2" strokeDasharray="3" markerEnd="url(#arrowhead-gold)" />
+      {/* Connectors */}
+      <path d="M150 37 H 285 V 95" stroke={themeColor} strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-gold)" />
+      <path d="M150 87 H 230" stroke={themeColor} strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-gold)" />
+      <path d="M150 137 H 230" stroke={themeColor} strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-gold)" />
+      <path d="M150 187 H 285 V 140" stroke={themeColor} strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-gold)" />
 
-      <path d="M560 102 h30 v-25 h50" stroke="#a855f7" strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-gold)" />
-      <path d="M560 132 h30 v-5 h50" stroke="#a855f7" strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-gold)" />
+      <path d="M340 117 H 420" stroke="#818cf8" strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-gold)" />
+
+      <path d="M540 117 H 580 V 55 H 640" stroke="url(#gold-glow)" strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-gold)" />
+      <path d="M540 117 H 640" stroke="url(#gold-glow)" strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-gold)" />
+      <path d="M540 117 H 580 V 195 H 640" stroke="url(#gold-glow)" strokeWidth="1.5" fill="none" markerEnd="url(#arrowhead-gold)" />
+    </svg>
+  </div>
+);
+
+const NarayanArchitecture = ({ themeColor = "#6366f1" }) => (
+  <div className="w-full py-8 px-4 bg-white/5 rounded-2xl border border-white/10 my-6 transition-all duration-500 hover:border-indigo-500/30">
+    <svg viewBox="0 0 800 240" className="w-full h-auto">
+      <defs>
+        <marker id="arrowhead-narayan" markerWidth="8" markerHeight="6" refX="5" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill={themeColor} />
+        </marker>
+        <marker id="arrowhead-kafka" markerWidth="8" markerHeight="6" refX="5" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#f59e0b" />
+        </marker>
+      </defs>
+
+      {/* Step 1: POS & Ingestion */}
+      <rect x="15" y="30" width="110" height="40" rx="8" fill="#040912" stroke="#ef4444" strokeWidth="1" />
+      <text x="70" y="55" textAnchor="middle" fill="white" fontSize="9" fontWeight="bold">PioneerRx POS</text>
+
+      <path d="M125 50 H 175" stroke="#ef4444" strokeWidth="1.5" strokeDasharray="3" markerEnd="url(#arrowhead-narayan)" />
+
+      {/* Step 2: Apache Kafka Broker */}
+      <rect x="185" y="25" width="130" height="70" rx="10" fill="#080c14" stroke="#f59e0b" strokeWidth="1.5" />
+      <text x="250" y="45" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">Apache Kafka Cluster</text>
+      <text x="250" y="60" textAnchor="middle" fill="#f59e0b" fontSize="8" fontStyle="italic">POS Event Broker</text>
+      <rect x="195" y="72" width="110" height="15" rx="3" fill="#141c2c" stroke="#f59e0b" strokeWidth="0.5" />
+      <text x="250" y="82" textAnchor="middle" fill="#93c5fd" fontSize="7" fontStyle="mono">order-updates-topic</text>
+
+      <path d="M250 95 V 135" stroke="#f59e0b" strokeWidth="1.5" markerEnd="url(#arrowhead-kafka)" />
+
+      {/* Step 3: Logistics Core Backend */}
+      <rect x="185" y="145" width="130" height="65" rx="10" fill="#0c0814" stroke={themeColor} strokeWidth="1.5" />
+      <text x="250" y="165" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">Logistics Backend</text>
+      <text x="250" y="180" textAnchor="middle" fill={themeColor} fontSize="8" fontStyle="italic">FastAPI / Django Core</text>
+      <rect x="195" y="188" width="110" height="14" rx="3" fill="#140f24" stroke={themeColor} strokeWidth="0.5" />
+      <text x="250" y="198" textAnchor="middle" fill="#a78bfa" fontSize="7" fontStyle="mono">Redis Lock (SETNX)</text>
+
+      <path d="M315 177 H 375" stroke={themeColor} strokeWidth="1.5" markerEnd="url(#arrowhead-narayan)" />
+
+      {/* Step 4: Mapbox API Routing */}
+      <rect x="385" y="145" width="130" height="65" rx="10" fill="#0a0f0d" stroke="#10b981" strokeWidth="1.5" />
+      <text x="450" y="165" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">Mapbox Routing</text>
+      <text x="450" y="180" textAnchor="middle" fill="#10b981" fontSize="8" fontStyle="italic">Clustering Engine</text>
+
+      <path d="M515 177 H 575" stroke="#10b981" strokeWidth="1.5" markerEnd="url(#arrowhead-narayan)" />
+
+      {/* Step 5: Encrypted PostgreSQL Database */}
+      <rect x="385" y="25" width="130" height="70" rx="10" fill="#040c10" stroke="#3b82f6" strokeWidth="1.5" />
+      <text x="450" y="45" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">PostgreSQL DB</text>
+      <text x="450" y="60" textAnchor="middle" fill="#3b82f6" fontSize="8" fontStyle="italic">Encrypted Row-Level</text>
+      <rect x="395" y="72" width="110" height="15" rx="3" fill="#0b1724" stroke="#3b82f6" strokeWidth="0.5" />
+      <text x="450" y="82" textAnchor="middle" fill="#93c5fd" fontSize="7" fontStyle="mono">AES-256 Transit Safety</text>
+
+      <path d="M315 160 Q 350 120, 385 75" stroke="#3b82f6" strokeWidth="1.5" strokeDasharray="3" markerEnd="url(#arrowhead-narayan)" />
+
+      {/* Step 6: Dispatch WebSockets Client */}
+      <rect x="585" y="135" width="195" height="85" rx="12" fill="#0c0c0f" stroke="#eab308" strokeWidth="1.5" />
+      <text x="682" y="155" textAnchor="middle" fill="white" fontSize="11" fontWeight="black" letterSpacing="0.05em">DRIVER DISPATCH BOARD</text>
+      <rect x="595" y="168" width="175" height="42" rx="6" fill="#030305" stroke="#eab308" strokeWidth="0.5" />
+      <text x="605" y="181" fill="#eab308" fontSize="8" fontWeight="bold">&gt;_ Live WebSocket Stream</text>
+      <text x="605" y="193" fill="white" fontSize="7">PioneerRx POS sync: ACTIVE</text>
+      <text x="605" y="203" fill="#10b981" fontSize="7" fontWeight="bold">Geo clustering: COMPLETED</text>
     </svg>
   </div>
 );
@@ -751,7 +823,7 @@ interface ProjectCarouselProps {
   images: string[];
   title: string;
   accentColor: string;
-  onClickDiagram?: () => void;
+  onClickDiagram?: (path?: string) => void;
 }
 
 const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ diagram, images, title, accentColor, onClickDiagram }) => {
@@ -769,22 +841,36 @@ const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ diagram, images, titl
   };
 
   const isDiagramActive = diagram && currentIndex === 0;
+  const activeImage = diagram ? images[currentIndex - 1] : images[currentIndex];
+
+  const handleSlideClick = () => {
+    if (!onClickDiagram) return;
+    if (isDiagramActive) {
+      onClickDiagram();
+    } else {
+      onClickDiagram(activeImage);
+    }
+  };
 
   return (
     <div className="w-full relative group/carousel bg-black/40 rounded-3xl border border-white/10 p-4 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:border-white/20 shadow-2xl">
-      {/* Active Slide Container */}
-      <div className="w-full flex items-center justify-center min-h-[260px] md:min-h-[300px]">
+      {/* Active Slide Container - Clickable with hover expand badge for all slides */}
+      <div 
+        onClick={handleSlideClick}
+        className="w-full flex items-center justify-center min-h-[260px] md:min-h-[300px] cursor-pointer relative group/diagram"
+      >
+        <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-white/70 opacity-0 group-hover/diagram:opacity-100 transition-opacity z-10">
+          🔍 Click to expand
+        </div>
+
         {isDiagramActive ? (
-          <div onClick={onClickDiagram} className="w-full cursor-pointer relative group/diagram">
-            <div className="absolute top-4 right-4 bg-black/80 border border-white/10 px-2.5 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest text-white/70 opacity-0 group-hover/diagram:opacity-100 transition-opacity z-10">
-              🔍 Click to expand
-            </div>
+          <div className="w-full">
             {diagram}
           </div>
         ) : (
           <div className="w-full h-full flex items-center justify-center p-2">
             <img 
-              src={diagram ? images[currentIndex - 1] : images[currentIndex]} 
+              src={activeImage} 
               alt={`${title} slide ${currentIndex}`} 
               className="max-h-[320px] md:max-h-[380px] w-auto h-auto object-contain rounded-2xl shadow-xl transition-all duration-500 ease-out transform scale-100 hover:scale-[1.02]"
               style={{ maxHeight: '350px' }}
@@ -1709,7 +1795,7 @@ export default function Home() {
               </div>
               
               <ProjectCarousel 
-                diagram={null}
+                diagram={<NarayanArchitecture themeColor={accentHex} />}
                 images={[
                   "/assets/narayan1.png",
                   "/assets/narayan2.png",
@@ -1717,6 +1803,7 @@ export default function Home() {
                 ]}
                 title="Narayan Pharmacy Operations"
                 accentColor={isBuild ? "indigo-500" : "emerald-500"}
+                onClickDiagram={() => setActiveModalDiagram('narayan')}
               />
 
               <div className="grid grid-cols-2 gap-4">
@@ -2393,6 +2480,7 @@ export default function Home() {
               {activeModalDiagram === 'atoma' && <TokenAgentDiagram themeColor="#f59e0b" />}
               {activeModalDiagram === 'email' && <EmailIntelligenceArchitecture themeColor={accentHex} />}
               {activeModalDiagram === 'health' && <MonitoringDiagram themeColor={isBuild ? '#3b82f6' : '#10b981'} />}
+              {activeModalDiagram === 'narayan' && <NarayanArchitecture themeColor={accentHex} />}
             </div>
             <p className="text-gray-500 text-[10px] mt-4 font-mono uppercase tracking-widest animate-pulse">🔍 Click anywhere outside or use close button to return</p>
           </div>
