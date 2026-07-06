@@ -1782,7 +1782,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Project 3.5: Narayan Pharmacy Operations Platform (Live Platform) */}
+        {/* Project 3.5: Narayan Pharmacy Operations Platform (Live Platform) - TEMPORARILY HIDDEN 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-32 border-b border-white/5 pb-20">
           <div className="lg:col-span-7 space-y-6">
             <div className={`p-8 rounded-3xl border bg-white/5 backdrop-blur-md space-y-8 transition-all duration-500 ${isBuild ? 'border-indigo-500/20' : 'border-emerald-500/20'}`}>
@@ -1836,7 +1836,6 @@ export default function Home() {
                 Co-developed a high-throughput, secure healthcare logistics and operational platform supporting patient workflows, driver dispatch runs, and real-time order tracking. Built to handle PioneerRx POS synchronizations securely under high-concurrency patient demands.
               </p>
 
-              {/* Infrastructure Stack quick scan */}
               <div className="space-y-1.5 pt-2">
                 <p className="text-[9px] font-black text-gray-500 uppercase tracking-widest">Infrastructure Stack</p>
                 <div className="flex flex-wrap gap-1.5">
@@ -1846,7 +1845,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Why This Architecture? */}
               <div className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-3 mt-4">
                 <p className="text-[10px] font-black uppercase tracking-widest text-indigo-400">📐 Why This Architecture?</p>
                 <div className="grid grid-cols-1 gap-2 text-[11px] leading-relaxed">
@@ -1861,7 +1859,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Engineering Challenge & Resolution */}
               <div className="p-4 rounded-2xl bg-white/5 border border-white/5 space-y-2 mt-4">
                 <p className="text-[10px] font-black uppercase tracking-widest text-amber-500">⚠️ Engineering Challenge</p>
                 <p className="text-xs text-gray-300">
@@ -1908,6 +1905,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+        */}
 
         {/* Project 4: Health-Monitor Observability & SRE Automation Engine (Dual Focus) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-32 border-b border-white/5 pb-20">
